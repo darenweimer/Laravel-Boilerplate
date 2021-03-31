@@ -1,14 +1,15 @@
 <?php
 
 namespace Tests\Feature;
-
+s
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+
     /**
-     * A basic test example.
+     * A basic test example
      *
      * @return void
      */
@@ -18,4 +19,5 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
 }

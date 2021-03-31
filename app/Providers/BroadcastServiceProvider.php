@@ -7,8 +7,9 @@ use Illuminate\Support\ServiceProvider;
 
 class BroadcastServiceProvider extends ServiceProvider
 {
+
     /**
-     * Bootstrap any application services.
+     * Bootstraps any application services
      *
      * @return void
      */
@@ -18,4 +19,5 @@ class BroadcastServiceProvider extends ServiceProvider
 
         require base_path('routes/channels.php');
     }
+
 }

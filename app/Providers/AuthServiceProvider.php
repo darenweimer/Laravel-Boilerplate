@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
     /**
-     * The policy mappings for the application.
+     * The policy mappings for the application
      *
      * @var array
      */
@@ -17,7 +18,7 @@ class AuthServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Register any authentication / authorization services.
+     * Registers any authentication / authorization services
      *
      * @return void
      */
@@ -27,4 +28,5 @@ class AuthServiceProvider extends ServiceProvider
 
         //
     }
+
 }
