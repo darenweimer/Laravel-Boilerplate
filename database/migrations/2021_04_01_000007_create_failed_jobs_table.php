@@ -6,8 +6,9 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFailedJobsTable extends Migration
 {
+
     /**
-     * Run the migrations.
+     * Runs the migrations
      *
      * @return void
      */
@@ -16,8 +17,8 @@ class CreateFailedJobsTable extends Migration
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
-            $table->text('connection');
-            $table->text('queue');
+            $table->string('connection');
+            $table->string('queue')->index();
             $table->longText('payload');
             $table->longText('exception');
             $table->timestamp('failed_at')->useCurrent();
@@ -25,7 +26,7 @@ class CreateFailedJobsTable extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Reverses the migrations
      *
      * @return void
      */
@@ -33,4 +34,5 @@ class CreateFailedJobsTable extends Migration
     {
         Schema::dropIfExists('failed_jobs');
     }
+
 }

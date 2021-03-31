@@ -3,15 +3,12 @@
 namespace App\Models;
 
 use App\Models\Traits\Revisions;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class Setting extends Model
 {
-    use HasFactory, Notifiable, Revisions, SoftDeletes;
+    use Revisions, SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -19,9 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'setting',
+        'value',
+        'expires_at',
     ];
 
     /**
@@ -30,8 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        //
     ];
 
     /**
@@ -40,7 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'expires_at' => 'timestamp',
     ];
 
     /**
