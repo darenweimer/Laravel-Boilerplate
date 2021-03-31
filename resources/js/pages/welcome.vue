@@ -14,13 +14,13 @@
                     &bull;
                 </span>
 
-                TailwindCSS 2
+                Tailwind CSS 2
 
                 <span class="mx-2 font-bold">
                     &bull;
                 </span>
 
-                Fontawesome 5
+                Font Awesome 5
             </div>
         </div>
     </div>
