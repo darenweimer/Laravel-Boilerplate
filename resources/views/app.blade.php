@@ -15,17 +15,18 @@
     <link href="https://fonts.gstatic.com" rel="preconnect" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
 
-    <link href="/css/app.css" rel="stylesheet" />
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" />
 
     @yield('stylesheets')
 
-    <script src="/js/app.js" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
 
 
-<body>
-    @yield('content')
+<body class="font-sans font-normal text-base">
+    @routes
+    @inertia
 </body>
 
 
