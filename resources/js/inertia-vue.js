@@ -43,6 +43,8 @@ VueApp.mixin({
  * Add global components to the Vue app
  */
 
+import Button from '@/components/button';
 import Card from '@/components/card';
 
+VueApp.component('v-button', Button);
 VueApp.component('v-card', Card);
