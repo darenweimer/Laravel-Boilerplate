@@ -23,6 +23,23 @@ VueApp.use(InertiaPlugin)
     .mount('#app');
 
 /**
+ * Add global props and methods to the Vue app
+ */
+
+import { useForm } from '@inertiajs/inertia-vue3';
+
+VueApp.mixin({
+    props: {
+        user: Object,
+        status: String,
+    },
+    methods: {
+        route,
+        useForm,
+    },
+});
+
+/**
  * Add global components to the Vue app
  */
 
