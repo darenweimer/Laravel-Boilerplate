@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return Inertia\Inertia::render('welcome');
+require __DIR__ . '/web/home.php';
+
+require __DIR__ . '/web/auth.php';
+
+Route::middleware(['auth'])->group(function () {
+
+    // require __DIR__ . '/web/routes.php';
+
 });
