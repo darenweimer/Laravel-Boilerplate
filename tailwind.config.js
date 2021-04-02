@@ -11,12 +11,13 @@ module.exports = {
             center: true,
         },
         extend: {
-            textColor: {
-                'button-submit': colors.white,
-                'button-cancel': colors.black,
-                'button-add': colors.white,
-                'button-remove': colors.white,
-                'button-other': colors.white,
+            borderColor: {
+                'button-submit': colors.blue['900'],
+                'button-cancel': colors.trueGray['500'],
+                'button-add': colors.green['900'],
+                'button-remove': colors.red['900'],
+                'button-other': colors.yellow['900'],
+                'card': colors.trueGray['300'],
             },
             backgroundColor: {
                 'button-submit': colors.blue['600'],
@@ -38,13 +39,12 @@ module.exports = {
                 'card-body': colors.white,
                 'card-footer': colors.trueGray['100'],
             },
-            borderColor: {
-                'button-submit': colors.blue['900'],
-                'button-cancel': colors.trueGray['500'],
-                'button-add': colors.green['900'],
-                'button-remove': colors.red['900'],
-                'button-other': colors.yellow['900'],
-                'card': colors.trueGray['300'],
+            textColor: {
+                'button-submit': colors.white,
+                'button-cancel': colors.black,
+                'button-add': colors.white,
+                'button-remove': colors.white,
+                'button-other': colors.white,
             },
             fontFamily: {
                 sans: [
