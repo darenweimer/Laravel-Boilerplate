@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     purge: [
@@ -15,26 +15,31 @@ module.exports = {
                 //
             },
             backgroundColor: {
-                //
+                'card-header': colors.trueGray['100'],
+                'card-body': colors.white,
+                'card-footer': colors.trueGray['100'],
             },
             borderColor: {
-                //
+                'card': colors.trueGray['300'],
             },
             fontFamily: {
                 sans: [
                     'Roboto',
-                    ...defaultTheme.fontFamily.sans,
                 ],
-            },
-            fontWeight: {
-                light: 100,
-                normal: 300,
-                bold: 700,
             },
         },
     },
+    variants: {
+        extend: {
+            backgroundColor: [
+                'active',
+            ],
+            opacity: [
+                'disabled',
+            ],
+        },
+    },
     plugins: [
-        require('@tailwindcss/typography'),
-        require('@tailwindcss/forms'),
+        //
     ],
 };

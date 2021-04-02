@@ -43,6 +43,6 @@ VueApp.mixin({
  * Add global components to the Vue app
  */
 
-// import ComponentName from '@/components/component-name';
+import Card from '@/components/card';
 
-// VueApp.component('component-name', ComponentName);
+VueApp.component('v-card', Card);
