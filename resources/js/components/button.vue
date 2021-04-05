@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="border rounded font-medium text-sm px-3 py-1 transition focus:outline-none disabled:opacity-25" :class="getExtClasses(action)">
+    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-3 py-1 transition focus:outline-none disabled:opacity-25" :class="getExtClasses(action)">
         <slot/>
     </button>
 </template>
