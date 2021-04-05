@@ -22,7 +22,7 @@
 
 
 
-<body class="font-sans font-light text-base">
+<body class="bg-primary font-sans font-normal text-base text-primary antialiased">
     @routes
     @inertia
 </body>
