@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-3 py-1 transition focus:outline-none disabled:opacity-25" :class="getExtClasses(action)">
+    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-3 py-1 transition focus:outline-none disabled:opacity-25" :class="classAction">
         <slot/>
     </button>
 </template>
@@ -16,13 +16,14 @@
                 default: 'primary',
             },
         },
-        methods: {
-            getExtClasses: (action) =>
-                ' border-btn-' + action +
-                ' bg-btn-' + action +
-                ' hover:bg-btn-' + action + '-hover' +
-                ' active:bg-btn-' + action + '-active' +
-                ' text-btn-' + action,
+        computed: {
+            classAction() {
+                return 'border-btn-' + this.action +
+                    ' bg-btn-' + this.action +
+                    ' hover:bg-btn-' + this.action + '-hover' +
+                    ' active:bg-btn-' + this.action + '-active' +
+                    ' text-btn-' + this.action;
+            },
         },
     };
 </script>
