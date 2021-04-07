@@ -11,6 +11,9 @@ module.exports = {
             center: true,
         },
         extend: {
+            ringColor: {
+                'input': colors.blue['100'],
+            },
             borderColor: {
                 'btn-primary': colors.blue['900'],
                 'btn-secondary': colors.yellow['900'],
@@ -18,6 +21,9 @@ module.exports = {
                 'btn-delete': colors.red['900'],
                 'btn-cancel': colors.trueGray['500'],
                 'card': colors.trueGray['300'],
+                'input': colors.trueGray['300'],
+                'input-focus': colors.blue['300'],
+                'input-invalid': colors.red['600'],
             },
             backgroundColor: {
                 'primary': colors.white,
@@ -39,6 +45,9 @@ module.exports = {
                 'card-header': colors.trueGray['100'],
                 'card-body': colors.white,
                 'card-footer': colors.trueGray['100'],
+                'input': colors.white,
+                'input-disabled': colors.trueGray['200'],
+                'input-invalid': colors.red['50'],
             },
             fontFamily: {
                 sans: [
@@ -62,6 +71,12 @@ module.exports = {
                 'card-header': colors.trueGray['700'],
                 'card-body': colors.trueGray['700'],
                 'card-footer': colors.trueGray['700'],
+                'input': colors.trueGray['700'],
+                'input-invalid': colors.red['900'],
+                'input-error': colors.red['600'],
+            },
+            placeholderColor: {
+                'input': colors.trueGray['300'],
             },
         },
     },
