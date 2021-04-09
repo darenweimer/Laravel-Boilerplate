@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Traits\DateDisplay;
 use Illuminate\Database\Eloquent\Model;
 
 class Revision extends Model
 {
+    use DateDisplay;
 
     /**
      * The attributes that are mass assignable

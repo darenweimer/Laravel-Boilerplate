@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\DateDisplay;
 use App\Models\Traits\Revisions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Revisions, SoftDeletes;
+    use DateDisplay, HasFactory, Notifiable, Revisions, SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -62,5 +63,16 @@ class User extends Authenticatable
     protected $dontRevision = [
         //
     ];
+
+    /**
+     * Gets the user's timezone
+     *
+     * @return string|null
+     */
+    protected function timezone() : ?string
+    {
+        // TODO: Replace with proper timezone once user settings are in place
+        return null;
+    }
 
 }

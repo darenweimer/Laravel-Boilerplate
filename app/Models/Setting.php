@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\DateDisplay;
 use App\Models\Traits\Revisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Model
 {
-    use Revisions, SoftDeletes;
+    use DateDisplay, Revisions, SoftDeletes;
 
     /**
      * The attributes that are mass assignable
