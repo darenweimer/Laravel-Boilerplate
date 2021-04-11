@@ -20,7 +20,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function afterCreated()
+    protected function revisionsAfterCreated()
     {
         $exclusions = array_merge(
             $this->hidden ?? [],
@@ -49,7 +49,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function afterUpdated()
+    protected function revisionsAfterUpdated()
     {
         $exclusions = array_merge(
             $this->hidden ?? [],
@@ -78,7 +78,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function afterDeleted()
+    protected function revisionsAfterDeleted()
     {
         Revision::create([
             'revisionable_type' => static::class,
@@ -95,7 +95,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function afterRestoring()
+    protected function revisionsAfterRestoring()
     {
         $this->revisionRestored = new Revision([
             'revisionable_type' => static::class,
@@ -112,7 +112,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function afterRestored()
+    protected function revisionsAfterRestored()
     {
         $this->revisionRestored->save();
 
@@ -127,24 +127,24 @@ trait Revisions
     public static function bootRevisions()
     {
         static::created(function ($model) {
-            $model->afterCreated();
+            $model->revisionsAfterCreated();
         });
 
         static::updated(function ($model) {
-            $model->afterUpdated();
+            $model->revisionsAfterUpdated();
         });
 
         static::deleted(function ($model) {
-            $model->afterDeleted();
+            $model->revisionsAfterDeleted();
         });
 
         if (method_exists(static::class, 'restoring') && method_exists(static::class, 'restored')) {
             static::restoring(function ($model) {
-                $model->afterRestoring();
+                $model->revisionsAfterRestoring();
             });
 
             static::restored(function ($model) {
-                $model->afterRestored();
+                $model->revisionsAfterRestored();
             });
         }
     }
