@@ -35,7 +35,7 @@ trait Revisions
         foreach ($attributes as $attribute => $value) {
             Revision::create([
                 'revisionable_type' => static::class,
-                'revisionable_id'   => $this->attributes['id'],
+                'revisionable_id'   => $this->attributes[$this->primaryKey],
                 'user_id'           => Auth::id() ?? null,
                 'key'               => $attribute,
                 'old_value'         => null,
@@ -64,7 +64,7 @@ trait Revisions
         foreach ($attributes as $attribute => $value) {
             Revision::create([
                 'revisionable_type' => static::class,
-                'revisionable_id'   => $this->attributes['id'],
+                'revisionable_id'   => $this->attributes[$this->primaryKey],
                 'user_id'           => Auth::id() ?? null,
                 'key'               => $attribute,
                 'old_value'         => $this->original[$attribute] ?? null,
@@ -82,7 +82,7 @@ trait Revisions
     {
         Revision::create([
             'revisionable_type' => static::class,
-            'revisionable_id'   => $this->attributes['id'],
+            'revisionable_id'   => $this->attributes[$this->primaryKey],
             'user_id'           => Auth::id() ?? null,
             'key'               => 'deleted_at',
             'old_value'         => null,
@@ -99,7 +99,7 @@ trait Revisions
     {
         $this->revisionRestored = new Revision([
             'revisionable_type' => static::class,
-            'revisionable_id'   => $this->attributes['id'],
+            'revisionable_id'   => $this->attributes[$this->primaryKey],
             'user_id'           => Auth::id() ?? null,
             'key'               => 'deleted_at',
             'old_value'         => $this->attributes['deleted_at'],
