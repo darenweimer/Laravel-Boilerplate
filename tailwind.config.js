@@ -63,6 +63,7 @@ module.exports = {
             },
             textColor: {
                 'primary': colors.trueGray['700'],
+                'link': colors.blue['500'],
                 'btn-primary': colors.white,
                 'btn-secondary': colors.white,
                 'btn-create': colors.white,
