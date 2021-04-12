@@ -4,16 +4,26 @@ namespace App\Models;
 
 use App\Models\Traits\DateDisplay;
 use App\Models\Traits\Revisions;
-use App\Models\Traits\UserSettings;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class UserSetting extends Model
 {
-    use DateDisplay, HasFactory, Notifiable, Revisions, SoftDeletes, UserSettings;
+    use DateDisplay, Revisions, SoftDeletes;
+
+    /**
+     * The primary key associated with the table
+     *
+     * @var string
+     */
+    protected $primaryKey = 'user_id';
+
+    /**
+     * Indicates if the model's primary key is auto-incrementing
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable
@@ -21,9 +31,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'user_id',
+        'timezone',
     ];
 
     /**
@@ -32,8 +41,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        //
     ];
 
     /**
@@ -42,7 +50,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'user_id' => 'integer',
     ];
 
     /**
@@ -66,22 +74,13 @@ class User extends Authenticatable
     ];
 
     /**
-     * The relationships that should always be loaded
-     *
-     * @var array
-     */
-    protected $with = [
-        'settings',
-    ];
-
-    /**
      * Relationship 1:1
      *
-     * Gets the user settings associated with the user
+     * Gets the user associated with the user settings
      */
-    public function settings()
+    public function user()
     {
-        return $this->hasOne(UserSetting::class);
+        return $this->belongsTo(User::class);
     }
 
 }
