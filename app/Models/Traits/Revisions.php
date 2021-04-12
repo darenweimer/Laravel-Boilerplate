@@ -9,13 +9,6 @@ trait Revisions
 {
 
     /**
-     * Holds the revision between the 'restoring' and 'restored' events
-     *
-     * @var Revision
-     */
-    protected $revisionRestored = null;
-
-    /**
      * Handles the model's 'created' event
      *
      * @return void
@@ -36,7 +29,7 @@ trait Revisions
             Revision::create([
                 'revisionable_type' => static::class,
                 'revisionable_id'   => $this->attributes[$this->primaryKey],
-                'user_id'           => Auth::id() ?? null,
+                'user_id'           => Auth::id(),
                 'key'               => $attribute,
                 'old_value'         => null,
                 'new_value'         => $value,
@@ -65,7 +58,7 @@ trait Revisions
             Revision::create([
                 'revisionable_type' => static::class,
                 'revisionable_id'   => $this->attributes[$this->primaryKey],
-                'user_id'           => Auth::id() ?? null,
+                'user_id'           => Auth::id(),
                 'key'               => $attribute,
                 'old_value'         => $this->original[$attribute] ?? null,
                 'new_value'         => $value,
@@ -83,40 +76,11 @@ trait Revisions
         Revision::create([
             'revisionable_type' => static::class,
             'revisionable_id'   => $this->attributes[$this->primaryKey],
-            'user_id'           => Auth::id() ?? null,
+            'user_id'           => Auth::id(),
             'key'               => 'deleted_at',
             'old_value'         => null,
             'new_value'         => $this->attributes['deleted_at'],
         ]);
-    }
-
-    /**
-     * Handles the model's 'restoring' event
-     *
-     * @return void
-     */
-    protected function revisionsAfterRestoring()
-    {
-        $this->revisionRestored = new Revision([
-            'revisionable_type' => static::class,
-            'revisionable_id'   => $this->attributes[$this->primaryKey],
-            'user_id'           => Auth::id() ?? null,
-            'key'               => 'deleted_at',
-            'old_value'         => $this->attributes['deleted_at'],
-            'new_value'         => null,
-        ]);
-    }
-
-    /**
-     * Handles the model's 'restored' event
-     *
-     * @return void
-     */
-    protected function revisionsAfterRestored()
-    {
-        $this->revisionRestored->save();
-
-        $this->revisionRestored = null;
     }
 
     /**
@@ -137,16 +101,6 @@ trait Revisions
         static::deleted(function ($model) {
             $model->revisionsAfterDeleted();
         });
-
-        if (method_exists(static::class, 'restoring') && method_exists(static::class, 'restored')) {
-            static::restoring(function ($model) {
-                $model->revisionsAfterRestoring();
-            });
-
-            static::restored(function ($model) {
-                $model->revisionsAfterRestored();
-            });
-        }
     }
 
     /**
