@@ -26,7 +26,7 @@
 
                 <template v-slot:footer>
                     <div class="text-center">
-                        <v-button type="submit">
+                        <v-button type="submit" :disabled="form.processing">
                             Authenticate
                         </v-button>
 
