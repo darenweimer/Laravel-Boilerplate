@@ -76,7 +76,7 @@ module.exports = {
                 'input': colors.trueGray['700'],
                 'input-disabled': colors.trueGray['400'],
                 'input-invalid': colors.red['900'],
-                'input-success': colors.green['600'],
+                'input-success': colors.green['700'],
                 'input-error': colors.red['600'],
             },
             placeholderColor: {
