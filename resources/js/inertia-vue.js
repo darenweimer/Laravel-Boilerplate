@@ -50,12 +50,14 @@ import Card from '@/components/card';
 import Checkbox from '@/components/checkbox';
 import Input from '@/components/input';
 import Label from '@/components/label';
+import Link from '@/components/link';
 
 VueApp.component('v-button', Button);
 VueApp.component('v-card', Card);
 VueApp.component('v-checkbox', Checkbox);
 VueApp.component('v-input', Input);
 VueApp.component('v-label', Label);
+VueApp.component('v-link', Link);
 
 /**
  * Initialize the Inertia request progress indicator
