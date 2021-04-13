@@ -22,6 +22,22 @@
 
                 Font Awesome 5
             </div>
+
+            <div v-if="user" class="mt-8">
+                You are logged in as
+
+                <span class="font-bold">
+                    {{ user.name }}
+                </span>
+
+                <br/>
+
+                To log out of the application
+
+                <v-link :href="route('logout')">
+                    click here
+                </v-link>
+            </div>
         </div>
     </div>
 </template>
