@@ -46,7 +46,7 @@ module.exports = {
                 'card-body': colors.white,
                 'card-footer': colors.trueGray['100'],
                 'input': colors.white,
-                'input-disabled': colors.trueGray['200'],
+                'input-disabled': colors.trueGray['100'],
                 'input-invalid': colors.red['50'],
             },
             fontFamily: {
@@ -73,6 +73,7 @@ module.exports = {
                 'card-body': colors.trueGray['700'],
                 'card-footer': colors.trueGray['700'],
                 'input': colors.trueGray['700'],
+                'input-disabled': colors.trueGray['400'],
                 'input-invalid': colors.red['900'],
                 'input-error': colors.red['600'],
             },
@@ -85,6 +86,10 @@ module.exports = {
         extend: {
             backgroundColor: [
                 'active',
+                'disabled',
+            ],
+            textColor: [
+                'disabled',
             ],
             opacity: [
                 'disabled',
