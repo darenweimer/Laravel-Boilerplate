@@ -13,7 +13,11 @@
 <script>
     export default {
         props: {
-            modelValue: {
+            label: {
+                type: String,
+                default: null,
+            },
+            center: {
                 type: Boolean,
                 default: false,
             },
@@ -21,7 +25,10 @@
                 type: Boolean,
                 default: false,
             },
-            label: String,
+            modelValue: {
+                type: Boolean,
+                default: false,
+            },
         },
         emits: [
             'update:modelValue',
