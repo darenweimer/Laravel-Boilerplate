@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-3 py-1 transition focus:outline-none disabled:opacity-25" :class="classAction">
+    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-3 py-1 transition focus:outline-none focus:ring focus:ring-button disabled:opacity-25" :class="classAction">
         <slot/>
     </button>
 </template>

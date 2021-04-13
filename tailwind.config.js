@@ -13,6 +13,7 @@ module.exports = {
         extend: {
             ringColor: {
                 'input': colors.blue['100'],
+                'button': colors.blue['200'],
             },
             borderColor: {
                 'btn-primary': colors.blue['900'],
