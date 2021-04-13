@@ -23,20 +23,30 @@
                 Font Awesome 5
             </div>
 
-            <div v-if="user" class="mt-8">
-                You are logged in as
+            <div class="mt-8">
+                <div v-if="user">
+                    You are logged in as
 
-                <span class="font-bold">
-                    {{ user.name }}
-                </span>
+                    <span class="font-bold">
+                        {{ user.name }}
+                    </span>
 
-                <br/>
+                    <br/>
 
-                To log out of the application
+                    To log out of the application
 
-                <v-link :href="route('logout')">
-                    click here
-                </v-link>
+                    <v-link :href="route('logout')">
+                        click here
+                    </v-link>
+                </div>
+
+                <div v-else>
+                    To log into the application
+
+                    <v-link :href="route('login')">
+                        click here
+                    </v-link>
+                </div>
             </div>
         </div>
     </div>
