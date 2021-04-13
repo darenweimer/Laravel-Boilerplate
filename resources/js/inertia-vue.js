@@ -47,11 +47,13 @@ VueApp.mixin({
 
 import Button from '@/components/button';
 import Card from '@/components/card';
+import Checkbox from '@/components/checkbox';
 import Input from '@/components/input';
 import Label from '@/components/label';
 
 VueApp.component('v-button', Button);
 VueApp.component('v-card', Card);
+VueApp.component('v-checkbox', Checkbox);
 VueApp.component('v-input', Input);
 VueApp.component('v-label', Label);
 
