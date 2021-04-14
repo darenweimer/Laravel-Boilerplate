@@ -24,7 +24,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        if ($this->app->environment(['local', 'testing'])) {
+            if (is_file($filename = app_path('~testing.php'))) {
+                include $filename;
+            }
+        }
     }
 
 }
