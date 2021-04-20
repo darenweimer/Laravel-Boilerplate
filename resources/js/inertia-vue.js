@@ -48,6 +48,7 @@ VueApp.mixin({
 import Button from '@/components/button';
 import Card from '@/components/card';
 import Checkbox from '@/components/checkbox';
+import Dropdown from '@/components/dropdown';
 import Input from '@/components/input';
 import Label from '@/components/label';
 import Link from '@/components/link';
@@ -55,6 +56,7 @@ import Link from '@/components/link';
 VueApp.component('v-button', Button);
 VueApp.component('v-card', Card);
 VueApp.component('v-checkbox', Checkbox);
+VueApp.component('v-dropdown', Dropdown);
 VueApp.component('v-input', Input);
 VueApp.component('v-label', Label);
 VueApp.component('v-link', Link);
