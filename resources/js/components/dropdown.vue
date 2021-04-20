@@ -11,9 +11,7 @@
                 <ul>
                     <v-link v-for="(item, text) in menu" :href="item.link" :key="text">
                         <li class="text-dropdown pl-4 pr-12 py-1 hover:bg-dropdown-highlight hover:text-dropdown-highlight">
-                            <big>
-                                <i v-if="item.icon" class="mr-3 fa-fw align-middle opacity-50" :class="item.icon"/>
-                            </big>
+                            <i v-if="item.icon" class="mr-3 fa-fw text-xl align-middle opacity-50" :class="item.icon"/>
 
                             <span class="align-middle">
                                 {{ text }}
