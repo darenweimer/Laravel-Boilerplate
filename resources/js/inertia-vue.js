@@ -52,6 +52,7 @@ import Dropdown from '@/components/dropdown';
 import Input from '@/components/input';
 import Label from '@/components/label';
 import Link from '@/components/link';
+import Select from '@/components/select';
 
 VueApp.component('v-button', Button);
 VueApp.component('v-card', Card);
@@ -60,6 +61,7 @@ VueApp.component('v-dropdown', Dropdown);
 VueApp.component('v-input', Input);
 VueApp.component('v-label', Label);
 VueApp.component('v-link', Link);
+VueApp.component('v-select', Select);
 
 /**
  * Initialize the Inertia request progress indicator
