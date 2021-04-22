@@ -28,7 +28,7 @@
 
 <script>
     export default {
-        data () {
+        data() {
             return {
                 form: this.useForm({
                     email: this.user ? this.user.email : null,
@@ -36,7 +36,7 @@
             };
         },
         methods: {
-            submit () {
+            submit() {
                 this.form
                     .clearErrors()
                     .post(this.route('password.email'));

@@ -38,7 +38,7 @@
             email: String,
             token: String,
         },
-        data () {
+        data() {
             return {
                 form: this.useForm({
                     email: this.email,
@@ -49,7 +49,7 @@
             };
         },
         methods: {
-            submit () {
+            submit() {
                 this.form
                     .clearErrors()
                     .post(this.route('password.update'), {

@@ -42,7 +42,7 @@
 
 <script>
     export default {
-        data () {
+        data() {
             return {
                 form: this.useForm({
                     email: null,
@@ -52,7 +52,7 @@
             };
         },
         methods: {
-            submit () {
+            submit() {
                 this.form
                     .clearErrors()
                     .post(this.route('login'), {
