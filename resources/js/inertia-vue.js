@@ -38,6 +38,7 @@ VueApp.mixin({
  * Add global components to the Vue app
  */
 
+import Alert from '@/components/alert';
 import Button from '@/components/button';
 import Card from '@/components/card';
 import Checkbox from '@/components/checkbox';
@@ -47,6 +48,7 @@ import Label from '@/components/label';
 import Link from '@/components/link';
 import Select from '@/components/select';
 
+VueApp.component('v-alert', Alert);
 VueApp.component('v-button', Button);
 VueApp.component('v-card', Card);
 VueApp.component('v-checkbox', Checkbox);
