@@ -26,6 +26,10 @@
                 type: Boolean,
                 default: true,
             },
+            lifetime: {
+                type: Number,
+                default: null,
+            },
         },
         data() {
             return {
@@ -38,6 +42,11 @@
                     ' bg-alert-' + this.color +
                     ' text-alert-' + this.color;
             },
+        },
+        mounted() {
+            if (this.lifetime > 0) {
+                setTimeout(() => this.visible = false, this.lifetime);
+            }
         },
     };
 </script>
