@@ -36,41 +36,12 @@ class UserSetting extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays
-     *
-     * @var array
-     */
-    protected $hidden = [
-        //
-    ];
-
-    /**
      * The attributes that should be cast to native types
      *
      * @var array
      */
     protected $casts = [
         'user_id' => 'integer',
-    ];
-
-    /**
-     * The model's default values for attributes
-     *
-     * @var array
-     */
-    protected $attributes = [
-        //
-    ];
-
-    /**
-     * The attributes that should not be revisioned
-     *
-     * Attributes in $this->hidden are automatically excluded from revisioning.
-     *
-     * @var array
-     */
-    protected $dontRevision = [
-        //
     ];
 
     /**

@@ -24,15 +24,6 @@ class Revision extends Model
     ];
 
     /**
-     * The attributes that should be hidden for arrays
-     *
-     * @var array
-     */
-    protected $hidden = [
-        //
-    ];
-
-    /**
      * The attributes that should be cast to native types
      *
      * @var array
@@ -40,15 +31,6 @@ class Revision extends Model
     protected $casts = [
         'revisionable_id' => 'integer',
         'user_id'         => 'integer',
-    ];
-
-    /**
-     * The model's default values for attributes
-     *
-     * @var array
-     */
-    protected $attributes = [
-        //
     ];
 
     /**

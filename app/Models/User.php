@@ -46,26 +46,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The model's default values for attributes
-     *
-     * @var array
-     */
-    protected $attributes = [
-        //
-    ];
-
-    /**
-     * The attributes that should not be revisioned
-     *
-     * Attributes in $this->hidden are automatically excluded from revisioning.
-     *
-     * @var array
-     */
-    protected $dontRevision = [
-        //
-    ];
-
-    /**
      * The relationships that should always be loaded
      *
      * @var array
