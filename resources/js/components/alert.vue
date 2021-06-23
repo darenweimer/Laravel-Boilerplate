@@ -1,11 +1,12 @@
 <template>
     <div v-if="visible">
-        <div class="block w-full border rounded-md font-medium text-sm text-center px-4 py-2" :class="classColor">
+        <div class="block w-full border rounded-md font-medium text-sm px-4 py-2" :class="`border-alert-${color} bg-alert-${color} text-alert-${color}`">
             <div class="flex flex-row items-center">
                 <div class="flex-grow">
                     <slot/>
                 </div>
-                <div v-if="closebutton" class="flex-none ml-4 border-l text-lg pl-4" :class="'border-alert-' + color">
+
+                <div v-if="closeable" class="flex-none ml-4 border-l text-lg pl-4" :class="`border-alert-${color}`">
                     <button type="button" class="focus:outline-none" @click="visible = false">
                         &times;
                     </button>
@@ -20,13 +21,13 @@
         props: {
             color: {
                 type: String,
-                default: 'primary',
+                default: 'default',
             },
-            closebutton: {
+            closeable: {
                 type: Boolean,
                 default: true,
             },
-            lifetime: {
+            expiration: {
                 type: Number,
                 default: null,
             },
@@ -36,16 +37,9 @@
                 visible: true,
             };
         },
-        computed: {
-            classColor() {
-                return 'border-alert-' + this.color +
-                    ' bg-alert-' + this.color +
-                    ' text-alert-' + this.color;
-            },
-        },
         mounted() {
-            if (this.lifetime > 0) {
-                setTimeout(() => this.visible = false, this.lifetime);
+            if (this.expiration > 0) {
+                setTimeout(() => this.visible = false, this.expiration);
             }
         },
     };

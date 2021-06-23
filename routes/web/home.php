@@ -13,6 +13,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('welcome');
-});
+Route::get('/', fn() => Inertia::render('welcome'));
+
+Route::get('/theme', fn() => Inertia::render('theme'));

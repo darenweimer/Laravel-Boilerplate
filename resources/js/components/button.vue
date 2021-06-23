@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-3 py-1 transition focus:outline-none focus:ring focus:ring-button disabled:opacity-25" :class="classAction">
+    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-2 py-1 transition focus:outline-none focus:ring focus:ring-button disabled:opacity-25" :class="`border-btn-${color} bg-btn-${color}-normal hover:bg-btn-${color}-hover active:bg-btn-${color}-active text-btn-${color}`">
         <slot/>
     </button>
 </template>
@@ -11,18 +11,9 @@
                 type: String,
                 default: 'button',
             },
-            action: {
+            color: {
                 type: String,
-                default: 'primary',
-            },
-        },
-        computed: {
-            classAction() {
-                return 'border-btn-' + this.action +
-                    ' bg-btn-' + this.action +
-                    ' hover:bg-btn-' + this.action + '-hover' +
-                    ' active:bg-btn-' + this.action + '-active' +
-                    ' text-btn-' + this.action;
+                default: 'default',
             },
         },
     };
