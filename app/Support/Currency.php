@@ -183,4 +183,23 @@ class Currency
         return bccomp($left, $right, static::$precision);
     }
 
+    /**
+     * Wraps a currency value to a fixed increment
+     *
+     * @param string $value
+     * @param string $increment
+     *
+     * @return string
+     */
+    public static function wrap(string $value, string $increment) : string
+    {
+        $divisor = bcdiv(1, $increment, static::$precision);
+
+        return static::format(
+            bcdiv(
+                bcmul($value, $divisor, 0), $divisor, static::$precision
+            )
+        );
+    }
+
 }
