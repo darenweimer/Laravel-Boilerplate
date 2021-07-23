@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="mt-6 mb-4">
-                    <v-checkbox label="Remember Me" :center="true" v-model="form.remember"/>
+                    <v-checkbox label="Remember Me" class="text-center" v-model="form.remember"/>
                 </div>
 
                 <template v-slot:footer>
