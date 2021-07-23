@@ -116,9 +116,9 @@ module.exports = {
                         footer: colors.red['100'],
                     },
                     default: {
-                        header: colors.trueGray['200'],
-                        body: colors.trueGray['50'],
-                        footer: colors.trueGray['200'],
+                        header: colors.trueGray['100'],
+                        body: colors.white,
+                        footer: colors.trueGray['100'],
                     },
                 },
                 input: {
