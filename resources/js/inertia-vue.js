@@ -46,6 +46,7 @@ import Dropdown from '@/components/dropdown';
 import Input from '@/components/input';
 import Label from '@/components/label';
 import Link from '@/components/link';
+import Modal from '@/components/modal';
 import Select from '@/components/select';
 
 VueApp.component('v-alert', Alert);
@@ -56,6 +57,7 @@ VueApp.component('v-dropdown', Dropdown);
 VueApp.component('v-input', Input);
 VueApp.component('v-label', Label);
 VueApp.component('v-link', Link);
+VueApp.component('v-modal', Modal);
 VueApp.component('v-select', Select);
 
 /**
