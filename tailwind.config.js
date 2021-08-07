@@ -28,11 +28,11 @@ module.exports = {
                     default: colors.trueGray['500'],
                 },
                 card: {
-                    primary: colors.blue['200'],
-                    secondary: colors.purple['200'],
-                    success: colors.emerald['200'],
-                    warning: colors.orange['200'],
-                    danger: colors.red['200'],
+                    primary: colors.blue['300'],
+                    secondary: colors.purple['300'],
+                    success: colors.emerald['300'],
+                    warning: colors.orange['300'],
+                    danger: colors.red['300'],
                     default: colors.trueGray['300'],
                 },
                 input: {
