@@ -144,11 +144,20 @@
                 };
             },
             selectOptions() {
-                return {
-                    option1: 'Option 1',
-                    option2: 'Option 2',
-                    option3: 'Option 3',
-                };
+                return [
+                    {
+                        'id': 'option1',
+                        'text': 'Option 1',
+                    },
+                    {
+                        'id': 'option2',
+                        'text': 'Option 2',
+                    },
+                    {
+                        'id': 'option3',
+                        'text': 'Option 3',
+                    },
+                ];
             },
             dropdownOptions() {
                 return {
