@@ -7,11 +7,8 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |---------------------------------------------------------------------------
-| Web Routes: Auth
+| Web Routes: Authentication
 |---------------------------------------------------------------------------
-|
-| These are the web routes that provide basic application authentication.
-|
 */
 
 Route::namespace('Auth')->group(function () {
@@ -22,11 +19,10 @@ Route::namespace('Auth')->group(function () {
 
     Route::prefix('password')->name('password.')->group(function () {
 
-        Route::get('reset',  [ForgotPasswordController::class, 'linkRequestForm'   ])->name('request');
-        Route::post('email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('email');
-
-        Route::get('reset/{token}', [ResetPasswordController::class, 'resetForm'])->name('reset');
-        Route::post('reset',        [ResetPasswordController::class, 'reset'    ])->name('update');
+        Route::get('reset',         [ForgotPasswordController::class, 'linkRequestForm'   ])->name('request');
+        Route::post('email',        [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('email');
+        Route::get('reset/{token}', [ResetPasswordController::class,  'resetForm'         ])->name('reset');
+        Route::post('reset',        [ResetPasswordController::class,  'reset'             ])->name('update');
 
     });
 
