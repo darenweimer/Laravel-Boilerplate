@@ -2,6 +2,8 @@
 # Framework
 #-------------------------------------------------------------------------------
 
+/.idea
+/.vscode
 /node_modules
 /public/css
 /public/fonts
