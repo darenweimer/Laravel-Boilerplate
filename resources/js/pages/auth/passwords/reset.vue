@@ -22,7 +22,7 @@
 
                 <template v-slot:footer>
                     <div class="text-center">
-                        <v-button type="submit" :disabled="form.processing">
+                        <v-button type="submit" color="primary" :disabled="form.processing">
                             Reset Password
                         </v-button>
                     </div>
