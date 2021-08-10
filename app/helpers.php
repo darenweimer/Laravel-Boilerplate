@@ -50,8 +50,8 @@ function put_setting(string $setting, $value, int $expiresAt = null)
         ]);
     }
 
-    $model->value = $value;
-    $model->expires_at = $expiresAt;
-
-    $model->save();
+    $model->fill([
+        'value'      => $value,
+        'expires_at' => $expiresAt,
+    ])->save();
 }
