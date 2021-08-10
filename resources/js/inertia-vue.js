@@ -10,7 +10,7 @@ const app = document.getElementById('app');
 const VueApp = createApp({
     render: () => h(InertiaApp, {
         initialPage: JSON.parse(app.dataset.page),
-        resolveComponent: name => require(`./pages/${name}`).default,
+        resolveComponent: (name) => require(`./pages/${name}`).default,
     }),
 });
 
