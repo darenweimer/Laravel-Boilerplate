@@ -123,7 +123,7 @@ module.exports = {
                 },
                 dropdown: {
                     normal: colors.white,
-                    highlight: colors.trueGray['200'],
+                    highlight: colors.coolGray['200'],
                 },
             },
             fontFamily: {
