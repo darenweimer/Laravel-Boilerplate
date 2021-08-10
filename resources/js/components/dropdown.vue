@@ -3,7 +3,7 @@
         <button class="inline cursor-pointer focus:outline-none" @click="active = !active" @blur="active = false">
             <i class="fa-2x align-middle" :class="icon"></i>
 
-            <i class="ml-2 fas fa-xl align-middle" :class="active ? 'fa-caret-up' : 'fa-caret-down'"></i>
+            <i class="ml-2 fas fa-xl align-middle" :class="{ 'fa-caret-up': active, 'fa-caret-down': !active }"></i>
         </button>
 
         <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-75" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-100" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-75">

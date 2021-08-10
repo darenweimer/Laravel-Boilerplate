@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="border rounded font-medium text-sm tracking-wide px-2 py-1 transition focus:outline-none focus:ring focus:ring-button disabled:opacity-25" :class="`border-btn-${color} bg-btn-${color}-normal hover:bg-btn-${color}-hover active:bg-btn-${color}-active text-btn-${color}`">
+    <button :type="type" :class="`border border-btn-${color} rounded bg-btn-${color}-normal hover:bg-btn-${color}-hover active:bg-btn-${color}-active font-medium text-base text-btn-${color} tracking-wide px-2 py-1 transition focus:outline-none focus:ring focus:ring-button disabled:opacity-25`">
         <slot/>
     </button>
 </template>

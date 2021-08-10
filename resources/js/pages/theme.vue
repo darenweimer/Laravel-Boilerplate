@@ -6,7 +6,15 @@
             This is an example of the normal font on the normal background.
         </p>
 
-        <p class="mt-2">
+        <p class="mt-2 text-success">
+            This is an example of success text on the normal background.
+        </p>
+
+        <p class="mt-2 text-danger">
+            This is an example of danger text on the normal background.
+        </p>
+
+        <p class="mt-16">
             This is an example of a
 
             <inertia-link href="#">
@@ -40,18 +48,8 @@
             <p v-for="(color, label) in colors" class="mt-4">
                 This is an example of a
 
-                <v-button :color="color">
+                <v-button :color="color" class="mx-1">
                     {{ label }}
-                </v-button>
-
-                button.
-            </p>
-
-            <p class="mt-4">
-                This is an example of a
-
-                <v-button color="primary" class="px-3 rounded-full">
-                    Rounded
                 </v-button>
 
                 button.
@@ -87,8 +85,8 @@
             <v-input invalid="Formatted error" value="This is an example invalid input value" placeholder="This is an example text input..."/>
             <v-label error="This is an example error label" :below="true"/>
 
-            <v-checkbox label="This is an example checkbox" class="mt-4" v-model="checkbox"/>
-            <v-checkbox label="This is an example disabled checkbox" class="mt-4" v-model="checkbox" :disabled="true"/>
+            <v-checkbox label="This is an example checkbox" class="mt-4 text-center" v-model="checkbox"/>
+            <v-checkbox label="This is an example disabled checkbox" class="mt-4 text-center" v-model="checkbox" :disabled="true"/>
         </div>
 
         <!-- Dropdown Menu Component -->
@@ -96,7 +94,45 @@
         <div class="mt-16">
             <p class="mt-4">
                 This is an example dropdown menu:
-                <v-dropdown icon="fas fa-bars" :options="dropdownOptions"/>
+                <v-dropdown icon="fas fa-bars" :options="dropdownOptions" class="ml-2"/>
+            </p>
+        </div>
+
+        <!-- Modal Components -->
+
+        <div class="mt-16">
+            <p v-for="(color, label) in colors" class="mt-2">
+                <v-modal :show="showModal[color]" :color="color" @close="showModal[color] = false">
+                    <template v-slot:header>
+                        {{ label }} Modal Dialog
+                    </template>
+
+                    This is an example of a {{ label }} modal dialog.
+
+                    <template v-slot:footer>
+                        <div class="text-center">
+                            <v-button color="success" class="mx-1">
+                                Yes
+                            </v-button>
+
+                            <v-button color="danger" class="mx-1">
+                                No
+                            </v-button>
+
+                            <v-button color="default" class="mx-1">
+                                Cancel
+                            </v-button>
+                        </div>
+                    </template>
+                </v-modal>
+
+                This is an example of a
+
+                <button class="text-link focus:outline-none" @click="showModal[color] = true">
+                    {{ label }}
+                </button>
+
+                modal dialog.
             </p>
         </div>
 
@@ -163,15 +199,15 @@
                 return {
                     'Option 1': {
                         icon: 'fas fa-home',
-                        link: 'option1',
+                        link: '#option1',
                     },
                     'Option 2': {
                         icon: 'fas fa-chart-pie',
-                        link: 'option2',
+                        link: '#option2',
                     },
                     'Option 3': {
                         icon: 'fas fa-envelope-open-text',
-                        link: 'option3',
+                        link: '#option3',
                     },
                 };
             },
@@ -179,6 +215,14 @@
         data() {
             return {
                 checkbox: true,
+                showModal: {
+                    primary: false,
+                    secondary: false,
+                    success: false,
+                    warning: false,
+                    danger: false,
+                    default: false,
+                },
             };
         },
     };
