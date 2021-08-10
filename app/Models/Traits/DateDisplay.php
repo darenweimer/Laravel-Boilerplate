@@ -21,8 +21,8 @@ trait DateDisplay
         $date = parent::asDateTime($value);
 
         if ($user = Auth::user()) {
-            if (($settings = $user->settings) && $settings->timezone) {
-                $date->timezone($settings->timezone);
+            if ($timezone = $user->settings->timezone) {
+                $date->timezone($timezone);
             }
         }
 
