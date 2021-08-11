@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRevisionsTable extends Migration
+return new class extends Migration
 {
 
     /**
@@ -35,4 +35,4 @@ class CreateRevisionsTable extends Migration
         Schema::dropIfExists('revisions');
     }
 
-}
+};
