@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen content-center items-center">
-            <v-card class="w-full max-w-sm m-auto">
+            <v-card class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Application Login
@@ -30,7 +30,7 @@
                             Authenticate
                         </v-button>
 
-                        <v-link :href="route('password.request')" class="ml-4 text-sm">
+                        <v-link :href="route('password.request')" class="ml-4">
                             Forgot password?
                         </v-link>
                     </div>

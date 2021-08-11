@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen content-center items-center">
-            <v-card class="w-full max-w-sm m-auto">
+            <v-card class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Reset Password
