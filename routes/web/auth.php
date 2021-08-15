@@ -15,6 +15,13 @@ Route::get('login',  [LoginController::class, 'loginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login'    ]);
 Route::get('logout', [LoginController::class, 'logout'   ])->name('logout');
 
+Route::prefix('2fa')->name('2fa.')->group(function () {
+
+    Route::get('login',  [LoginController::class, 'loginForm2fa'])->name('login');
+    Route::post('login', [LoginController::class, 'login2fa'    ]);
+
+});
+
 Route::prefix('password')->name('password.')->group(function () {
 
     Route::get('reset',         [ForgotPasswordController::class, 'linkRequestForm'   ])->name('request');
