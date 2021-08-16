@@ -9,6 +9,7 @@ find . -type f -not -path "./node_modules/*" -not -path "./storage/*" -not -path
 
 chmod 744 artisan
 chmod 744 permissions
+chmod 744 deploy
 
 chmod -R 775 bootstrap/cache
 chmod -R 775 node_modules
