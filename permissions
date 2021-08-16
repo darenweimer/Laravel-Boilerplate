@@ -7,9 +7,8 @@ fi
 find . -type d -not -path "./node_modules/*" -not -path "./storage/*" -not -path "./vendor/*" -exec chmod 755 {} \;
 find . -type f -not -path "./node_modules/*" -not -path "./storage/*" -not -path "./vendor/*" -exec chmod 644 {} \;
 
-chmod 744 artisan
-chmod 744 permissions
-chmod 744 deploy
+chmod 754 permissions
+chmod 754 deploy
 
 chmod -R 775 bootstrap/cache
 chmod -R 775 node_modules
