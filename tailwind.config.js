@@ -87,6 +87,7 @@ module.exports = {
             },
             fontFamily: {
                 'default': ['Roboto'],
+                'title':   ['Armata'],
             },
             fontWeight: {
                 'thin':   100,
