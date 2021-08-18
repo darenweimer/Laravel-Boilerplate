@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use App\Mail\ExceptionNotification;
+use App\Models\User;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Mail;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -29,6 +32,32 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Notifies all notification-enabled users of an exception
+     *
+     * @param Throwable $e
+     *
+     * @return void
+     */
+    protected function notify(Throwable $e)
+    {
+        $users = User::whereHas('settings',
+            fn($s) => $s->where('notify_exceptions', '<>', 'none')
+        )->get();
+
+        foreach ($users as $user) {
+            $via = $user->settings->notify_exceptions;
+
+            if (in_array($via, ['email', 'both'])) {
+                Mail::to($user)->queue(new ExceptionNotification($e));
+            }
+
+            if (in_array($via, ['text', 'both'])) {
+                // Send text notification
+            }
+        }
+    }
+
+    /**
      * Registers the exception handling callbacks for the application
      *
      * @return void
@@ -36,7 +65,7 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            $this->notify($e);
         });
     }
 

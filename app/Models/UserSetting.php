@@ -33,6 +33,7 @@ class UserSetting extends Model
     protected $fillable = [
         'user_id',
         'timezone',
+        'notify_exceptions',
     ];
 
     /**
