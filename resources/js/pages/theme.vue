@@ -84,7 +84,9 @@
             <v-label label="Example Label" class="mt-4"/>
             <v-input invalid="Formatted error" value="This is an example invalid input value" placeholder="This is an example text input..."/>
             <v-label error="This is an example error label" :below="true"/>
+        </div>
 
+        <div class="mt-16">
             <v-checkbox label="This is an example checkbox" class="mt-4 text-center" v-model="checkbox"/>
             <v-checkbox label="This is an example disabled checkbox" class="mt-4 text-center" v-model="checkbox" :disabled="true"/>
         </div>
