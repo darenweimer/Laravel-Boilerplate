@@ -96,7 +96,11 @@
         <div class="mt-16">
             <p class="mt-4">
                 This is an example dropdown menu:
-                <v-dropdown icon="fas fa-bars" :options="dropdownOptions" class="ml-2"/>
+
+                <v-dropdown :options="dropdownOptions" class="ml-2 border border-dropdown rounded px-1.5 py-2" @state="(active) => $page.props.dropdownActive = active">
+                    <i class="fas fa-bars fa-2x align-middle"></i>
+                    <i class="ml-2 fas align-middle" :class="{ 'fa-caret-up': !$page.props.dropdownActive, 'fa-caret-down': $page.props.dropdownActive }"></i>
+                </v-dropdown>
             </p>
         </div>
 

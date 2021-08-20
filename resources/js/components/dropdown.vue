@@ -1,13 +1,11 @@
 <template>
-    <div class="relative inline font-normal text-base pb-3">
+    <div class="relative inline font-normal text-base">
         <button class="inline cursor-pointer focus:outline-none" @click="active = !active" @blur="active = false">
-            <i class="fa-2x align-middle" :class="icon"></i>
-
-            <i class="ml-2 fas fa-xl align-middle" :class="{ 'fa-caret-up': active, 'fa-caret-down': !active }"></i>
+            <slot/>
         </button>
 
-        <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-75" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-100" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-75">
-            <div v-if="active" class="absolute inline right-0 top-full z-50 border border-dropdown rounded bg-dropdown-normal text-left whitespace-nowrap py-1">
+        <transition :style="getPositionStyle()" enter-active-class="transition ease-out duration-150" enter-from-class="transform scale-0" enter-to-class="transform scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="transform scale-100" leave-to-class="transform scale-0">
+            <div v-if="active" class="absolute inline z-50 border border-dropdown rounded bg-dropdown-normal text-left whitespace-nowrap py-1" :class="getPositionClass()">
                 <ul>
                     <inertia-link v-for="(option, label) in options" :href="option.link" :key="label">
                         <li class="text-dropdown-normal pl-4 pr-12 py-1 hover:bg-dropdown-highlight hover:text-dropdown-highlight">
@@ -27,19 +25,41 @@
 <script>
     export default {
         props: {
-            icon: {
-                type: String,
-                required: true,
-            },
             options: {
                 type: Object,
                 required: true,
+            },
+            position: {
+                type: String,
+                default: '',
             },
         },
         data() {
             return {
                 active: false,
             };
+        },
+        emits: [
+            'state',
+        ],
+        watch: {
+            active() {
+                this.$emit('state', this.active);
+            },
+        },
+        methods: {
+            getPositionStyle() {
+                const xpos = this.position.includes('right') ? 'right' : 'left';
+                const ypos = this.position.includes('bottom') ? 'top' : 'bottom';
+
+                return `transform-origin: ${xpos} ${ypos}`;
+            },
+            getPositionClass() {
+                const xpos = this.position.includes('right') ? 'right-0' : 'left-0';
+                const ypos = this.position.includes('bottom') ? 'top-full' : 'bottom-full';
+
+                return `${xpos} ${ypos}`;
+            },
         },
     };
 </script>
