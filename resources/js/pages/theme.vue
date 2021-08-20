@@ -208,8 +208,16 @@
                         link: '#option2',
                     },
                     'Option 3': {
-                        icon: 'fas fa-envelope-open-text',
+                        icon: 'fas fa-user',
                         link: '#option3',
+                    },
+                    'Option 4': {
+                        icon: 'fas fa-envelope-open-text',
+                        link: '#option4',
+                    },
+                    'Option 5': {
+                        icon: 'fas fa-door-open',
+                        link: '#option5',
                     },
                 };
             },
