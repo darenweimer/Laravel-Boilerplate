@@ -104,9 +104,9 @@ class User extends Authenticatable
     /**
      * Enables Google 2fa with a new secret key
      *
-     * @return User
+     * @return $this
      */
-    public function enable2fa() : User
+    public function enableGoogle2fa()
     {
         $this->google2fa = app('pragmarx.google2fa')->generateSecretKey();
 
@@ -116,9 +116,9 @@ class User extends Authenticatable
     /**
      * Disables Google 2fa by clearing the secret key
      *
-     * @return User
+     * @return $this
      */
-    public function disable2fa() : User
+    public function disableGoogle2fa()
     {
         $this->google2fa = null;
 
