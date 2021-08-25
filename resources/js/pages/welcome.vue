@@ -28,7 +28,7 @@
                     You are logged in as
 
                     <span class="font-bold">
-                        {{ user.name }}
+                        {{ user.first_name }} {{ user.last_name }}
                     </span>
 
                     <br/>
