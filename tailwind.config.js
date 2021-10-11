@@ -1,9 +1,14 @@
 const colors = require('tailwindcss/colors');
 
+// const defaultTheme = require('tailwindcss/defaultTheme');
+// const screens = Object.assign({}, defaultTheme.screens);
+// delete screens['2xl'];
+
 module.exports = {
     theme: {
         container: {
             center: true,
+            // screens: screens,
         },
         extend: {
             ringColor: {
