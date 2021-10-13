@@ -15,7 +15,8 @@ class UserAdd extends Command
      * @var string
      */
     protected $signature = 'user:add
-        {name : The name of the user}
+        {first : The first name of the user}
+        {last : The last name of the user}
         {email : The email address for the user account}
         {password : The password for the user account}';
 
@@ -34,9 +35,10 @@ class UserAdd extends Command
     public function handle() : int
     {
         User::create([
-            'name'     => $this->argument('name'),
-            'email'    => $this->argument('email'),
-            'password' => Hash::make($this->argument('password')),
+            'first_name' => $this->argument('first'),
+            'last_name'  => $this->argument('last'),
+            'email'      => $this->argument('email'),
+            'password'   => Hash::make($this->argument('password')),
         ]);
 
         $this->info('The user was added to the database.');
