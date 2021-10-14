@@ -162,7 +162,7 @@ class Currency
                     break;
                 default:
                     throw new InvalidArgumentException(
-                        'No sign given to indicate calculation type.'
+                        'No sign given to indicate calculation type'
                     );
             }
         }
