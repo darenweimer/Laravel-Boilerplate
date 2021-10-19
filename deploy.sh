@@ -30,6 +30,7 @@ npm run $npm
 
 ./permissions.sh
 
+cp supervisor.conf /etc/supervisor/conf.d/
 supervisorctl reload
 
 php artisan up
