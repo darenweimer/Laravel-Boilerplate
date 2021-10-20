@@ -24,7 +24,7 @@
 
 
 <body class="bg-default font-default font-normal text-base text-default tracking-wide">
-    <div class="flex flex-cols h-screen content-center items-center">
+    <div class="flex h-screen p-4">
         <div class="w-full max-w-lg m-auto">
             <div class="font-title font-medium text-4xl text-center tracking-widest">
                 @yield('title')

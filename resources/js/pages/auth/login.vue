@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submit">
-        <div class="flex h-screen content-center items-center">
+        <div class="flex h-screen p-4">
             <v-card class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
