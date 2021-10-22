@@ -42,16 +42,12 @@ function get_setting(string $setting, $default = null)
  */
 function put_setting(string $setting, $value, int $expiresAt = null)
 {
-    $model = Setting::where('setting', $setting)->first();
-
-    if (!$model) {
-        $model = Setting::create([
+    Setting::firstOrNew([
             'setting' => $setting,
-        ]);
-    }
-
-    $model->fill([
-        'value'      => $value,
-        'expires_at' => $expiresAt,
-    ])->save();
+        ])
+        ->fill([
+            'value'      => $value,
+            'expires_at' => $expiresAt,
+        ])
+        ->save();
 }
