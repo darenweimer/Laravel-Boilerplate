@@ -79,7 +79,7 @@ trait Revisions
             'user_id'           => Auth::id(),
             'key'               => 'deleted_at',
             'old_value'         => null,
-            'new_value'         => $this->attributes['deleted_at'],
+            'new_value'         => $this->attributes['deleted_at'] ?? now(),
         ]);
     }
 
