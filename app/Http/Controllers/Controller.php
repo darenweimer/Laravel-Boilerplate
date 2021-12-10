@@ -10,4 +10,15 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * Creates a new controller instance
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        // A place for test code to run at controller startup
+    }
+
 }
