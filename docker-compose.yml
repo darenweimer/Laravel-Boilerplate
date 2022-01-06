@@ -8,8 +8,9 @@ services:
         build: .
         depends_on:
             - database
-        ports:
-            - 8000:80
+        # Specify ports in your docker-compose.override.yml file
+        # ports:
+        #     - 8000:80
         volumes:
             - .:/var/www
             - node_modules:/var/www/node_modules
@@ -30,8 +31,9 @@ services:
             MYSQL_DATABASE: defaultdb
             MYSQL_USER: dbadmin
             MYSQL_PASSWORD: dbadmin
-        ports:
-            - 8001:3306
+        # Specify ports in your docker-compose.override.yml file
+        # ports:
+        #     - 8001:3306
         volumes:
             - database:/var/lib/mysql
         deploy:
