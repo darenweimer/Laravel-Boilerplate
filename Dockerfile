@@ -47,7 +47,7 @@ RUN nvm install $NODE_VERSION
 ENV NODE_PATH $NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
-ADD docker-startup.sh /docker-startup.sh
-RUN chmod +x /docker-startup.sh
+ADD Dockerfile-startup.sh /Dockerfile-startup.sh
+RUN chmod +x /Dockerfile-startup.sh
 
-CMD ["/docker-startup.sh"]
+CMD ["/Dockerfile-startup.sh"]
