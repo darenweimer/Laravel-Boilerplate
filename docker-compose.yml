@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+
+    application:
+        container_name: laravel-boilerplate-application
+        image: ubuntu-server-20.04:apache2-php7.4-node16
+        depends_on:
+            - database
+        ports:
+            - 8000:80
+        volumes:
+            - .:/var/www
+            - node_modules:/var/www/node_modules
+            - vendor:/var/www/vendor
+        deploy:
+            resources:
+                limits:
+                    cpus: '1.0'
+                    memory: 1GB
+        restart: always
+
+    database:
+        container_name: laravel-boilerplate-database
+        image: mysql:8.0.27
+        command: mysqld --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_RANDOM_ROOT_PASSWORD: yes
+            MYSQL_DATABASE: defaultdb
+            MYSQL_USER: dbadmin
+            MYSQL_PASSWORD: dbadmin
+        ports:
+            - 8001:3306
+        volumes:
+            - database:/var/lib/mysql
+        deploy:
+            resources:
+                limits:
+                    cpus: '1.0'
+                    memory: 512MB
+        restart: always
+
+volumes:
+    database:
+        name: laravel-boilerplate-database
+    node_modules:
+        name: laravel-boilerplate-node_modules
+    vendor:
+        name: laravel-boilerplate-vendor

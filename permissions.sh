@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if id www-data &>/dev/null; then
-    chown -R www-data:www-data .
+if [ ! -f /.dockerenv ]; then
+    if id www-data &>/dev/null; then
+        chown -R www-data:www-data .
+    fi
 fi
 
 find . -type d -not -path "./node_modules/*" -not -path "./storage/*" -not -path "./vendor/*" -exec chmod 755 {} \;
@@ -12,8 +14,8 @@ chmod -R 775 node_modules
 chmod -R 775 storage
 chmod -R 775 vendor
 
-chmod 754 permissions.sh
-chmod 754 deploy.sh
+chmod 744 permissions.sh
+chmod 744 deploy.sh
 
 if [ -d ".git" ]; then
     chmod -R 755 .git
