@@ -5,6 +5,7 @@ services:
     application:
         container_name: laravel-boilerplate-application
         image: ubuntu-server-20.04:apache2-php7.4-node16
+        build: .
         depends_on:
             - database
         ports:
