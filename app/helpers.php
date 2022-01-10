@@ -3,9 +3,9 @@
 use App\Models\Setting;
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 | Global Helpers
-|--------------------------------------------------------------------------
+|-------------------------------------------------------------------------------
 |
 | Here is where you can create global helper functions for your application.
 | These functions will be accessible as soon as the application loads.

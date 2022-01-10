@@ -5,9 +5,9 @@ use Illuminate\Support\Str;
 return [
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Default Cache Store
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | This option controls the default cache connection that gets used while
     | using this caching library. This connection is used when another is
@@ -18,9 +18,9 @@ return [
     'default' => env('CACHE_DRIVER', 'file'),
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Cache Stores
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | Here you may define all of the cache "stores" for your application as
     | well as their drivers. You may even define multiple stores for the
@@ -57,9 +57,9 @@ return [
     ],
 
     /*
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     | Cache Key Prefix
-    |--------------------------------------------------------------------------
+    |---------------------------------------------------------------------------
     |
     | When utilizing a RAM based store such as APC or Memcached, there might
     | be other applications utilizing the same cache. So, we'll specify a
