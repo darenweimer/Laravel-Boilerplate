@@ -94,8 +94,6 @@ class User extends Authenticatable
 
     /**
      * Relationship 1:1
-     *
-     * Gets the user settings associated with the user
      */
     public function settings()
     {

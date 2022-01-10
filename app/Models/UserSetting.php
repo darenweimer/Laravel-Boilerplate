@@ -47,8 +47,6 @@ class UserSetting extends Model
 
     /**
      * Relationship 1:1
-     *
-     * Gets the user associated with the user settings
      */
     public function user()
     {

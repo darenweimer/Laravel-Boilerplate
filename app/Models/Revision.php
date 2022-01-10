@@ -35,8 +35,6 @@ class Revision extends Model
 
     /**
      * Relationship 1:1
-     *
-     * Returns the user associated with the revision
      */
     public function user()
     {
@@ -45,8 +43,6 @@ class Revision extends Model
 
     /**
      * Relationship 1:1
-     *
-     * Returns the model associated with the revision
      */
     public function revisionable()
     {
