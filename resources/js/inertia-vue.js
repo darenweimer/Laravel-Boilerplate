@@ -1,6 +1,8 @@
-/**
- * Create and mount the global Vue app
- */
+/*
+|---------------------------------------------------------------------------
+| Create and mount the global Vue app
+|---------------------------------------------------------------------------
+*/
 
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
@@ -17,9 +19,11 @@ const VueApp = createApp({
 VueApp.use(InertiaPlugin)
     .mount(app);
 
-/**
- * Add global props and methods to the Vue app
- */
+/*
+|---------------------------------------------------------------------------
+| Add global props and methods to the Vue app
+|---------------------------------------------------------------------------
+*/
 
 import { useForm } from '@inertiajs/inertia-vue3';
 
@@ -35,9 +39,11 @@ VueApp.mixin({
     },
 });
 
-/**
- * Add global components to the Vue app
- */
+/*
+|---------------------------------------------------------------------------
+| Add global components to the Vue app
+|---------------------------------------------------------------------------
+*/
 
 import Alert from '@/components/alert';
 import Button from '@/components/button';
@@ -61,9 +67,11 @@ VueApp.component('v-link', Link);
 VueApp.component('v-modal', Modal);
 VueApp.component('v-select', Select);
 
-/**
- * Initialize the Inertia request progress indicator
- */
+/*
+|---------------------------------------------------------------------------
+| Initialize the Inertia request progress indicator
+|---------------------------------------------------------------------------
+*/
 
 import { InertiaProgress } from '@inertiajs/progress';
 
