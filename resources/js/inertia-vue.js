@@ -29,7 +29,7 @@ import { useForm } from '@inertiajs/inertia-vue3';
 
 VueApp.mixin({
     props: {
-        user: Object,
+        myself: Object,
         env: String,
         status: String,
     },
