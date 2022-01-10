@@ -48,6 +48,12 @@ class User extends Authenticatable
         'google2fa'         => 'encrypted',
     ];
 
+    /*
+    |---------------------------------------------------------------------------
+    | Attributes
+    |---------------------------------------------------------------------------
+    */
+
     /**
      * The accessors to append to the model's array form
      *
@@ -55,15 +61,6 @@ class User extends Authenticatable
      */
     protected $appends = [
         'google2fa_enabled',
-    ];
-
-    /**
-     * The relationships that should always be loaded
-     *
-     * @var array
-     */
-    protected $with = [
-        'settings',
     ];
 
     /**
@@ -76,6 +73,21 @@ class User extends Authenticatable
         return (bool) $this->google2fa;
     }
 
+    /*
+    |---------------------------------------------------------------------------
+    | Relationships
+    |---------------------------------------------------------------------------
+    */
+
+    /**
+     * The relationships that should always be loaded
+     *
+     * @var array
+     */
+    protected $with = [
+        'settings',
+    ];
+
     /**
      * Relationship 1:1
      */
@@ -83,6 +95,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserSetting::class);
     }
+
+    /*
+    |---------------------------------------------------------------------------
+    | Methods
+    |---------------------------------------------------------------------------
+    */
 
     /**
      * Enables Google 2fa with a new secret key
