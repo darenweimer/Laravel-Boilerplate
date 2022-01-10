@@ -77,22 +77,6 @@ class User extends Authenticatable
     }
 
     /**
-     * Generates the user's Google 2fa QR code inline image
-     *
-     * @return string|null
-     */
-    public function getGoogle2faQrCodeInlineAttribute() : ?string
-    {
-        if (!$this->google2fa) {
-            return null;
-        }
-
-        return app('pragmarx.google2fa')->getQRCodeInline(
-            config('app.name'), $this->email, $this->google2fa
-        );
-    }
-
-    /**
      * Relationship 1:1
      */
     public function settings()
@@ -122,6 +106,22 @@ class User extends Authenticatable
         $this->google2fa = null;
 
         return $this;
+    }
+
+    /**
+     * Generates the user's Google 2fa QR code inline image
+     *
+     * @return string|null
+     */
+    public function getGoogle2faQrCode() : ?string
+    {
+        if (!$this->google2fa) {
+            return null;
+        }
+
+        return app('pragmarx.google2fa')->getQRCodeInline(
+            config('app.name'), $this->email, $this->google2fa
+        );
     }
 
 }

@@ -34,19 +34,19 @@ class Revision extends Model
     ];
 
     /**
-     * Relationship 1:1
-     */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Relationship 1:1
+     * Relationship Many:1
      */
     public function revisionable()
     {
         return $this->morphTo();
+    }
+
+    /**
+     * Relationship Many:1
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }
