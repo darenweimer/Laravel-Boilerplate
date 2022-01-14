@@ -43,6 +43,25 @@ services:
                     memory: 1GB
         restart: always
 
+    # database:
+    #     container_name: laravel-boilerplate-database
+    #     image: postgres:12.9
+    #     environment:
+    #         POSTGRES_DB: defaultdb
+    #         POSTGRES_USER: dbadmin
+    #         POSTGRES_PASSWORD: dbadmin
+    #     # Specify ports in your docker-compose.override.yml file
+    #     # ports:
+    #     #     - 8001:5432
+    #     volumes:
+    #         - database:/var/lib/postgresql/data
+    #     deploy:
+    #         resources:
+    #             limits:
+    #                 cpus: '1.0'
+    #                 memory: 1GB
+    #     restart: always
+
 volumes:
     database:
         name: laravel-boilerplate-database
