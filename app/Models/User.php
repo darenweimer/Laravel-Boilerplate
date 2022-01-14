@@ -61,6 +61,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'google2fa_enabled',
+        'permissions',
     ];
 
     /**
@@ -71,6 +72,20 @@ class User extends Authenticatable
     public function getGoogle2faEnabledAttribute() : bool
     {
         return (bool) $this->google2fa;
+    }
+
+    /**
+     * Returns all permissions associated with the user
+     *
+     * @return array
+     */
+    public function getPermissionsAttribute() : array
+    {
+        return $this->groups
+            ->pluck('permissions.*.permission')
+            ->collapse()
+            ->unique()
+            ->toArray();
     }
 
     /*
@@ -85,8 +100,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $with = [
+        'groups',
         'settings',
     ];
+
+    /**
+     * Relationship Many:Many
+     */
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)
+            ->using(GroupUser::class)
+            ->withPivot('id')
+            ->withTimestamps();
+    }
 
     /**
      * Relationship 1:1
@@ -140,6 +167,43 @@ class User extends Authenticatable
         return app('pragmarx.google2fa')->getQRCodeInline(
             config('app.name'), $this->email, $this->google2fa
         );
+    }
+
+    /**
+     * Returns true if the user has a permission
+     *
+     * @param string $permission
+     *
+     * @return bool
+     */
+    public function hasPermission(string $permission) : bool
+    {
+        return in_array($permission, $this->permissions);
+    }
+
+    /**
+     * Returns true if the user has any of a set of permissions
+     *
+     * @param array $permissions
+     *
+     * @return bool
+     */
+    public function hasAnyPermission(array $permissions) : bool
+    {
+        return count(array_intersect($permissions, $this->permissions)) > 0;
+    }
+
+    /**
+     * Returns true if the user has all of a set of permissions
+     *
+     * @param array $permissions
+     *
+     * @return bool
+     */
+    public function hasAllPermissions(array $permissions) : bool
+    {
+        return count(array_intersect($permissions, $this->permissions))
+            === count($permissions);
     }
 
 }
