@@ -11,8 +11,6 @@ else
     npm='production'
 fi
 
-php artisan down --refresh=15
-
 git checkout .
 git pull
 
@@ -28,9 +26,5 @@ php artisan view:$cache
 npm install
 npm run $npm
 
-./permissions.sh
-
 cp supervisor.conf /etc/supervisor/conf.d/
 supervisorctl reload
-
-php artisan up

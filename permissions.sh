@@ -14,8 +14,8 @@ chmod -R 775 node_modules
 chmod -R 775 storage
 chmod -R 775 vendor
 
-chmod 744 permissions.sh
 chmod 744 deploy.sh
+chmod 744 permissions.sh
 
 if [ -d ".git" ]; then
     chmod -R 755 .git
