@@ -40,7 +40,7 @@ services:
             resources:
                 limits:
                     cpus: '1.0'
-                    memory: 512MB
+                    memory: 1GB
         restart: always
 
 volumes:
