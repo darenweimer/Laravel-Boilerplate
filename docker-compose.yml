@@ -27,7 +27,7 @@ services:
         image: mysql:8.0.27
         command: mysqld --default-authentication-plugin=mysql_native_password
         environment:
-            MYSQL_RANDOM_ROOT_PASSWORD: yes
+            MYSQL_RANDOM_ROOT_PASSWORD: 1
             MYSQL_DATABASE: defaultdb
             MYSQL_USER: dbadmin
             MYSQL_PASSWORD: dbadmin
