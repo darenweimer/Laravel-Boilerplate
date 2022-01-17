@@ -28,7 +28,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string|null
      */
-    protected $namespace = 'App\\Http\\Controllers';
+    // protected $namespace = 'App\\Http\\Controllers';
 
     /**
      * Configures the rate limiters for the application

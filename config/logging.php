@@ -1,5 +1,7 @@
 <?php
 
+use Monolog\Handler\NullHandler;
+
 return [
 
     /*
