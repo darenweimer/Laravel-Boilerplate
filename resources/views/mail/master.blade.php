@@ -42,7 +42,7 @@
             color: #0a0;
         }
 
-        .text-danger {
+        .text-error {
             color: #c00;
         }
 

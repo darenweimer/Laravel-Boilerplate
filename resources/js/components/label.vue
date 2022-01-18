@@ -8,7 +8,7 @@
             {{ success }}
         </label>
 
-        <label v-if="error" class="block w-full font-medium text-sm text-danger" :class="{ 'mt-1': below, 'mb-1': !below }">
+        <label v-if="error" class="block w-full font-medium text-sm text-error" :class="{ 'mt-1': below, 'mb-1': !below }">
             {{ error }}
         </label>
     </div>

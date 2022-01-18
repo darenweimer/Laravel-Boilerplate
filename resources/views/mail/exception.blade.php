@@ -1,7 +1,7 @@
 @extends('mail.master')
 
 @section('title')
-    <span class="text-danger">
+    <span class="text-error">
         An application exception has occurred!
     </span>
 @endsection
@@ -22,7 +22,7 @@
     <div class="mb-1">
         Exception:
 
-        <span class="text-danger">
+        <span class="text-error">
             {{ $exception['class'] }}
         </span>
     </div>
@@ -30,7 +30,7 @@
     <div class="mb-1">
         Message:
 
-        <span class="text-danger">
+        <span class="text-error">
             {{ $exception['message'] }}
         </span>
     </div>
@@ -38,13 +38,13 @@
     <div class="mb-1">
         File:
 
-        <span class="text-danger">
+        <span class="text-error">
             {{ $exception['file'] }}
         </span>
 
         on line
 
-        <span class="text-danger">
+        <span class="text-error">
             {{ $exception['line'] }}
         </span>
     </div>

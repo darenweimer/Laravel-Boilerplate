@@ -10,8 +10,8 @@
             This is an example of success text on the normal background.
         </p>
 
-        <p class="mt-2 text-danger">
-            This is an example of danger text on the normal background.
+        <p class="mt-2 text-error">
+            This is an example of error text on the normal background.
         </p>
 
         <p class="mt-16">
@@ -121,7 +121,7 @@
                                 Yes
                             </v-button>
 
-                            <v-button color="danger" class="mx-1">
+                            <v-button color="error" class="mx-1">
                                 No
                             </v-button>
 
@@ -181,7 +181,7 @@
                     Secondary: 'secondary',
                     Success: 'success',
                     Warning: 'warning',
-                    Danger: 'danger',
+                    Error: 'error',
                     Default: 'default',
                 };
             },
@@ -234,7 +234,7 @@
                     secondary: false,
                     success: false,
                     warning: false,
-                    danger: false,
+                    error: false,
                     default: false,
                 },
             };
