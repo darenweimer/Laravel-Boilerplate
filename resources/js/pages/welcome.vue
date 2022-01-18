@@ -8,19 +8,31 @@
             </div>
 
             <div>
-                Inertia + Vue3
+                <a class="text-link" href="https://inertiajs.com" target="_blank">
+                    Inertia
+                </a>
+
+                +
+
+                <a class="text-link" href="https://v3.vuejs.org" target="_blank">
+                    Vue 3
+                </a>
 
                 <span class="mx-2 font-bold">
                     &bull;
                 </span>
 
-                Tailwind CSS 2
+                <a class="text-link" href="https://tailwindcss.com" target="_blank">
+                    Tailwind CSS 3
+                </a>
 
                 <span class="mx-2 font-bold">
                     &bull;
                 </span>
 
-                Font Awesome 5
+                <a class="text-link" href="https://fontawesome.com" target="_blank">
+                    Font Awesome 5
+                </a>
             </div>
 
             <div class="mt-8">
