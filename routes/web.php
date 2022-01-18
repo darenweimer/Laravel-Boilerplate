@@ -17,7 +17,7 @@ require __DIR__ . '/web/home.php';
 
 require __DIR__ . '/web/auth.php';
 
-Route::middleware(['auth', 'auth.2fa'])->group(function () {
+Route::middleware(['auth', 'auth.2fa', 'auth.safe'])->group(function () {
 
     // require __DIR__ . '/web/routes.php';
 

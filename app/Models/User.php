@@ -26,6 +26,7 @@ class User extends Authenticatable
         'email',
         'password',
         'google2fa',
+        'compromised',
     ];
 
     /**
@@ -47,6 +48,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'google2fa'         => 'encrypted',
+        'compromised'       => 'boolean',
     ];
 
     /*
