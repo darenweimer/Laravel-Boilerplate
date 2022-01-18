@@ -4,7 +4,7 @@
             <slot/>
         </button>
 
-        <transition :style="getPositionStyle()" enter-active-class="transition ease-out duration-150" enter-from-class="transform scale-0" enter-to-class="transform scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="transform scale-100" leave-to-class="transform scale-0">
+        <transition :style="getPositionStyle()" enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0">
             <div v-if="active" class="absolute inline z-50 border border-dropdown rounded bg-dropdown-normal text-left whitespace-nowrap py-1" :class="getPositionClass()">
                 <ul>
                     <inertia-link v-for="(option, label) in options" :href="option.link" :key="label">

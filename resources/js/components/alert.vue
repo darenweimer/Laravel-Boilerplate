@@ -2,7 +2,7 @@
     <div v-if="visible">
         <div :class="`block w-full border border-alert-${color} rounded-md bg-alert-${color} font-medium text-sm text-alert-${color} px-4 py-2`">
             <div class="flex flex-row items-center">
-                <div class="flex-grow">
+                <div class="grow">
                     <slot/>
                 </div>
 

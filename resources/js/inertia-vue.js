@@ -25,9 +25,17 @@ VueApp.use(InertiaPlugin)
 |-------------------------------------------------------------------------------
 */
 
-import { useForm } from '@inertiajs/inertia-vue3';
+import {
+    Head as InertiaHead,
+    Link as InertiaLink,
+    useForm,
+} from '@inertiajs/inertia-vue3';
 
 VueApp.mixin({
+    components: {
+        InertiaHead,
+        InertiaLink,
+    },
     props: {
         myself: Object,
         env: String,
