@@ -31,7 +31,7 @@
         data() {
             return {
                 form: this.useForm({
-                    email: this.user ? this.user.email : null,
+                    email: this.myself ? this.myself.email : null,
                 }),
             };
         },

@@ -24,11 +24,11 @@
             </div>
 
             <div class="mt-8">
-                <div v-if="user">
+                <div v-if="myself">
                     You are logged in as
 
                     <span class="font-bold">
-                        {{ user.first_name }} {{ user.last_name }}
+                        {{ myself.first_name }} {{ myself.last_name }}
                     </span>
 
                     <br/>
