@@ -52,6 +52,10 @@
                     {{ label }}
                 </v-button>
 
+                <v-button :color="color" :disabled="true" class="mx-1">
+                    Disabled
+                </v-button>
+
                 button.
             </p>
         </div>
