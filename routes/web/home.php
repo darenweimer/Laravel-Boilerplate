@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |-------------------------------------------------------------------------------
@@ -9,6 +9,5 @@ use Inertia\Inertia;
 |-------------------------------------------------------------------------------
 */
 
-Route::get('/', fn() => Inertia::render('welcome'));
-
-Route::get('/theme', fn() => Inertia::render('theme'));
+Route::get('/',     [HomeController::class, 'welcome']);
+Route::get('theme', [HomeController::class, 'theme'  ]);
