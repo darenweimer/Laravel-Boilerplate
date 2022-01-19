@@ -22,6 +22,10 @@
             This is an example of {{ thickness }} text.
         </p>
 
+        <p class="mt-2 font-mono">
+            This is an example of the monospace font.
+        </p>
+
         <!-- Link Components -->
 
         <p class="mt-16">

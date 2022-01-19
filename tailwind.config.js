@@ -109,6 +109,7 @@ module.exports = {
             },
             fontFamily: {
                 'default': ['Roboto'],
+                'mono':    ['Roboto Mono'],
                 'title':   ['Armata'],
             },
             fontWeight: {
