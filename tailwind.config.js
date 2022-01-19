@@ -21,6 +21,9 @@ module.exports = {
         {
             pattern: /font-(thin|normal|medium|bold|black)/,
         },
+        {
+            pattern: /text-(link|success|error)/,
+        },
     ],
     theme: {
         container: {
