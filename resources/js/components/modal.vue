@@ -10,7 +10,7 @@
 
                 <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0 translate-y-16 scale-50" enter-to-class="opacity-100 translate-y-0 scale-100" leave-active-class="ease-in duration-200" leave-from-class="opacity-100 translate-y-0 scale-100" leave-to-class="opacity-0 translate-y-16 scale-50">
                     <div v-show="show" :class="`flex flex-col max-w-${size} max-h-full mx-auto rounded-lg shadow-xl font-normal text-base text-default p-0 overflow-hidden transform transition-all`">
-                        <div v-if="$slots.header" :class="`flex-none flex flex-row border-b border-card-${color} bg-card-${color}-header font-medium text-xl text-card-${color}-header p-4 pb-3`">
+                        <div v-if="$slots.header" :class="`flex-none flex flex-row border-b border-card-${color} bg-card-${color}-header font-title font-medium text-xl text-card-${color}-header p-4 pb-3`">
                             <div class="grow">
                                 <slot name="header"/>
                             </div>

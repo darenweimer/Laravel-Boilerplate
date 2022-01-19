@@ -1,6 +1,6 @@
 <template>
     <div :class="`border border-card-${color} rounded-lg font-normal text-base p-0 overflow-hidden`">
-        <div v-if="$slots.header" :class="`border-b border-card-${color} bg-card-${color}-header font-medium text-xl text-card-${color}-header px-4 py-3`">
+        <div v-if="$slots.header" :class="`border-b border-card-${color} bg-card-${color}-header font-title font-medium text-xl text-card-${color}-header px-4 py-3`">
             <slot name="header"/>
         </div>
 
