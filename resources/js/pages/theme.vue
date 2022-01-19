@@ -10,12 +10,8 @@
             This is an example of the normal font on the normal background.
         </p>
 
-        <p class="mt-2 text-success">
-            This is an example of success text on the normal background.
-        </p>
-
-        <p class="mt-2 text-error">
-            This is an example of error text on the normal background.
+        <p v-for="status in ['success', 'error']" :class="`mt-2 text-${status}`">
+            This is an example of {{ status }} text.
         </p>
 
         <p v-for="thickness in ['thin', 'normal', 'medium', 'bold', 'black']" :class="`mt-2 font-${thickness}`">
