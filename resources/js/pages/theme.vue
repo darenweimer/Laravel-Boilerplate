@@ -1,8 +1,12 @@
 <template>
     <div class="w-full max-w-2xl mx-auto p-8">
-        <!-- Defaults -->
+        <!-- Text Components -->
 
-        <p>
+        <p class="font-title text-3xl">
+            This is an example of a title.
+        </p>
+
+        <p class="mt-4">
             This is an example of the normal font on the normal background.
         </p>
 
@@ -13,6 +17,12 @@
         <p class="mt-2 text-error">
             This is an example of error text on the normal background.
         </p>
+
+        <p v-for="thickness in ['thin', 'normal', 'medium', 'bold', 'black']" :class="`mt-2 font-${thickness}`">
+            This is an example of {{ thickness }} text.
+        </p>
+
+        <!-- Link Components -->
 
         <p class="mt-16">
             This is an example of a
