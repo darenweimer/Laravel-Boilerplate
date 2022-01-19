@@ -18,6 +18,9 @@ module.exports = {
                 'hover',
             ],
         },
+        {
+            pattern: /font-(thin|normal|medium|bold|black)/,
+        },
     ],
     theme: {
         container: {
