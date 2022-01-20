@@ -54,13 +54,24 @@ class Decimal
      * Creates a new class instance
      *
      * @param string $value
+     * @param int $precision
      *
      * @return void
      *
      * @throws InvalidArgumentException
      */
-    public function __construct(string $value = null)
+    public function __construct(string $value = null, int $precision = null)
     {
+        if (isset($precision)) {
+            if ($precision < 0) {
+                throw new InvalidArgumentException(
+                    'Decimal precision must be greater than or equal to zero'
+                );
+            }
+
+            $this->precision = $precision;
+        }
+
         if (isset($value)) {
             if (!is_numeric($value)) {
                 throw new InvalidArgumentException(
@@ -68,9 +79,9 @@ class Decimal
                 );
             }
 
-            $this->value = trim($value);
+            $this->value = bcadd($value, 0, $this->precision);
 
-            $this->add(0);
+            $this->formatted = false;
         }
     }
 
@@ -115,23 +126,11 @@ class Decimal
      *
      * @param int $precision
      *
-     * @return $this
-     *
-     * @throws InvalidArgumentException
+     * @return Decimal
      */
     public function setPrecision(int $precision) : Decimal
     {
-        if ($precision < 0) {
-            throw new InvalidArgumentException(
-                'Decimal precision must be greater than or equal to zero'
-            );
-        }
-
-        $this->precision = $precision;
-
-        $this->add(0);
-
-        return $this;
+        return new static($this->value, $precision);
     }
 
     /**
@@ -139,15 +138,13 @@ class Decimal
      *
      * @param string $value
      *
-     * @return $this
+     * @return Decimal
      */
     public function add(string $value) : Decimal
     {
-        $this->value = bcadd($this->value, $value, $this->precision);
-
-        $this->formatted = false;
-
-        return $this;
+        return new static(
+            bcadd($this->value, $value, $this->precision), $this->precision
+        );
     }
 
     /**
@@ -155,15 +152,13 @@ class Decimal
      *
      * @param string $value
      *
-     * @return $this
+     * @return Decimal
      */
     public function subtract(string $value) : Decimal
     {
-        $this->value = bcsub($this->value, $value, $this->precision);
-
-        $this->formatted = false;
-
-        return $this;
+        return new static(
+            bcsub($this->value, $value, $this->precision), $this->precision
+        );
     }
 
     /**
@@ -171,15 +166,13 @@ class Decimal
      *
      * @param string $value
      *
-     * @return $this
+     * @return Decimal
      */
     public function multiply(string $value) : Decimal
     {
-        $this->value = bcmul($this->value, $value, $this->precision);
-
-        $this->formatted = false;
-
-        return $this;
+        return new static(
+            bcmul($this->value, $value, $this->precision), $this->precision
+        );
     }
 
     /**
@@ -187,15 +180,13 @@ class Decimal
      *
      * @param string $value
      *
-     * @return $this
+     * @return Decimal
      */
     public function divide(string $value) : Decimal
     {
-        $this->value = bcdiv($this->value, $value, $this->precision);
-
-        $this->formatted = false;
-
-        return $this;
+        return new static(
+            bcdiv($this->value, $value, $this->precision), $this->precision
+        );
     }
 
     /**
@@ -203,19 +194,20 @@ class Decimal
      *
      * @param string $divisor
      *
-     * @return $this
+     * @return Decimal
      */
     public function floor(string $divisor = '1') : Decimal
     {
-        $this->value = bcsub(
-            $this->value,
-            bcmod($this->value, $divisor, $this->precision),
+        return new static(
+            bcsub(
+                $this->value,
+                bcmod(
+                    $this->value, $divisor, $this->precision
+                ),
+                $this->precision
+            ),
             $this->precision
         );
-
-        $this->formatted = false;
-
-        return $this;
     }
 
     /**
