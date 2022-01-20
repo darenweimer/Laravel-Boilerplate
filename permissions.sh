@@ -1,7 +1,9 @@
 #!/bin/bash
 
-if [ ! -f /.dockerenv ]; then
-    if id www-data &>/dev/null; then
+if [ ! -f /.dockerenv ]
+then
+    if id www-data &>/dev/null
+    then
         chown -R www-data:www-data .
     fi
 fi
@@ -17,6 +19,7 @@ chmod -R 775 vendor
 chmod 744 deploy.sh
 chmod 744 permissions.sh
 
-if [ -d ".git" ]; then
+if [ -d ".git" ]
+then
     chmod -R 755 .git
 fi
