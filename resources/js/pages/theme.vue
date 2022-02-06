@@ -199,7 +199,7 @@
 
             <template v-slot:table-actions>
                 <v-button color="primary">
-                    Action Button
+                    Create User
                 </v-button>
             </template>
 
