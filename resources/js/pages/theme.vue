@@ -7,20 +7,28 @@
         </p>
 
         <p class="mt-4">
-            This is an example of the normal font on the normal background.
+            This is an example of the normal font.
+        </p>
+
+        <p class="mt-2 font-mono">
+            This is an example of the monospace font.
         </p>
 
         <p v-for="status in ['success', 'error']" :class="`mt-2 text-${status}`">
             This is an example of {{ status }} text.
         </p>
 
-        <p v-for="thickness in ['thin', 'normal', 'medium', 'bold', 'black']" :class="`mt-2 font-${thickness}`">
-            This is an example of {{ thickness }} text.
-        </p>
+        <div class="mt-14">
+            <p v-for="thickness in ['thin', 'normal', 'medium', 'bold', 'black']" :class="`mt-2 font-${thickness}`">
+                This is an example of {{ thickness }} text.
+            </p>
+        </div>
 
-        <p class="mt-2 font-mono">
-            This is an example of the monospace font.
-        </p>
+        <div class="mt-14">
+            <p v-for="thickness in ['thin', 'normal', 'medium', 'bold', 'black']" :class="`mt-2 font-mono font-${thickness}`">
+                This is an example of {{ thickness }} monospace text.
+            </p>
+        </div>
 
         <!-- Link Components -->
 
