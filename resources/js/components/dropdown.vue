@@ -1,5 +1,5 @@
 <template>
-    <div class="relative inline font-normal text-base">
+    <div class="relative inline font-default font-normal text-base">
         <button class="inline cursor-pointer focus:outline-none" @click="active = !active" @blur="active = false">
             <slot/>
         </button>

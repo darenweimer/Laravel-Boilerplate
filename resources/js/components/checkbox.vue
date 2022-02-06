@@ -7,7 +7,7 @@
                 &check;
             </span>
 
-            <span class="font-medium text-base text-default">
+            <span class="font-default font-medium text-base text-default">
                 {{ label }}
             </span>
         </label>
