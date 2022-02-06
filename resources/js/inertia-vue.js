@@ -63,6 +63,7 @@ import Label from '@/components/label';
 import Link from '@/components/link';
 import Modal from '@/components/modal';
 import Select from '@/components/select';
+import Table from '@/components/table';
 
 VueApp.component('v-alert', Alert);
 VueApp.component('v-button', Button);
@@ -74,6 +75,7 @@ VueApp.component('v-label', Label);
 VueApp.component('v-link', Link);
 VueApp.component('v-modal', Modal);
 VueApp.component('v-select', Select);
+VueApp.component('v-table', Table);
 
 /*
 |-------------------------------------------------------------------------------

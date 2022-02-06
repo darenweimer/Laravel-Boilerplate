@@ -10,4 +10,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',     [HomeController::class, 'welcome']);
-Route::get('theme', [HomeController::class, 'theme'  ]);
+Route::get('theme', [HomeController::class, 'theme'  ])->name('theme');

@@ -60,6 +60,14 @@
                     </v-link>
                 </div>
             </div>
+
+            <div class="mt-2">
+                To check out the default theme
+
+                <a class="text-link" :href="route('theme')" target="_blank">
+                    click here
+                </a>
+            </div>
         </div>
     </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full max-w-2xl mx-auto p-8">
+    <div class="w-full max-w-3xl mx-auto p-8">
         <!-- Text Components -->
 
         <p class="font-title text-3xl">
@@ -183,11 +183,32 @@
                 </template>
             </v-card>
         </div>
+
+        <v-table class="mt-16" :columns="tableColumns" :rows="tableRows">
+            <template v-slot:table-title>
+                Example Table
+            </template>
+
+            <template v-slot:table-actions>
+                <v-button color="primary">
+                    Action Button
+                </v-button>
+            </template>
+
+            <template v-slot:row-actions="{ row }">
+                <i class="mr-3 far fa-eye text-gray-400"></i>
+                <i class="mr-3 far fa-edit text-gray-400"></i>
+                <i class="far fa-trash-alt text-gray-400"></i>
+            </template>
+        </v-table>
     </div>
 </template>
 
 <script>
     export default {
+        props: {
+            tableRows: Array,
+        },
         computed: {
             colors() {
                 return {
@@ -198,6 +219,29 @@
                     Error: 'error',
                     Default: 'default',
                 };
+            },
+            tableColumns() {
+                return [
+                    {
+                        id: 'id',
+                        label: 'ID',
+                        fixed: true,
+                    },
+                    {
+                        id: 'full_name',
+                        label: 'Full Name',
+                        data: (row) => `${row.first_name} ${row.last_name}`,
+                    },
+                    {
+                        id: 'email',
+                        label: 'Email',
+                    },
+                    {
+                        id: 'actions',
+                        slot: true,
+                        fixed: true,
+                    },
+                ];
             },
             selectOptions() {
                 return [

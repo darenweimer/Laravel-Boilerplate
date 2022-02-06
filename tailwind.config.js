@@ -22,7 +22,13 @@ module.exports = {
             pattern: /font-(thin|normal|medium|bold|black)/,
         },
         {
-            pattern: /text-(link|success|error)/,
+            pattern: /text-(left|center|right|success|error)/,
+        },
+        {
+            pattern: /align-(top|middle|bottom)/,
+        },
+        {
+            pattern: /max-w-.+/,
         },
     ],
     theme: {
@@ -59,6 +65,7 @@ module.exports = {
                 'input-normal':    colors.neutral['400'],
                 'input-focused':   colors.blue['300'],
                 'input-invalid':   colors.red['600'],
+                'table':           colors.neutral['300'],
             },
             backgroundColor: {
                 'default':               colors.white,
@@ -109,6 +116,12 @@ module.exports = {
                 'input-normal':          colors.white,
                 'input-disabled':        colors.neutral['100'],
                 'input-invalid':         colors.red['50'],
+                'table':                 colors.neutral['100'],
+                'table-header':          colors.neutral['200'],
+                'table-row':             colors.white,
+                'table-highlight':       colors.yellow['50'],
+                'table-page':            colors.white,
+                'table-page-selected':   colors.neutral['200'],
             },
             fontFamily: {
                 'default': ['Roboto'],
@@ -162,6 +175,10 @@ module.exports = {
                 'input-normal':          colors.neutral['700'],
                 'input-disabled':        colors.neutral['400'],
                 'input-invalid':         colors.red['600'],
+                'table':                 colors.neutral['600'],
+                'table-header':          colors.neutral['500'],
+                'table-row':             colors.neutral['700'],
+                'table-page':            colors.neutral['500'],
             },
             placeholderColor: {
                 'input': colors.neutral['400'],
