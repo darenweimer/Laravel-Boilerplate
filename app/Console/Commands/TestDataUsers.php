@@ -206,7 +206,7 @@ class TestDataUsers extends Command
 
             $this->info("{$total} test users were added to the database.");
         } else {
-            $this->info("No test users were added to the database: 0 unique remaining.");
+            $this->error("No test users were added to the database: 0 unique remaining.");
         }
 
         return 0;
