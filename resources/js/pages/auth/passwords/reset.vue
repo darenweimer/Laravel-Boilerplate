@@ -8,13 +8,13 @@
                     </div>
                 </template>
 
-                <div class="my-4">
+                <div class="mt-4">
                     <v-label label="Password"/>
                     <v-input type="password" v-model="form.password" :error="form.errors.password" placeholder="Enter password..." required autofocus/>
                     <v-label :error="form.errors.password" :below="true"/>
                 </div>
 
-                <div class="my-4">
+                <div class="mt-4">
                     <v-label label="Confirm Password"/>
                     <v-input type="password" v-model="form.password_confirmation" :error="form.errors.password_confirmation" placeholder="Confirm password..." required/>
                     <v-label :error="form.errors.password_confirmation" :below="true"/>
@@ -52,9 +52,11 @@
             submit() {
                 this.form
                     .clearErrors()
-                    .post(this.route('password.update'), {
-                        onFinish: () => this.form.reset(),
-                    });
+                    .post(
+                        this.route('password.update'), {
+                            onFinish: () => this.form.reset(),
+                        }
+                    );
             },
         },
     };

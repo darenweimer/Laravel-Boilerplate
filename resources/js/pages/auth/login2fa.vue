@@ -8,7 +8,7 @@
                     </div>
                 </template>
 
-                <div class="my-4 w-32 mx-auto text-center">
+                <div class="mt-4 w-32 mx-auto text-center">
                     <v-label label="Google 2FA Code"/>
                     <v-input type="number" v-model="form.google2fa" :error="form.errors.google2fa" placeholder="Enter code..." required autofocus/>
                 </div>
@@ -40,9 +40,11 @@
             submit() {
                 this.form
                     .clearErrors()
-                    .post(this.route('2fa.login'), {
-                        onFinish: () => this.form.reset(),
-                    });
+                    .post(
+                        this.route('2fa.login'), {
+                            onFinish: () => this.form.reset(),
+                        }
+                    );
             },
         },
     };

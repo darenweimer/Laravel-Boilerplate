@@ -8,7 +8,7 @@
                     </div>
                 </template>
 
-                <div class="my-4">
+                <div class="mt-4">
                     <v-label label="Email Address"/>
                     <v-input type="email" v-model="form.email" :error="form.errors.email" placeholder="Enter email address..." required autofocus/>
                     <v-label :success="status" :error="form.errors.email" :below="true"/>
@@ -39,7 +39,9 @@
             submit() {
                 this.form
                     .clearErrors()
-                    .post(this.route('password.email'));
+                    .post(
+                        this.route('password.email')
+                    );
             },
         },
     };

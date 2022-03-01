@@ -8,19 +8,19 @@
                     </div>
                 </template>
 
-                <div class="my-4">
+                <div class="mt-4">
                     <v-label label="Email Address"/>
                     <v-input type="email" v-model="form.email" :error="form.errors.email" placeholder="Enter email address..." required autofocus/>
                     <v-label :error="form.errors.email" :below="true"/>
                 </div>
 
-                <div class="my-4">
+                <div class="mt-4">
                     <v-label label="Password"/>
                     <v-input type="password" v-model="form.password" :error="form.errors.password" placeholder="Enter password..." required/>
                     <v-label :error="form.errors.password" :below="true"/>
                 </div>
 
-                <div class="mt-6 mb-4">
+                <div class="mt-6">
                     <v-checkbox label="Remember Me" class="text-center" v-model="form.remember"/>
                 </div>
 
@@ -55,9 +55,11 @@
             submit() {
                 this.form
                     .clearErrors()
-                    .post(this.route('login'), {
-                        onFinish: () => this.form.reset('password'),
-                    });
+                    .post(
+                        this.route('login'), {
+                            onFinish: () => this.form.reset('password'),
+                        }
+                    );
             },
         },
     };
