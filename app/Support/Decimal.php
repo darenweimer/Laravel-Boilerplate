@@ -29,6 +29,53 @@ class Decimal
     protected $formatted = true;
 
     /**
+     * Resolves an input value
+     *
+     * This function is necessary because PHP converts long numbers into
+     * exponential format and the bcmath functions cannot take exponential
+     * numbers as input.
+     *
+     * @param string $value
+     *
+     * @return string
+     */
+    protected function resolveValue(string $value) : string
+    {
+        if (($strpos = stripos($value, 'e')) !== false) {
+            $exponent  = substr($value, $strpos + 2);
+            $direction = substr($value, $strpos + 1, 1);
+
+            $decimal = strpos($value, '.');
+
+            $value = str_replace(
+                '.', '', substr($value, 0, $strpos)
+            );
+
+            if ($decimal === false) {
+                $decimal = strlen($value);
+            }
+
+            if ($direction === '+') {
+                $decimal += $exponent;
+            } else {
+                $decimal -= $exponent;
+            }
+
+            if ($decimal < 0) {
+                $value = str_repeat('0', abs($decimal)) . $value;
+
+                $decimal = 0;
+            } elseif ($decimal > ($strlen = strlen($value))) {
+                $value = $value . str_repeat('0', $decimal - $strlen);
+            }
+
+            $value = substr_replace($value, '.', $decimal, 0);
+        }
+
+        return bcadd($value, 0, $this->precision);
+    }
+
+    /**
      * Formats a decimal value
      *
      * @param string $value
@@ -79,7 +126,7 @@ class Decimal
                 );
             }
 
-            $this->value = bcadd($value, 0, $this->precision);
+            $this->value = $this->resolveValue($value);
 
             $this->formatted = false;
         }
@@ -98,14 +145,20 @@ class Decimal
     /**
      * Gets the decimal value
      *
+     * @param int $precision
+     *
      * @return string
      */
-    public function value() : string
+    public function value(int $precision = null) : string
     {
         if (!$this->formatted) {
             $this->value = $this->format($this->value);
 
             $this->formatted = true;
+        }
+
+        if (isset($precision)) {
+            return bcadd($this->value, 0, $precision);
         }
 
         return $this->value;
@@ -186,6 +239,31 @@ class Decimal
     {
         return new static(
             bcdiv($this->value, $value, $this->precision), $this->precision
+        );
+    }
+
+    /**
+     * Rounds the decimal value to the specified precision
+     *
+     * @param int $precision
+     *
+     * @return Decimal
+     */
+    public function round(int $precision = 0) : Decimal
+    {
+        return new static(
+            bcdiv(
+                bcadd(
+                    bcmul(
+                        $this->value,
+                        $power = bcpow(10, $precision + 1),
+                        0
+                    ),
+                    (strpos($this->value, '-') === 0) ? -5 : 5
+                ),
+                $power,
+                $precision
+            )
         );
     }
 
