@@ -33,6 +33,10 @@
                 type: String,
                 default: '',
             },
+            offset: {
+                type: String,
+                default: null,
+            },
         },
         data() {
             return {
@@ -58,7 +62,17 @@
                 const xpos = this.position.includes('right') ? 'right-0' : 'left-0';
                 const ypos = this.position.includes('bottom') ? 'top-full' : 'bottom-full';
 
-                return `${xpos} ${ypos}`;
+                let margin = '';
+
+                if (this.offset) {
+                    if (this.position.includes('bottom')) {
+                        margin = `mt-${this.offset}`;
+                    } else {
+                        margin = `mb-${this.offset}`;
+                    }
+                }
+
+                return `${xpos} ${ypos} ${margin}`;
             },
         },
     };

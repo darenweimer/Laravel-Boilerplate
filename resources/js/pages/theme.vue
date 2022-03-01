@@ -85,7 +85,7 @@
             <v-input placeholder="This is an example text input..."/>
 
             <v-label label="Example Disabled Text Input" class="mt-4"/>
-            <v-input placeholder="This is an example disabled text input..." :disabled="true"/>
+            <v-input value="This is an example disabled text input" :disabled="true"/>
 
             <v-label label="Example Number Input" class="mt-4"/>
             <v-input type="number" placeholder="This is an example number input..."/>
@@ -119,7 +119,7 @@
             <p class="mt-4">
                 This is an example dropdown menu:
 
-                <v-dropdown :options="dropdownOptions" class="ml-2 border border-dropdown rounded px-1.5 py-2" @state="(active) => $page.props.dropdownActive = active">
+                <v-dropdown :options="dropdownOptions" offset="0.5" class="ml-2 border border-dropdown rounded px-1.5 pt-2 pb-2.5" @state="(active) => $page.props.dropdownActive = active">
                     <i class="fas fa-bars fa-2x align-middle"></i>
                     <i class="ml-2 fas align-middle" :class="{ 'fa-caret-up': !$page.props.dropdownActive, 'fa-caret-down': $page.props.dropdownActive }"></i>
                 </v-dropdown>
