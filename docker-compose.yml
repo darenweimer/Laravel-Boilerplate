@@ -4,8 +4,19 @@ services:
 
     application:
         container_name: laravel-boilerplate-application
-        image: ubuntu-server-20.04:apache2-php7.4-node16
+        image: ubuntu-20.04:apache2-php7.4-composer2-node16
         build: .
+        command: sh -c "
+            /Dockerfile-startup.sh
+            && cd /var/www
+            && crontab crontab.conf
+            && cp supervisor.conf /etc/supervisor/conf.d/
+            && supervisorctl reload
+            && composer install
+            && php artisan migrate
+            && npm install
+            && ./permissions.sh
+            && tail -f /dev/null"
         depends_on:
             - database
         # Specify ports in your docker-compose.override.yml file
