@@ -77,8 +77,3 @@ RUN apt update \
     && apt autoremove -y \
     && apt clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-ADD Dockerfile-startup.sh /Dockerfile-startup.sh
-RUN chmod +x /Dockerfile-startup.sh
-
-CMD ["/Dockerfile-startup.sh"]

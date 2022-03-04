@@ -7,16 +7,17 @@ services:
         image: ubuntu-20.04:apache2-php7.4-composer2-node16
         build: .
         command: sh -c "
-            /Dockerfile-startup.sh
-            && cd /var/www
-            && crontab crontab.conf
-            && cp supervisor.conf /etc/supervisor/conf.d/
-            && supervisorctl reload
+            cd /var/www
             && composer install
             && php artisan migrate
             && npm install
+            && npm run development
             && ./permissions.sh
-            && tail -f /dev/null"
+            && service cron start
+            && crontab crontab.conf
+            && cp supervisor.conf /etc/supervisor/conf.d/
+            && service supervisor start
+            && apache2ctl -DFOREGROUND"
         depends_on:
             - database
         # Specify ports in your docker-compose.override.yml file
