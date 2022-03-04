@@ -1,11 +1,8 @@
 #!/bin/bash
 
-if [ ! -f /.dockerenv ]
+if id www-data &>/dev/null
 then
-    if id www-data &>/dev/null
-    then
-        chown -R www-data:www-data .
-    fi
+    chown -R www-data:www-data .
 fi
 
 find . -type d -not -path "./node_modules/*" -not -path "./storage/*" -not -path "./vendor/*" -exec chmod 755 {} \;

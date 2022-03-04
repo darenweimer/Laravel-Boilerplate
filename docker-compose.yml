@@ -8,13 +8,13 @@ services:
         build: .
         command: sh -c "
             cd /var/www
-            && composer install
-            && php artisan migrate
+            && composer install -n
+            && php artisan migrate --force
             && npm install
-            && npm run development
+            && npm run production
             && ./permissions.sh
             && service cron start
-            && crontab crontab.conf
+            && crontab -u www-data crontab.conf
             && cp supervisor.conf /etc/supervisor/conf.d/
             && service supervisor start
             && apache2ctl -DFOREGROUND"
