@@ -31,7 +31,7 @@
                 </span>
 
                 <a class="text-link" href="https://fontawesome.com" target="_blank">
-                    Font Awesome 5
+                    Font Awesome 6
                 </a>
             </div>
 
