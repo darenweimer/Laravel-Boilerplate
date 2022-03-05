@@ -3,7 +3,7 @@
         <div class="m-auto text-center">
             <div class="mb-8 text-5xl">
                 Laravel
-                <i class="fas fa-fw fa-cubes"></i>
+                <i class="mx-2 fas fa-laptop-code"></i>
                 Boilerplate 9
             </div>
 
