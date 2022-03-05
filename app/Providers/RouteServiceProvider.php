@@ -21,16 +21,6 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/';
 
     /**
-     * The controller namespace for the application
-     *
-     * When present, controller route declarations will automatically be
-     * prefixed with this namespace.
-     *
-     * @var string|null
-     */
-    // protected $namespace = 'App\\Http\\Controllers';
-
-    /**
      * Configures the rate limiters for the application
      *
      * @return void
@@ -39,7 +29,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)
-                ->by(optional($request->user())->id ?: $request->ip());
+                ->by($request->user()?->id ?: $request->ip());
         });
     }
 
@@ -55,11 +45,9 @@ class RouteServiceProvider extends ServiceProvider
         $this->routes(function () {
             Route::prefix('api')
                 ->middleware('api')
-                ->namespace($this->namespace)
                 ->group(base_path('routes/api.php'));
 
             Route::middleware('web')
-                ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
     }

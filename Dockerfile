@@ -24,36 +24,41 @@ RUN apt update \
     && sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/public/' /etc/apache2/sites-available/000-default.conf \
     && a2enmod rewrite \
 
-    # Install PHP 7.4 and Extensions
+    # Install PHP 8.1 and Extensions
+
+    && apt install -y software-properties-common \
+    && add-apt-repository -y ppa:ondrej/php \
+    && apt update \
+    && apt upgrade -y \
 
     && apt install -y \
-       php7.4 \
-       libapache2-mod-php7.4 \
-       php7.4-bcmath \
-       php7.4-cli \
-       php7.4-ctype \
-       php7.4-curl \
-       php7.4-fileinfo \
-       php7.4-gd \
-       php7.4-igbinary \
-       php7.4-imap \
-       php7.4-intl \
-       php7.4-json \
-       php7.4-ldap \
-       php7.4-mbstring \
-       php7.4-memcached \
-       php7.4-msgpack \
-       php7.4-mysql \
-       php7.4-pcov \
-       php7.4-pdo \
-       php7.4-pgsql \
-       php7.4-readline \
-       php7.4-redis \
-       php7.4-soap \
-       php7.4-tokenizer \
-       php7.4-xdebug \
-       php7.4-xml \
-       php7.4-zip \
+       php8.1 \
+       libapache2-mod-php8.1 \
+       php8.1-bcmath \
+       php8.1-cli \
+       php8.1-ctype \
+       php8.1-curl \
+       php8.1-fileinfo \
+       php8.1-gd \
+       php8.1-igbinary \
+       php8.1-imap \
+       php8.1-intl \
+       php8.1-ldap \
+       php8.1-mbstring \
+       php8.1-memcached \
+       php8.1-msgpack \
+       php8.1-mysql \
+       php8.1-pcov \
+       php8.1-pdo \
+       php8.1-pgsql \
+       php8.1-readline \
+       php8.1-redis \
+       php8.1-soap \
+       php8.1-swoole \
+       php8.1-tokenizer \
+       php8.1-xdebug \
+       php8.1-xml \
+       php8.1-zip \
 
     # Install Application Schedulers
 

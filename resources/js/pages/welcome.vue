@@ -4,7 +4,7 @@
             <div class="mb-8 text-5xl">
                 Laravel
                 <i class="fas fa-fw fa-cubes"></i>
-                Boilerplate 8
+                Boilerplate 9
             </div>
 
             <div>
