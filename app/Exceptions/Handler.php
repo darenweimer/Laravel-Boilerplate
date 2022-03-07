@@ -38,7 +38,7 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    protected function notify(Throwable $e)
+    protected function notify(Throwable $e) : void
     {
         $users = User::whereHas('settings',
             fn($s) => $s->where('notify_exceptions', '<>', 'none')
@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
+    public function register() : void
     {
         $this->reportable(function (Throwable $e) {
             $this->notify($e);

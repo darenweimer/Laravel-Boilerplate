@@ -21,7 +21,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterCreated()
+    protected function revisionsAfterCreated() : void
     {
         if ($id = $this->attributes[$this->primaryKey] ?? null) {
             $exclusions = array_merge(
@@ -52,7 +52,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterUpdated()
+    protected function revisionsAfterUpdated() : void
     {
         $exclusions = array_merge(
             $this->hidden ?? [],
@@ -81,7 +81,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterDeleting()
+    protected function revisionsAfterDeleting() : void
     {
         $this->revisionsDeleting = $this->attributes[$this->primaryKey] ?? null;
 
@@ -107,7 +107,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterDeleted()
+    protected function revisionsAfterDeleted() : void
     {
         if (isset($this->revisionsDeleting)) {
             Revision::create([
@@ -128,7 +128,7 @@ trait Revisions
      *
      * @return void
      */
-    public static function bootRevisions()
+    public static function bootRevisions() : void
     {
         static::created(function ($model) {
             $model->revisionsAfterCreated();

@@ -41,7 +41,7 @@ class PermissionSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run() : void
     {
         foreach ($this->seeds as $seed) {
             Permission::create($seed);

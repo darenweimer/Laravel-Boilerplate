@@ -15,7 +15,7 @@ class RedirectIfAuthenticated
      *
      * @param Request $request
      * @param Closure $next
-     * @param string|null ...$guards
+     * @param array ...$guards
      *
      * @return mixed
      */

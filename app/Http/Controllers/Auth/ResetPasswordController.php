@@ -25,7 +25,7 @@ class ResetPasswordController extends Controller
      *
      * @return array
      */
-    protected function rules()
+    protected function rules() : array
     {
         return [
             'token'    => 'required',

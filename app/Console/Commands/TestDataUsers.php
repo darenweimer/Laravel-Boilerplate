@@ -149,7 +149,7 @@ class TestDataUsers extends Command
      *
      * @return void
      */
-    protected function createTestUsers(int $total, array $users)
+    protected function createTestUsers(int $total, array $users) : void
     {
         $password = Hash::make(
             $this->argument('password')

@@ -29,7 +29,7 @@ class GroupSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run() : void
     {
         foreach ($this->seeds as $seed) {
             Group::create($seed);
