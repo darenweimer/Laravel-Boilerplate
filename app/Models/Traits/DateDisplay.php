@@ -20,10 +20,8 @@ trait DateDisplay
     {
         $date = parent::asDateTime($value);
 
-        if ($user = Auth::user()) {
-            if ($timezone = $user->userSettings->timezone) {
-                $date->timezone($timezone);
-            }
+        if ($timezone = Auth::user()?->userSettings->timezone) {
+            $date->timezone($timezone);
         }
 
         return $date;

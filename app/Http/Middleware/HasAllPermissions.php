@@ -19,10 +19,8 @@ class HasAllPermissions
      */
     public function handle(Request $request, Closure $next, ...$permissions) : mixed
     {
-        if ($user = $request->user()) {
-            if ($user->hasAllPermissions($permissions)) {
-                return $next($request);
-            }
+        if ($request->user()?->hasAllPermissions($permissions)) {
+            return $next($request);
         }
 
         return abort(403);

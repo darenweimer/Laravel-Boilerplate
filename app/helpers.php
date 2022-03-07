@@ -22,7 +22,8 @@ use App\Models\Setting;
  */
 function get_setting(string $setting, mixed $default = null) : mixed
 {
-    $model = Setting::where('setting', $setting)->first();
+    $model = Setting::where('setting', $setting)
+        ->first();
 
     if ($model && ((!$model->expires_at) || ($model->expires_at > time()))) {
         return $model->value;
@@ -42,12 +43,10 @@ function get_setting(string $setting, mixed $default = null) : mixed
  */
 function put_setting(string $setting, mixed $value, int $expiresAt = null) : void
 {
-    Setting::firstOrNew([
-            'setting' => $setting,
-        ])
-        ->fill([
-            'value'      => $value,
-            'expires_at' => $expiresAt,
-        ])
-        ->save();
+    Setting::updateOrCreate([
+        'setting'    => $setting,
+    ], [
+        'value'      => $value,
+        'expires_at' => $expiresAt,
+    ]);
 }

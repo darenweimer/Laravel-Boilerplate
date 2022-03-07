@@ -18,8 +18,8 @@ class Google2fa
      */
     public function handle(Request $request, Closure $next) : mixed
     {
-        if ($user = $request->user()) {
-            if ($user->google2fa_enabled && (!$request->session()->get('Google2faVerified'))) {
+        if ($request->user()?->google2fa_enabled) {
+            if (!$request->session()->get('Google2faVerified')) {
                 return redirect()->route('2fa.login');
             }
         }

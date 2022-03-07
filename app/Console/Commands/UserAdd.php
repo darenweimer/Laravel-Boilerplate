@@ -40,7 +40,9 @@ class UserAdd extends Command
             'first_name' => $this->argument('first'),
             'last_name'  => $this->argument('last'),
             'email'      => $this->argument('email'),
-            'password'   => Hash::make($this->argument('password')),
+            'password'   => Hash::make(
+                $this->argument('password')
+            ),
         ]);
 
         foreach ($this->option('group') as $group) {

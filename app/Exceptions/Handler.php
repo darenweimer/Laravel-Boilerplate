@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use App\Enums\NotifyOptions;
 use App\Mail\ExceptionNotification;
 use App\Models\User;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -40,18 +41,22 @@ class Handler extends ExceptionHandler
      */
     protected function notify(Throwable $e) : void
     {
-        $users = User::whereHas('settings',
-            fn($s) => $s->where('notify_exceptions', '<>', 'none')
-        )->get();
+        $users = User::whereHas('userSettings',
+            fn($userSettings) => $userSettings->where(
+                'notify_exceptions', '<>', 'none'
+            )
+        )
+        ->get();
 
         foreach ($users as $user) {
             $via = $user->userSettings->notify_exceptions;
 
-            if (in_array($via, ['email', 'both'])) {
-                Mail::to($user)->queue(new ExceptionNotification($e));
+            if (in_array($via, [NotifyOptions::Email, NotifyOptions::Both])) {
+                Mail::to($user)
+                    ->queue(new ExceptionNotification($e));
             }
 
-            if (in_array($via, ['text', 'both'])) {
+            if (in_array($via, [NotifyOptions::Text, NotifyOptions::Both])) {
                 // Send text notification
             }
         }

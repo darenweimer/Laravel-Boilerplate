@@ -104,7 +104,7 @@ class User extends Authenticatable
      */
     protected $with = [
         'groups',
-        'settings',
+        'userSettings',
     ];
 
     /**

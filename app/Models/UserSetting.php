@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\NotifyOptions;
 use App\Models\Traits\DateDisplay;
 use App\Models\Traits\Revisions;
 use Illuminate\Database\Eloquent\Model;
@@ -42,7 +43,8 @@ class UserSetting extends Model
      * @var array
      */
     protected $casts = [
-        'user_id' => 'integer',
+        'user_id'           => 'integer',
+        'notify_exceptions' => NotifyOptions::class,
     ];
 
     /*
