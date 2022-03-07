@@ -9,5 +9,9 @@ use Illuminate\Support\Facades\Route;
 |-------------------------------------------------------------------------------
 */
 
-Route::get('/',     [HomeController::class, 'welcome']);
-Route::get('theme', [HomeController::class, 'theme'  ])->name('theme');
+Route::controller(HomeController::class)->group(function () {
+
+    Route::get('/',     'welcome');
+    Route::get('theme', 'theme'  )->name('theme');
+
+});

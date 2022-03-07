@@ -109,8 +109,12 @@ class User extends Authenticatable
 
     /**
      * Relationship Many:Many
+     *
+     * Returns the groups associated with the user
+     *
+     * @return mixed
      */
-    public function groups()
+    public function groups() : mixed
     {
         return $this->belongsToMany(Group::class)
             ->using(GroupUser::class)
@@ -120,8 +124,12 @@ class User extends Authenticatable
 
     /**
      * Relationship 1:1
+     *
+     * Returns the user settings associated with the user
+     *
+     * @return mixed
      */
-    public function settings()
+    public function userSettings() : mixed
     {
         return $this->hasOne(UserSetting::class);
     }
@@ -135,9 +143,9 @@ class User extends Authenticatable
     /**
      * Enables Google 2fa with a new secret key
      *
-     * @return $this
+     * @return static
      */
-    public function enableGoogle2fa()
+    public function enableGoogle2fa() : static
     {
         $this->google2fa = app('pragmarx.google2fa')->generateSecretKey();
 
@@ -147,9 +155,9 @@ class User extends Authenticatable
     /**
      * Disables Google 2fa by clearing the secret key
      *
-     * @return $this
+     * @return static
      */
-    public function disableGoogle2fa()
+    public function disableGoogle2fa() : static
     {
         $this->google2fa = null;
 

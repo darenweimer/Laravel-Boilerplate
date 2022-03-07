@@ -45,7 +45,7 @@ class Handler extends ExceptionHandler
         )->get();
 
         foreach ($users as $user) {
-            $via = $user->settings->notify_exceptions;
+            $via = $user->userSettings->notify_exceptions;
 
             if (in_array($via, ['email', 'both'])) {
                 Mail::to($user)->queue(new ExceptionNotification($e));

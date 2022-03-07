@@ -20,7 +20,7 @@ use App\Models\Setting;
  *
  * @return mixed
  */
-function get_setting(string $setting, $default = null)
+function get_setting(string $setting, mixed $default = null) : mixed
 {
     $model = Setting::where('setting', $setting)->first();
 
@@ -40,7 +40,7 @@ function get_setting(string $setting, $default = null)
  *
  * @return void
  */
-function put_setting(string $setting, $value, int $expiresAt = null)
+function put_setting(string $setting, mixed $value, int $expiresAt = null) : void
 {
     Setting::firstOrNew([
             'setting' => $setting,

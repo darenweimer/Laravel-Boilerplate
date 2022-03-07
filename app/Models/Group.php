@@ -29,8 +29,12 @@ class Group extends Model
 
     /**
      * Relationship Many:Many
+     *
+     * Returns the permissions associated with the group
+     *
+     * @return mixed
      */
-    public function permissions()
+    public function permissions() : mixed
     {
         return $this->belongsToMany(Permission::class)
             ->using(GroupPermission::class)
@@ -40,8 +44,12 @@ class Group extends Model
 
     /**
      * Relationship Many:Many
+     *
+     * Returns the users associated with the group
+     *
+     * @return mixed
      */
-    public function users()
+    public function users() : mixed
     {
         return $this->belongsToMany(User::class)
             ->using(GroupUser::class)

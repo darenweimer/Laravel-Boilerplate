@@ -41,16 +41,24 @@ class Revision extends Model
 
     /**
      * Relationship Many:1
+     *
+     * Returns the model associated with the revision
+     *
+     * @return mixed
      */
-    public function revisionable()
+    public function revisionable() : mixed
     {
         return $this->morphTo();
     }
 
     /**
      * Relationship Many:1
+     *
+     * Returns the user associated with the revision
+     *
+     * @return mixed
      */
-    public function user()
+    public function user() : mixed
     {
         return $this->belongsTo(User::class);
     }

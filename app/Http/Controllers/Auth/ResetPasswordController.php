@@ -52,7 +52,7 @@ class ResetPasswordController extends Controller
      *
      * @return mixed
      */
-    public function resetForm(Request $request)
+    public function resetForm(Request $request) : mixed
     {
         return Inertia::render('auth/passwords/reset', [
             'token' => $request->route()->parameter('token'),

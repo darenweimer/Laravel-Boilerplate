@@ -45,16 +45,24 @@ class GroupPermission extends Pivot
 
     /**
      * Relationship Many:1
+     *
+     * Returns the group associated with the group permission
+     *
+     * @return mixed
      */
-    public function group()
+    public function group() : mixed
     {
         return $this->belongsTo(Group::class);
     }
 
     /**
      * Relationship Many:1
+     *
+     * Returns the permission associated with the group permission
+     *
+     * @return mixed
      */
-    public function permission()
+    public function permission() : mixed
     {
         return $this->belongsTo(Permission::class);
     }

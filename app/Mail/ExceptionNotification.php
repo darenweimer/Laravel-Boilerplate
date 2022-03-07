@@ -39,9 +39,9 @@ class ExceptionNotification extends Mailable
     /**
      * Builds the message
      *
-     * @return $this
+     * @return static
      */
-    public function build()
+    public function build() : static
     {
         $subject = 'Application Exception';
 

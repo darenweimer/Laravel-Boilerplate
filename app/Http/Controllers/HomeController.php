@@ -28,7 +28,7 @@ class HomeController extends Controller
      *
      * @return mixed
      */
-    public function welcome()
+    public function welcome() : mixed
     {
         return Inertia::render('welcome');
     }
@@ -40,7 +40,7 @@ class HomeController extends Controller
      *
      * @return mixed
      */
-    public function theme()
+    public function theme() : mixed
     {
         return Inertia::render('theme', [
             'tableRows' => DB::table('users')

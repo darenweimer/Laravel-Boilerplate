@@ -179,9 +179,9 @@ class Decimal
      *
      * @param int $precision
      *
-     * @return Decimal
+     * @return static
      */
-    public function setPrecision(int $precision) : Decimal
+    public function setPrecision(int $precision) : static
     {
         return new static($this->value, $precision);
     }
@@ -191,9 +191,9 @@ class Decimal
      *
      * @param string $value
      *
-     * @return Decimal
+     * @return static
      */
-    public function add(string $value) : Decimal
+    public function add(string $value) : static
     {
         return new static(
             bcadd($this->value, $value, $this->precision), $this->precision
@@ -205,9 +205,9 @@ class Decimal
      *
      * @param string $value
      *
-     * @return Decimal
+     * @return static
      */
-    public function subtract(string $value) : Decimal
+    public function subtract(string $value) : static
     {
         return new static(
             bcsub($this->value, $value, $this->precision), $this->precision
@@ -219,9 +219,9 @@ class Decimal
      *
      * @param string $value
      *
-     * @return Decimal
+     * @return static
      */
-    public function multiply(string $value) : Decimal
+    public function multiply(string $value) : static
     {
         return new static(
             bcmul($this->value, $value, $this->precision), $this->precision
@@ -233,9 +233,9 @@ class Decimal
      *
      * @param string $value
      *
-     * @return Decimal
+     * @return static
      */
-    public function divide(string $value) : Decimal
+    public function divide(string $value) : static
     {
         return new static(
             bcdiv($this->value, $value, $this->precision), $this->precision
@@ -247,9 +247,9 @@ class Decimal
      *
      * @param int $precision
      *
-     * @return Decimal
+     * @return static
      */
-    public function round(int $precision = 0) : Decimal
+    public function round(int $precision = 0) : static
     {
         return new static(
             bcdiv(
@@ -272,9 +272,9 @@ class Decimal
      *
      * @param string $divisor
      *
-     * @return Decimal
+     * @return static
      */
-    public function floor(string $divisor = '1') : Decimal
+    public function floor(string $divisor = '1') : static
     {
         return new static(
             bcsub(

@@ -53,8 +53,12 @@ class UserSetting extends Model
 
     /**
      * Relationship 1:1
+     *
+     * Returns the user associated with the user settings
+     *
+     * @return mixed
      */
-    public function user()
+    public function user() : mixed
     {
         return $this->belongsTo(User::class);
     }

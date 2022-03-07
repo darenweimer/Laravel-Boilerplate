@@ -45,16 +45,24 @@ class GroupUser extends Pivot
 
     /**
      * Relationship Many:1
+     *
+     * Returns the group associated with the group user
+     *
+     * @return mixed
      */
-    public function group()
+    public function group() : mixed
     {
         return $this->belongsTo(Group::class);
     }
 
     /**
      * Relationship Many:1
+     *
+     * Returns the user associated with the group user
+     *
+     * @return mixed
      */
-    public function user()
+    public function user() : mixed
     {
         return $this->belongsTo(User::class);
     }

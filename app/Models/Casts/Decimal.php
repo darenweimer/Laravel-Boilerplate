@@ -18,7 +18,7 @@ class Decimal implements CastsAttributes
      *
      * @return DecimalCast|null
      */
-    public function get($model, string $key, $value, array $attributes) : ?DecimalCast
+    public function get(mixed $model, string $key, mixed $value, array $attributes) : ?DecimalCast
     {
         return isset($value) ? (new DecimalCast($value)) : null;
     }
@@ -33,7 +33,7 @@ class Decimal implements CastsAttributes
      *
      * @return string|null
      */
-    public function set($model, string $key, $value, array $attributes) : ?string
+    public function set(mixed $model, string $key, mixed $value, array $attributes) : ?string
     {
         return isset($value) ? ((string) $value) : null;
     }

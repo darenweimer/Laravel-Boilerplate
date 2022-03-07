@@ -17,7 +17,7 @@ class HasAnyPermission
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$permissions)
+    public function handle(Request $request, Closure $next, ...$permissions) : mixed
     {
         if ($user = $request->user()) {
             if ($user->hasAnyPermission($permissions)) {

@@ -17,7 +17,7 @@ class ForgotPasswordController extends Controller
      *
      * @return mixed
      */
-    public function linkRequestForm()
+    public function linkRequestForm() : mixed
     {
         return Inertia::render('auth/passwords/email');
     }

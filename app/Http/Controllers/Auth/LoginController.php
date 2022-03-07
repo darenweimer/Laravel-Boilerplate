@@ -41,7 +41,7 @@ class LoginController extends Controller
      *
      * @return mixed
      */
-    public function loginForm()
+    public function loginForm() : mixed
     {
         return Inertia::render('auth/login');
     }
@@ -53,7 +53,7 @@ class LoginController extends Controller
      *
      * @return mixed
      */
-    public function loginForm2fa()
+    public function loginForm2fa() : mixed
     {
         return Inertia::render('auth/login2fa');
     }
@@ -67,7 +67,7 @@ class LoginController extends Controller
      *
      * @return mixed
      */
-    public function login2fa(Google2faRequest $request)
+    public function login2fa(Google2faRequest $request) : mixed
     {
         $request->session()->put('Google2faVerified', true);
 

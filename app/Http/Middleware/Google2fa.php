@@ -16,7 +16,7 @@ class Google2fa
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next) : mixed
     {
         if ($user = $request->user()) {
             if ($user->google2fa_enabled && (!$request->session()->get('Google2faVerified'))) {

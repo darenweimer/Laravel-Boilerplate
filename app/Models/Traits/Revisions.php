@@ -151,8 +151,10 @@ trait Revisions
      * Relationship 1:Many
      *
      * Returns the revisions associated with the model
+     *
+     * @return mixed
      */
-    public function revisions()
+    public function revisions() : mixed
     {
         return $this->morphMany(Revision::class, 'revisionable');
     }

@@ -29,8 +29,12 @@ class Permission extends Model
 
     /**
      * Relationship Many:Many
+     *
+     * Returns the groups associated with the permission
+     *
+     * @return mixed
      */
-    public function groups()
+    public function groups() : mixed
     {
         return $this->belongsToMany(Group::class)
             ->using(GroupPermission::class)

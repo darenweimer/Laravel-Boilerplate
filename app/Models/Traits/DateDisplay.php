@@ -16,12 +16,12 @@ trait DateDisplay
      *
      * @return Carbon
      */
-    protected function asDateTime($value) : Carbon
+    protected function asDateTime(mixed $value) : Carbon
     {
         $date = parent::asDateTime($value);
 
         if ($user = Auth::user()) {
-            if ($timezone = $user->settings->timezone) {
+            if ($timezone = $user->userSettings->timezone) {
                 $date->timezone($timezone);
             }
         }

@@ -16,7 +16,7 @@ class CheckAccountSafety
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next) : mixed
     {
         if (($user = $request->user()) && $user->compromised) {
             return abort(403);
