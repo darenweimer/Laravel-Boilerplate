@@ -25,7 +25,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'google2fa',
+        'google2fa_secret',
         'compromised',
     ];
 
@@ -36,7 +36,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'google2fa',
+        'google2fa_secret',
         'remember_token',
     ];
 
@@ -47,7 +47,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'google2fa'         => 'encrypted',
+        'google2fa_secret'  => 'encrypted',
         'compromised'       => 'boolean',
     ];
 
@@ -74,7 +74,7 @@ class User extends Authenticatable
      */
     public function getGoogle2faEnabledAttribute() : bool
     {
-        return (bool) $this->google2fa;
+        return (bool) $this->google2fa_secret;
     }
 
     /**
@@ -147,7 +147,8 @@ class User extends Authenticatable
      */
     public function enableGoogle2fa() : static
     {
-        $this->google2fa = app('pragmarx.google2fa')->generateSecretKey();
+        $this->google2fa_secret = app('pragmarx.google2fa')
+            ->generateSecretKey();
 
         return $this;
     }
@@ -159,7 +160,7 @@ class User extends Authenticatable
      */
     public function disableGoogle2fa() : static
     {
-        $this->google2fa = null;
+        $this->google2fa_secret = null;
 
         return $this;
     }
@@ -171,13 +172,14 @@ class User extends Authenticatable
      */
     public function getGoogle2faQrCode() : ?string
     {
-        if (!$this->google2fa) {
+        if (!$this->google2fa_secret) {
             return null;
         }
 
-        return app('pragmarx.google2fa')->getQRCodeInline(
-            config('app.name'), $this->email, $this->google2fa
-        );
+        return app('pragmarx.google2fa')
+            ->getQRCodeInline(
+                config('app.name'), $this->email, $this->google2fa_secret
+            );
     }
 
     /**

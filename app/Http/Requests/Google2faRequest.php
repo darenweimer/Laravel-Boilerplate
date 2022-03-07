@@ -27,7 +27,7 @@ class Google2faRequest extends FormRequest
         if ($google2fa = $this->input('google2fa')) {
             $verified = app('pragmarx.google2fa')
                 ->verifyGoogle2FA(
-                    $this->user()->google2fa, $google2fa
+                    $this->user()->google2fa_secret, $google2fa
                 );
         }
 
