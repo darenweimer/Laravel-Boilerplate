@@ -4,8 +4,7 @@ services:
 
     application:
         container_name: laravel-boilerplate-application
-        image: ubuntu-20.04:apache2-php8.1-composer2-node16
-        build: .
+        image: darenweimer/ubuntu-20.04:apache2-php8.1-composer2-node16
         command: sh -c "
             cd /var/www
             && composer install -n
