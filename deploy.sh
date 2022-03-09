@@ -21,6 +21,8 @@ php artisan view:cache
 npm install
 npm run production
 
+./permissions.sh
+
 cp supervisor.conf /etc/supervisor/conf.d/
 supervisorctl reload
 
