@@ -6,7 +6,8 @@ services:
         container_name: laravel-boilerplate-application
         image: darenweimer/ubuntu-20.04:apache2-php8.1-composer2-node16
         command: sh -c "
-            { cd /var/www && ./permissions.sh & }
+            cd /var/www
+            && { ./permissions.sh & }
             && service cron start
             && crontab -u www-data crontab.conf
             && cp supervisor.conf /etc/supervisor/conf.d/
