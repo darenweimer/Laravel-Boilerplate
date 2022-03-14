@@ -25,8 +25,8 @@
 
                             <button v-if="column.sortable" class="focus:outline-none focus:ring-none" @click="sortColumn(column, $event)">
                                 <div class="flex flex-col">
-                                    <i class="fas fa-caret-up" :class="{ 'opacity-40': columnSorting[column.id] !== 'asc' }"></i>
-                                    <i class="fas fa-caret-down" :class="{ 'opacity-40': columnSorting[column.id] !== 'desc' }"></i>
+                                    <i class="fa-solid fa-caret-up" :class="{ 'opacity-40': columnSorting[column.id] !== 'asc' }"></i>
+                                    <i class="fa-solid fa-caret-down" :class="{ 'opacity-40': columnSorting[column.id] !== 'desc' }"></i>
                                 </div>
                             </button>
                         </div>
@@ -76,11 +76,11 @@
             <div class="flex-none border border-table rounded-md bg-table-page text-table-page overflow-hidden">
                 <div class="grid grid-flow-col auto-cols-fr text-center">
                     <div class="border-r border-table px-2 py-1" :class="{ 'cursor-pointer': page > 1 }" @click="pageRewind(true)">
-                        <i class="fas fa-angle-double-left" :class="{ 'opacity-40': page <= 1 }"></i>
+                        <i class="fa-solid fa-angle-double-left" :class="{ 'opacity-40': page <= 1 }"></i>
                     </div>
 
                     <div class="border-r border-table px-2 py-1" :class="{ 'cursor-pointer': page > 1 }" @click="pageRewind(false)">
-                        <i class="fas fa-caret-left" :class="{ 'opacity-40': page <= 1 }"></i>
+                        <i class="fa-solid fa-caret-left" :class="{ 'opacity-40': page <= 1 }"></i>
                     </div>
 
                     <div v-for="pageNumber in shownPages" class="border-r border-table px-2 py-1" :class="{ 'bg-table-page-selected': pageNumber === page, 'cursor-pointer': pageNumber !== page }" @click="pageSelect(pageNumber)">
@@ -88,11 +88,11 @@
                     </div>
 
                     <div class="border-r border-table px-2 py-1" :class="{ 'cursor-pointer': page < totalPages }" @click="pageAdvance(false)">
-                        <i class="fas fa-caret-right" :class="{ 'opacity-40': page >= totalPages }"></i>
+                        <i class="fa-solid fa-caret-right" :class="{ 'opacity-40': page >= totalPages }"></i>
                     </div>
 
                     <div class="px-2 py-1" :class="{ 'cursor-pointer': page < totalPages }" @click="pageAdvance(true)">
-                        <i class="fas fa-angle-double-right" :class="{ 'opacity-40': page >= totalPages }"></i>
+                        <i class="fa-solid fa-angle-double-right" :class="{ 'opacity-40': page >= totalPages }"></i>
                     </div>
                 </div>
             </div>

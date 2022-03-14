@@ -2,20 +2,8 @@
     <div class="w-full max-w-3xl mx-auto p-8">
         <!-- Text Components -->
 
-        <p class="font-title text-3xl">
+        <p class="font-title text-2xl">
             This is an example of a title.
-        </p>
-
-        <p class="mt-4">
-            This is an example of the normal font.
-        </p>
-
-        <p class="mt-2 font-mono">
-            This is an example of the monospace font.
-        </p>
-
-        <p v-for="status in ['success', 'error']" :class="`mt-2 text-${status}`">
-            This is an example of {{ status }} text.
         </p>
 
         <div class="mt-14">
@@ -27,6 +15,12 @@
         <div class="mt-14">
             <p v-for="thickness in ['thin', 'normal', 'medium', 'bold', 'black']" :class="`mt-2 font-mono font-${thickness}`">
                 This is an example of {{ thickness }} monospace text.
+            </p>
+        </div>
+
+        <div class="mt-14">
+            <p v-for="status in ['success', 'error']" :class="`mt-2 text-${status}`">
+                This is an example of {{ status }} text.
             </p>
         </div>
 
@@ -120,7 +114,7 @@
                 This is an example dropdown menu:
 
                 <v-dropdown :options="dropdownOptions" offset="0.5" class="ml-2 border border-dropdown rounded px-1.5 pt-2 pb-2.5" @state="(active) => $page.props.dropdownActive = active">
-                    <i class="fas fa-bars fa-2x align-middle"></i>
+                    <i class="fa-solid fa-bars fa-2x align-middle"></i>
                     <i class="ml-2 fas align-middle" :class="{ 'fa-caret-up': !$page.props.dropdownActive, 'fa-caret-down': $page.props.dropdownActive }"></i>
                 </v-dropdown>
             </p>
@@ -206,7 +200,7 @@
             <template v-slot:row-actions="{ row }">
                 <i class="mr-3 far fa-eye text-gray-400"></i>
                 <i class="mr-3 far fa-edit text-gray-400"></i>
-                <i class="far fa-trash-alt text-gray-400"></i>
+                <i class="fa-regular fa-trash-alt text-gray-400"></i>
             </template>
         </v-table>
     </div>

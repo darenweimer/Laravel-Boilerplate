@@ -11,7 +11,7 @@
 
     <p class="mt-4 text-center">
         <a href="/" class="text-link">
-            <i class="fas fa-home"></i>
+            <i class="fa-solid fa-home"></i>
             Click here to return home
         </a>
     </p>
