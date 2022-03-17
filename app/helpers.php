@@ -7,10 +7,42 @@ use App\Models\Setting;
 | Global Helpers
 |-------------------------------------------------------------------------------
 |
-| Here is where you can create global helper functions for your application.
 | These functions will be accessible as soon as the application loads.
 |
 */
+
+/**
+ * Returns true if an array matches an items expression
+ *
+ * $items can be a single item or a combination of items linked by || or &&.
+ *
+ * @param array $array
+ * @param string $items
+ *
+ * @return bool
+ */
+function array_matches(array $array, string $items) : bool
+{
+    $items = array_map(
+        'trim', preg_split('/(?=(&&|\|\|))/', $items)
+    );
+
+    foreach ($items as $index => $item) {
+        if ($index === 0) {
+            $result = in_array($item, $array);
+        } elseif (str_starts_with($item, '||')) {
+            $result = $result || in_array(
+                ltrim(substr($item, 2)), $array
+            );
+        } elseif (str_starts_with($item, '&&')) {
+            $result = $result && in_array(
+                ltrim(substr($item, 2)), $array
+            );
+        }
+    }
+
+    return $result;
+}
 
 /**
  * Gets a setting from the database

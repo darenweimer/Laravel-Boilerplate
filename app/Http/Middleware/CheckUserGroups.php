@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class HasAnyPermission
+class CheckUserGroups
 {
 
     /**
@@ -13,13 +13,13 @@ class HasAnyPermission
      *
      * @param Request $request
      * @param Closure $next
-     * @param array $permissions
+     * @param string $groups
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$permissions) : mixed
+    public function handle(Request $request, Closure $next, string $groups) : mixed
     {
-        if ($request->user()?->hasAnyPermission($permissions)) {
+        if ($request->user()?->grouped($groups)) {
             return $next($request);
         }
 

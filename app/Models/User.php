@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Traits\DateDisplay;
 use App\Models\Traits\Revisions;
 use App\Models\Traits\UserSettings;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,31 +65,51 @@ class User extends Authenticatable
      */
     protected $appends = [
         'google2fa_enabled',
-        'permissions',
+        'groups_list',
+        'permissions_list',
     ];
 
     /**
-     * Returns true if Google 2fa is enabled
+     * Interacts with the 'google2fa_enabled' attribute
      *
-     * @return bool
+     * @return Attribute
      */
-    public function getGoogle2faEnabledAttribute() : bool
+    protected function google2faEnabled() : Attribute
     {
-        return (bool) $this->google2fa_secret;
+        return Attribute::make(
+            get: fn() => (bool) $this->google2fa_secret,
+        );
     }
 
     /**
-     * Returns all permissions associated with the user
+     * Interacts with the 'groups_list' attribute
      *
-     * @return array
+     * @return Attribute
      */
-    public function getPermissionsAttribute() : array
+    public function groupsList() : Attribute
     {
-        return $this->groups
-            ->pluck('permissions.*.permission')
-            ->collapse()
-            ->unique()
-            ->toArray();
+        return Attribute::make(
+            get: fn() => $this->groups
+                ->pluck('group')
+                ->unique()
+                ->toArray(),
+        );
+    }
+
+    /**
+     * Interacts with the 'permissions_list' attribute
+     *
+     * @return Attribute
+     */
+    public function permissionsList() : Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->groups
+                ->pluck('permissions.*.permission')
+                ->collapse()
+                ->unique()
+                ->toArray(),
+        );
     }
 
     /*
@@ -103,7 +124,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $with = [
-        'groups',
+        'groups.permissions',
         'userSettings',
     ];
 
@@ -183,40 +204,27 @@ class User extends Authenticatable
     }
 
     /**
-     * Returns true if the user has a permission
+     * Returns true if the user is attached to the specified groups
      *
-     * @param string $permission
+     * @param string $groups
      *
      * @return bool
      */
-    public function hasPermission(string $permission) : bool
+    public function grouped(string $groups) : bool
     {
-        return in_array($permission, $this->permissions);
+        return array_matches($this->groups_list, $groups);
     }
 
     /**
-     * Returns true if the user has any of a set of permissions
+     * Returns true if the user is attached to the specified permissions
      *
-     * @param array $permissions
-     *
-     * @return bool
-     */
-    public function hasAnyPermission(array $permissions) : bool
-    {
-        return count(array_intersect($permissions, $this->permissions)) > 0;
-    }
-
-    /**
-     * Returns true if the user has all of a set of permissions
-     *
-     * @param array $permissions
+     * @param string $permissions
      *
      * @return bool
      */
-    public function hasAllPermissions(array $permissions) : bool
+    public function permitted(string $permissions) : bool
     {
-        return count(array_intersect($permissions, $this->permissions))
-            === count($permissions);
+        return array_matches($this->permissions_list, $permissions);
     }
 
 }

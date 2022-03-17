@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class HasAllPermissions
+class CheckUserPermissions
 {
 
     /**
@@ -13,13 +13,13 @@ class HasAllPermissions
      *
      * @param Request $request
      * @param Closure $next
-     * @param array $permissions
+     * @param string $permissions
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, ...$permissions) : mixed
+    public function handle(Request $request, Closure $next, string $permissions) : mixed
     {
-        if ($request->user()?->hasAllPermissions($permissions)) {
+        if ($request->user()?->permitted($permissions)) {
             return $next($request);
         }
 
