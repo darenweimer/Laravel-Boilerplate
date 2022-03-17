@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('revisions', function (Blueprint $table) {
             $table->id();
             $table->morphs('revisionable');
-            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('user_id')->nullable()->index()->constrained();
             $table->string('key');
             $table->text('old_value')->nullable();
             $table->text('new_value')->nullable();

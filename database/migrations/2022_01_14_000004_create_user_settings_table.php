@@ -16,7 +16,7 @@ return new class extends Migration
     public function up() : void
     {
         Schema::create('user_settings', function (Blueprint $table) {
-            $table->foreignId('user_id')->primary();
+            $table->foreignId('user_id')->primary()->constrained();
             $table->string('timezone')->nullable();
             $table->enum('notify_exceptions', NotifyOptions::values())->default('none');
             $table->timestamps();

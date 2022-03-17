@@ -16,8 +16,8 @@ return new class extends Migration
     {
         Schema::create('group_permission', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->index();
-            $table->foreignId('permission_id')->index();
+            $table->foreignId('group_id')->index()->constrained();
+            $table->foreignId('permission_id')->index()->constrained();
             $table->timestamps();
         });
     }
