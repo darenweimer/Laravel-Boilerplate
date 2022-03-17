@@ -31,17 +31,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for arrays
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password',
-        'google2fa_secret',
-        'remember_token',
-    ];
-
-    /**
      * The attributes that should be cast to native types
      *
      * @var array
@@ -52,11 +41,17 @@ class User extends Authenticatable
         'compromised'       => 'boolean',
     ];
 
-    /*
-    |---------------------------------------------------------------------------
-    | Attributes
-    |---------------------------------------------------------------------------
-    */
+    /**
+     * The attributes that should be hidden for arrays
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'google2fa_secret',
+        'remember_token',
+        'groups',
+    ];
 
     /**
      * The accessors to append to the model's array form
@@ -86,7 +81,7 @@ class User extends Authenticatable
      *
      * @return Attribute
      */
-    public function groupsList() : Attribute
+    protected function groupsList() : Attribute
     {
         return Attribute::make(
             get: fn() => $this->groups
@@ -101,7 +96,7 @@ class User extends Authenticatable
      *
      * @return Attribute
      */
-    public function permissionsList() : Attribute
+    protected function permissionsList() : Attribute
     {
         return Attribute::make(
             get: fn() => $this->groups
