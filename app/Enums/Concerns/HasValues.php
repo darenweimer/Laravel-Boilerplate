@@ -2,10 +2,24 @@
 
 namespace App\Enums\Concerns;
 
-use Illuminate\Support\Arr;
-
 trait HasValues
 {
+
+    /**
+     * Retrieves all enum names as an array
+     *
+     * @return array
+     */
+    public static function names() : array
+    {
+        $names = [];
+
+        foreach (static::cases() as $case) {
+            $names[] = $case->name;
+        }
+
+        return $names;
+    }
 
     /**
      * Retrieves all enum values as an array
@@ -14,9 +28,29 @@ trait HasValues
      */
     public static function values() : array
     {
-        return Arr::pluck(
-            static::cases(), 'value'
-        );
+        $values = [];
+
+        foreach (static::cases() as $case) {
+            $values[] = $case->value;
+        }
+
+        return $values;
+    }
+
+    /**
+     * Retrieves all enum name/value pairs as an associative array
+     *
+     * @return array
+     */
+    public static function pairs() : array
+    {
+        $pairs = [];
+
+        foreach (static::cases() as $case) {
+            $pairs[$case->name] = $case->value;
+        }
+
+        return $pairs;
     }
 
 }
