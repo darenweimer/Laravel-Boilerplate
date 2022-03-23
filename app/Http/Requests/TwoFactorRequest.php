@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Google2faRequest extends FormRequest
+class TwoFactorRequest extends FormRequest
 {
 
     /**
@@ -24,18 +24,19 @@ class Google2faRequest extends FormRequest
      */
     public function rules() : array
     {
-        if ($google2fa = $this->input('google2fa')) {
+        if ($two_factor_code = $this->input('two_factor_code')) {
             $verified = app('pragmarx.google2fa')
                 ->verifyGoogle2FA(
-                    $this->user()->google2fa_secret, $google2fa
+                    $this->user()?->two_factor_secret, $two_factor_code
                 );
         }
 
         return [
-            'google2fa' => [
+            'two_factor_code' => [
                 'required',
-                fn($attr, $val, $fail) => ($verified ?? false) ? null
-                    : $fail('The Google 2FA code is incorrect.'),
+                fn($attribute, $value, $failCallback) => ($verified ?? false)
+                    ? null
+                    : $failCallback('The two-factor authentication code is incorrect.'),
             ],
         ];
     }

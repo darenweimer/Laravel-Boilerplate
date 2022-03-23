@@ -4,16 +4,16 @@
             <v-card class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
-                        Google 2-Factor Authentication
+                        Two-Factor Authentication
                     </div>
                 </template>
 
                 <div class="mt-4 w-32 mx-auto text-center">
-                    <v-label label="Google 2FA Code"/>
-                    <v-input type="number" v-model="form.google2fa" :error="form.errors.google2fa" placeholder="Enter code..." required autofocus/>
+                    <v-label label="Two-Factor Authentication Code"/>
+                    <v-input type="number" v-model="form.two_factor_code" :error="form.errors.two_factor_code" placeholder="Enter code..." required autofocus/>
                 </div>
 
-                <v-label class="text-center" :error="form.errors.google2fa"/>
+                <v-label class="text-center" :error="form.errors.two_factor_code"/>
 
                 <template v-slot:footer>
                     <div class="text-center">
@@ -32,7 +32,7 @@
         data() {
             return {
                 form: this.useForm({
-                    google2fa: null,
+                    two_factor_code: null,
                 }),
             };
         },
@@ -41,7 +41,7 @@
                 this.form
                     .clearErrors()
                     .post(
-                        this.route('2fa.login'), {
+                        this.route('two-factor.verify'), {
                             onFinish: () => this.form.reset(),
                         }
                     );

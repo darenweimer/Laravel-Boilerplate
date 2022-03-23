@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class Google2fa
+class TwoFactorAuthentication
 {
 
     /**
@@ -18,9 +18,9 @@ class Google2fa
      */
     public function handle(Request $request, Closure $next) : mixed
     {
-        if ($request->user()?->google2fa_enabled) {
-            if (!$request->session()->get('Google2faVerified')) {
-                return redirect()->route('2fa.login');
+        if ($request->user()?->two_factor_enabled) {
+            if (!$request->session()->get('two_factor_verified')) {
+                return redirect()->route('two-factor.verify');
             }
         }
 

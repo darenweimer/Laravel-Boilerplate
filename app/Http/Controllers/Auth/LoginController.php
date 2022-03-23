@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Google2faRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Inertia\Inertia;
@@ -29,8 +28,6 @@ class LoginController extends Controller
         $this->middleware('guest')
             ->except([
                 'logout',
-                'loginForm2fa',
-                'login2fa',
             ]);
     }
 
@@ -44,34 +41,6 @@ class LoginController extends Controller
     public function loginForm() : mixed
     {
         return Inertia::render('auth/login');
-    }
-
-    /**
-     * Handles a web route
-     *
-     * GET /2fa/login
-     *
-     * @return mixed
-     */
-    public function loginForm2fa() : mixed
-    {
-        return Inertia::render('auth/login2fa');
-    }
-
-    /**
-     * Handles a web route
-     *
-     * POST /2fa/login
-     *
-     * @param Google2faRequest $request
-     *
-     * @return mixed
-     */
-    public function login2fa(Google2faRequest $request) : mixed
-    {
-        $request->session()->put('Google2faVerified', true);
-
-        return redirect($this->redirectTo);
     }
 
 }

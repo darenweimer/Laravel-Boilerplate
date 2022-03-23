@@ -26,7 +26,7 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'google2fa_secret',
+        'two_factor_secret',
         'su',
         'compromised',
     ];
@@ -38,7 +38,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'google2fa_secret'  => 'encrypted',
+        'two_factor_secret' => 'encrypted',
         'su'                => 'boolean',
         'compromised'       => 'boolean',
     ];
@@ -50,7 +50,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'google2fa_secret',
+        'two_factor_secret',
         'remember_token',
         'groups',
     ];
@@ -61,20 +61,20 @@ class User extends Authenticatable
      * @var array
      */
     protected $appends = [
-        'google2fa_enabled',
+        'two_factor_enabled',
         'groups_list',
         'permissions_list',
     ];
 
     /**
-     * Interacts with the 'google2fa_enabled' attribute
+     * Interacts with the 'two_factor_enabled' attribute
      *
      * @return Attribute
      */
-    protected function google2faEnabled() : Attribute
+    protected function twoFactorEnabled() : Attribute
     {
         return Attribute::make(
-            get: fn() => (bool) $this->google2fa_secret,
+            get: fn() => (bool) $this->two_factor_secret,
         );
     }
 
@@ -159,44 +159,44 @@ class User extends Authenticatable
     */
 
     /**
-     * Enables Google 2fa with a new secret key
+     * Enables two-factor authentication with a new secret key
      *
      * @return static
      */
-    public function enableGoogle2fa() : static
+    public function enableTwoFactor() : static
     {
-        $this->google2fa_secret = app('pragmarx.google2fa')
+        $this->two_factor_secret = app('pragmarx.google2fa')
             ->generateSecretKey();
 
         return $this;
     }
 
     /**
-     * Disables Google 2fa by clearing the secret key
+     * Disables two-factor authentication by clearing the secret key
      *
      * @return static
      */
-    public function disableGoogle2fa() : static
+    public function disableTwoFactor() : static
     {
-        $this->google2fa_secret = null;
+        $this->two_factor_secret = null;
 
         return $this;
     }
 
     /**
-     * Generates the user's Google 2fa QR code inline image
+     * Generates the user's two-factor authentication QR code inline image
      *
      * @return string|null
      */
-    public function getGoogle2faQrCode() : ?string
+    public function getTwoFactorQrCode() : ?string
     {
-        if (!$this->google2fa_secret) {
+        if (!$this->two_factor_secret) {
             return null;
         }
 
         return app('pragmarx.google2fa')
             ->getQRCodeInline(
-                config('app.name'), $this->email, $this->google2fa_secret
+                config('app.name'), $this->email, $this->two_factor_secret
             );
     }
 

@@ -56,7 +56,7 @@ class Kernel extends HttpKernel
      */
     protected $routeMiddleware = [
         'auth'             => \App\Http\Middleware\Authenticate::class,
-        'auth.2fa'         => \App\Http\Middleware\Google2fa::class,
+        'auth.2fa'         => \App\Http\Middleware\TwoFactorAuthentication::class,
         'auth.basic'       => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.groups'      => \App\Http\Middleware\CheckUserGroups::class,
         'auth.permits'     => \App\Http\Middleware\CheckUserPermissions::class,

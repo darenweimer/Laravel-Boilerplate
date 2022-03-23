@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +18,14 @@ Route::controller(LoginController::class)->group(function () {
     Route::post('login', 'login'    );
     Route::get('logout', 'logout'   )->name('logout');
 
-    Route::prefix('2fa')->name('2fa.')->group(function () {
+});
 
-        Route::get('login',  'loginForm2fa')->name('login');
-        Route::post('login', 'login2fa'    );
+Route::controller(TwoFactorController::class)->group(function () {
+
+    Route::prefix('two-factor')->name('two-factor.')->group(function () {
+
+        Route::get('verify',  'verifyForm')->name('verify');
+        Route::post('verify', 'verify'    );
 
     });
 
