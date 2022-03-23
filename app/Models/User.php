@@ -27,6 +27,7 @@ class User extends Authenticatable
         'email',
         'password',
         'google2fa_secret',
+        'su',
         'compromised',
     ];
 
@@ -38,6 +39,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'google2fa_secret'  => 'encrypted',
+        'su'                => 'boolean',
         'compromised'       => 'boolean',
     ];
 
@@ -219,7 +221,7 @@ class User extends Authenticatable
      */
     public function permitted(string $permissions) : bool
     {
-        return array_matches($this->permissions_list, $permissions);
+        return $this->su || array_matches($this->permissions_list, $permissions);
     }
 
 }
