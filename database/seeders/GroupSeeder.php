@@ -18,10 +18,6 @@ class GroupSeeder extends Seeder
             'group'       => 'Admin',
             'description' => 'System administrators',
         ],
-        [
-            'group'       => 'Guest',
-            'description' => 'Users without authentication',
-        ],
     ];
 
     /**
