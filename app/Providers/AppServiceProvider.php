@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register() : void
     {
-        //
+        $this->registerDatabaseGrammars();
     }
 
     /**
@@ -35,8 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot() : void
     {
-        $this->registerDatabaseGrammars();
-
         $filename = app_path(
             '~' . ($this->app->runningInConsole() ? 'console' : 'web') . '.php'
         );
