@@ -2,10 +2,21 @@
 
 namespace App\Providers;
 
+use Illuminate\Database\Schema\Grammars\Grammar;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    /**
+     * Registers grammar macros for database migrations
+     *
+     * @return void
+     */
+    protected function registerDatabaseGrammars() : void
+    {
+        Grammar::macro('typeNumeric', fn() => 'numeric');
+    }
 
     /**
      * Registers any application services
@@ -24,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot() : void
     {
+        $this->registerDatabaseGrammars();
+
         $filename = app_path(
             '~' . ($this->app->runningInConsole() ? 'console' : 'web') . '.php'
         );
