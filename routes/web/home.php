@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(HomeController::class)->group(function () {
 
-    Route::get('/',     'welcome');
-    Route::get('theme', 'theme'  )->name('theme');
+    Route::get('/', 'welcome');
+    Route::get('theme', 'theme')->name('theme');
 
 });
