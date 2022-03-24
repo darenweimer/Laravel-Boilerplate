@@ -11,13 +11,6 @@ class TwoFactorController extends Controller
 {
 
     /**
-     * Where to redirect users after verification
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
      * Handles a web route
      *
      * GET /two-factor/verify
@@ -43,7 +36,7 @@ class TwoFactorController extends Controller
         $request->session()
             ->put('two_factor_verified', true);
 
-        return redirect()->intended($this->redirectTo);
+        return redirect()->intended(RouteServiceProvider::HOME);
     }
 
 }
