@@ -8,9 +8,8 @@
                     </div>
                 </template>
 
-                <div class="mt-4 w-32 mx-auto text-center">
-                    <v-label label="Two-Factor Authentication Code"/>
-                    <v-input type="number" v-model="form.two_factor_code" :error="form.errors.two_factor_code" placeholder="Enter code..." required autofocus/>
+                <div class="w-32 mx-auto my-4">
+                    <v-input type="text" class="text-center" v-model="form.two_factor_code" :invalid="form.errors.two_factor_code" @input="form.clearErrors('two_factor_code')" required autofocus/>
                 </div>
 
                 <v-label class="text-center" :error="form.errors.two_factor_code"/>

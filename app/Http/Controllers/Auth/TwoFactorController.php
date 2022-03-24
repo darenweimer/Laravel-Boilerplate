@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\TwoFactorRequest;
+use App\Http\Requests\Auth\TwoFactorRequest;
 use App\Providers\RouteServiceProvider;
 use Inertia\Inertia;
 
@@ -43,7 +43,7 @@ class TwoFactorController extends Controller
         $request->session()
             ->put('two_factor_verified', true);
 
-        return redirect($this->redirectTo);
+        return redirect()->intended($this->redirectTo);
     }
 
 }
