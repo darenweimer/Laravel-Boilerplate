@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Auth;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class TwoFactorRequest extends FormRequest
 {
@@ -24,21 +25,36 @@ class TwoFactorRequest extends FormRequest
      */
     public function rules() : array
     {
-        if ($two_factor_code = $this->input('two_factor_code')) {
-            $verified = app('pragmarx.google2fa')
-                ->verifyGoogle2FA(
-                    $this->user()?->two_factor_secret, $two_factor_code
-                );
-        }
-
         return [
-            'two_factor_code' => [
-                'required',
-                fn($attribute, $value, $failCallback) => ($verified ?? false)
-                    ? null
-                    : $failCallback('The two-factor authentication code is incorrect.'),
-            ],
+            'two_factor_code' => ['required', 'string'],
         ];
+    }
+
+    /**
+     * Configures the validator instance
+     *
+     * @param Validator $validator
+     *
+     * @return void
+     */
+    public function withValidator(Validator $validator) : void
+    {
+        $validator->after(function ($validator) {
+            if ($this->two_factor_code) {
+                $verified = app('pragmarx.google2fa')
+                    ->verifyGoogle2FA(
+                        $this->user()?->two_factor_secret, $this->two_factor_code
+                    );
+
+                if (!$verified) {
+                    $validator->errors()
+                        ->add(
+                            'two_factor_code',
+                            'The two-factor authentication code is incorrect.'
+                        );
+                }
+            }
+        });
     }
 
 }
