@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\Route;
 |-------------------------------------------------------------------------------
 */
 
-Route::controller(TwoFactorController::class)->group(function () {
+Route::middleware(['auth'])->group(function () {
 
-    Route::prefix('two-factor')->name('two-factor.')->group(function () {
+    Route::controller(TwoFactorController::class)->group(function () {
 
-        Route::get('verify',  'verifyForm')->name('verify');
-        Route::post('verify', 'verify'    );
+        Route::prefix('two-factor')->name('two-factor.')->group(function () {
+
+            Route::get('verify', 'verifyForm')->name('verify');
+            Route::post('verify', 'verify');
+
+        });
 
     });
 
