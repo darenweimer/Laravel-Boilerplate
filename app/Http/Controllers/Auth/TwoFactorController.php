@@ -13,19 +13,19 @@ class TwoFactorController extends Controller
     /**
      * Handles a web route
      *
-     * GET /two-factor/verify
+     * GET /verify-2fa
      *
      * @return mixed
      */
     public function verifyForm() : mixed
     {
-        return Inertia::render('auth/two-factor/verify');
+        return Inertia::render('auth/two-factor');
     }
 
     /**
      * Handles a web route
      *
-     * POST /two-factor/verify
+     * POST /verify-2fa
      *
      * @param TwoFactorRequest $request
      *

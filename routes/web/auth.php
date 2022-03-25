@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticationController;
+use App\Http\Controllers\Auth\ConfirmPasswordController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\TwoFactorController;
 use Illuminate\Support\Facades\Route;
 
@@ -9,16 +13,52 @@ use Illuminate\Support\Facades\Route;
 |-------------------------------------------------------------------------------
 */
 
+Route::middleware(['guest'])->group(function () {
+
+    Route::controller(RegistrationController::class)->group(function () {
+
+        Route::get('register', 'registerForm')->name('register');
+        Route::post('register', 'register');
+
+    });
+
+    Route::controller(AuthenticationController::class)->group(function () {
+
+        Route::get('login', 'loginForm')->name('login');
+        Route::post('login', 'login');
+
+    });
+
+    Route::controller(ForgotPasswordController::class)->group(function () {
+
+        Route::get('forgot-password', 'requestForm')->name('forgot-password');
+        Route::post('forgot-password', 'request');
+        Route::get('reset-password/{token}/{email}', 'resetForm')->name('reset-password-form');
+        Route::post('reset-password', 'reset')->name('reset-password');
+
+    });
+
+});
+
 Route::middleware(['auth'])->group(function () {
+
+    Route::controller(AuthenticationController::class)->group(function () {
+
+        Route::get('logout', 'logout')->name('logout');
+
+    });
+
+    Route::controller(ConfirmPasswordController::class)->group(function () {
+
+        Route::get('confirm-password', 'confirmForm')->name('confirm-password');
+        Route::post('confirm-password', 'confirm');
+
+    });
 
     Route::controller(TwoFactorController::class)->group(function () {
 
-        Route::prefix('two-factor')->name('two-factor.')->group(function () {
-
-            Route::get('verify', 'verifyForm')->name('verify');
-            Route::post('verify', 'verify');
-
-        });
+        Route::get('verify-2fa', 'verifyForm')->name('verify-2fa');
+        Route::post('verify-2fa', 'verify');
 
     });
 

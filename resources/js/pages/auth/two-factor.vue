@@ -8,16 +8,16 @@
                     </div>
                 </template>
 
-                <div class="w-32 mx-auto my-4">
-                    <v-input type="text" class="text-center" v-model="form.two_factor_code" :invalid="form.errors.two_factor_code" @input="form.clearErrors('two_factor_code')" required autofocus/>
+                <div class="my-4">
+                    <v-label class="mb-2 text-center" label="Enter your authenticator code:"/>
+                    <v-input type="text" class="w-48 mx-auto text-2xl text-center tracking-[0.25em]" v-model="form.two_factor_code" :invalid="form.errors.two_factor_code" @input="form.clearErrors()" required autofocus/>
+                    <v-label class="text-center" :error="form.errors.two_factor_code" :below="true"/>
                 </div>
-
-                <v-label class="text-center" :error="form.errors.two_factor_code"/>
 
                 <template v-slot:footer>
                     <div class="text-center">
                         <v-button type="submit" color="primary" :disabled="form.processing">
-                            Submit Code
+                            Authenticate
                         </v-button>
                     </div>
                 </template>
@@ -40,7 +40,7 @@
                 this.form
                     .clearErrors()
                     .post(
-                        this.route('two-factor.verify'), {
+                        this.route('verify-2fa'), {
                             onFinish: () => this.form.reset(),
                         }
                     );
