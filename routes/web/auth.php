@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\ConfirmPasswordController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\RegistrationController;
 use App\Http\Controllers\Auth\TwoFactorController;
+use App\Http\Controllers\Auth\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,6 +46,14 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(AuthenticationController::class)->group(function () {
 
         Route::get('logout', 'logout')->name('logout');
+
+    });
+
+    Route::controller(VerificationController::class)->group(function () {
+
+        Route::get('verification-notice', 'notice')->name('verification.notice');
+        Route::get('verification-verify/{id}/{hash}', 'verify')->name('verification.verify');
+        Route::post('verification-send', 'send')->name('verification.send');
 
     });
 
