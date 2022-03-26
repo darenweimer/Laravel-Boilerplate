@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\TwoFactorRequest;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class TwoFactorController extends Controller
@@ -15,10 +16,16 @@ class TwoFactorController extends Controller
      *
      * GET /verify-2fa
      *
+     * @param Request $request
+     *
      * @return mixed
      */
-    public function verifyForm() : mixed
+    public function verifyForm(Request $request) : mixed
     {
+        if ($request->session()->get('two_factor_verified')) {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
+
         return Inertia::render('auth/two-factor');
     }
 
