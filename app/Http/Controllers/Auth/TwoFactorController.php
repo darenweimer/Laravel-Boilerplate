@@ -23,7 +23,8 @@ class TwoFactorController extends Controller
     public function verifyForm(Request $request) : mixed
     {
         if ($request->session()->get('two_factor_verified')) {
-            return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()
+                ->intended(RouteServiceProvider::HOME);
         }
 
         return Inertia::render('auth/two-factor');
@@ -43,7 +44,8 @@ class TwoFactorController extends Controller
         $request->session()
             ->put('two_factor_verified', true);
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()
+            ->intended(RouteServiceProvider::HOME);
     }
 
 }

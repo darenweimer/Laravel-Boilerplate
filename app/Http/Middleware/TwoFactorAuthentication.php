@@ -20,7 +20,8 @@ class TwoFactorAuthentication
     {
         if ($request->user()?->two_factor_enabled) {
             if (!$request->session()->get('two_factor_verified')) {
-                return redirect()->guest('verify-2fa');
+                return redirect()
+                    ->guest('verify-2fa');
             }
         }
 
