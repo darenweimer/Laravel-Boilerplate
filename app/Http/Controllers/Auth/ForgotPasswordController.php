@@ -59,16 +59,18 @@ class ForgotPasswordController extends Controller
             $request->only('email')
         );
 
-        return ($status === Password::RESET_LINK_SENT)
-            ? back()
-                ->with('status', __($status))
-            : back()
-                ->withInput(
-                    $request->only('email')
-                )
-                ->withErrors([
-                    'email' => __($status),
-                ]);
+        if ($status === Password::RESET_LINK_SENT) {
+            return back()
+                ->with('status', __($status));
+        }
+
+        return back()
+            ->withInput(
+                $request->only('email')
+            )
+            ->withErrors([
+                'email' => __($status),
+            ]);
     }
 
     /**
@@ -114,16 +116,19 @@ class ForgotPasswordController extends Controller
             }
         );
 
-        return ($status === Password::PASSWORD_RESET)
-            ? redirect()->route('login')
-                ->with('status', __($status))
-            : back()
-                ->withInput(
-                    $request->only('email')
-                )
-                ->withErrors([
-                    'email' => __($status),
-                ]);
+        if ($status === Password::PASSWORD_RESET) {
+            return redirect()
+                ->route('login')
+                ->with('status', __($status));
+        }
+
+        return back()
+            ->withInput(
+                $request->only('email')
+            )
+            ->withErrors([
+                'email' => __($status),
+            ]);
     }
 
 }
