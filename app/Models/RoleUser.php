@@ -46,18 +46,6 @@ class RoleUser extends Pivot
     /**
      * Relationship Many:1
      *
-     * Returns the role associated with the role user
-     *
-     * @return mixed
-     */
-    public function role() : mixed
-    {
-        return $this->belongsTo(Role::class);
-    }
-
-    /**
-     * Relationship Many:1
-     *
      * Returns the user associated with the role user
      *
      * @return mixed
@@ -65,6 +53,18 @@ class RoleUser extends Pivot
     public function user() : mixed
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Relationship Many:1
+     *
+     * Returns the role associated with the role user
+     *
+     * @return mixed
+     */
+    public function role() : mixed
+    {
+        return $this->belongsTo(Role::class);
     }
 
 }

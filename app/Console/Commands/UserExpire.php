@@ -14,7 +14,7 @@ class UserExpire extends Command
      * @var string
      */
     protected $signature = 'user:expire
-        {--id=* : The optional user ids to expire}';
+        {--id=* : The optional user id(s) to expire}';
 
     /**
      * The console command description
