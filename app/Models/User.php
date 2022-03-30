@@ -262,6 +262,50 @@ class User extends Authenticatable // implements MustVerifyEmail
     }
 
     /**
+     * Grants the specified roles to the user
+     *
+     * @param string|array $roles
+     *
+     * @return static
+     */
+    public function grantRoles(string|array $roles) : static
+    {
+        $grantable = Role::whereIn(
+                'role', is_array($roles) ? $roles : [$roles]
+            )
+            ->get();
+
+        if ($grantable->isNotEmpty()) {
+            $this->roles()
+                ->syncWithoutDetaching($grantable);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Revokes the specified roles from the user
+     *
+     * @param string|array $roles
+     *
+     * @return static
+     */
+    public function revokeRoles(string|array $roles) : static
+    {
+        $revokable = Role::whereIn(
+                'role', is_array($roles) ? $roles : [$roles]
+            )
+            ->get();
+
+        if ($revokable->isNotEmpty()) {
+            $this->roles()
+                ->detach($revokable);
+        }
+
+        return $this;
+    }
+
+    /**
      * Returns true if the user is attached to the specified roles
      *
      * @param string $roles
@@ -271,6 +315,50 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function hasRoles(string $roles) : bool
     {
         return array_matches($this->roles_list, $roles);
+    }
+
+    /**
+     * Grants the specified permissions to the user
+     *
+     * @param string|array $permissions
+     *
+     * @return static
+     */
+    public function grantPermissions(string|array $permissions) : static
+    {
+        $grantable = Permission::whereIn(
+                'permission', is_array($permissions) ? $permissions : [$permissions]
+            )
+            ->get();
+
+        if ($grantable->isNotEmpty()) {
+            $this->permissions()
+                ->syncWithoutDetaching($grantable);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Revokes the specified permissions from the user
+     *
+     * @param string|array $permissions
+     *
+     * @return static
+     */
+    public function revokePermissions(string|array $permissions) : static
+    {
+        $revokable = Permission::whereIn(
+                'permission', is_array($permissions) ? $permissions : [$permissions]
+            )
+            ->get();
+
+        if ($revokable->isNotEmpty()) {
+            $this->permissions()
+                ->detach($revokable);
+        }
+
+        return $this;
     }
 
     /**
