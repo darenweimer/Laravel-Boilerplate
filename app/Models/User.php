@@ -54,6 +54,7 @@ class User extends Authenticatable // implements MustVerifyEmail
         'two_factor_secret',
         'remember_token',
         'roles',
+        'permissions',
     ];
 
     /**
@@ -102,11 +103,17 @@ class User extends Authenticatable // implements MustVerifyEmail
     protected function permissionsList() : Attribute
     {
         return Attribute::make(
-            get: fn() => $this->roles
-                ->pluck('permissions.*.permission')
-                ->collapse()
-                ->unique()
-                ->toArray(),
+            get: fn() => array_unique(
+                array_merge(
+                    $this->roles
+                        ->pluck('permissions.*.permission')
+                        ->collapse()
+                        ->toArray(),
+                    $this->permissions
+                        ->pluck('permission')
+                        ->toArray()
+                )
+            ),
         );
     }
 
@@ -123,6 +130,7 @@ class User extends Authenticatable // implements MustVerifyEmail
      */
     protected $with = [
         'roles.permissions',
+        'permissions',
         'userSettings',
     ];
 
@@ -137,6 +145,21 @@ class User extends Authenticatable // implements MustVerifyEmail
     {
         return $this->belongsToMany(Role::class)
             ->using(RoleUser::class)
+            ->withPivot('id')
+            ->withTimestamps();
+    }
+
+    /**
+     * Relationship Many:Many
+     *
+     * Returns the permissions associated with the user
+     *
+     * @return mixed
+     */
+    public function permissions() : mixed
+    {
+        return $this->belongsToMany(Permission::class)
+            ->using(PermissionUser::class)
             ->withPivot('id')
             ->withTimestamps();
     }

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -18,7 +19,8 @@ class TestDataUsers extends Command
     protected $signature = 'testdata:users
         {total : The number of test users to create}
         {password=password : The optional password to use for all users}
-        {--role=* : The optional role(s) to assign to all users}';
+        {--role=* : The optional role(s) to assign to all users}
+        {--permission=* : The optional permission(s) to assign to all users}';
 
     /**
      * The console command description
@@ -121,6 +123,23 @@ class TestDataUsers extends Command
     }
 
     /**
+     * Gets all attachable database permissions
+     *
+     * @return array
+     */
+    protected function getAllAttachablePermissions() : array
+    {
+        if ($permissions = $this->option('permission')) {
+            return Permission::select('id')
+                ->whereIn('permission', $permissions)
+                ->pluck('id')
+                ->all();
+        }
+
+        return [];
+    }
+
+    /**
      * Creates an email address for a test user
      *
      * @param string $first
@@ -159,6 +178,8 @@ class TestDataUsers extends Command
 
         $roles = $this->getAllAttachableRoles();
 
+        $permissions = $this->getAllAttachablePermissions();
+
         for ($i = 1; $i <= $total; $i++) {
             $user = $users[
                 $index = rand(0, count($users) - 1)
@@ -178,6 +199,11 @@ class TestDataUsers extends Command
             if ($roles) {
                 $model->roles()
                     ->attach($roles);
+            }
+
+            if ($permissions) {
+                $model->permissions()
+                    ->attach($permissions);
             }
 
             $this->comment("Added user {$i} of {$total}");

@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Console\Command;
@@ -20,7 +21,8 @@ class UserAdd extends Command
         {last : The last name of the user}
         {email : The email address for the user account}
         {password : The password for the user account}
-        {--role=* : The optional role(s) to assign to the user}';
+        {--role=* : The optional role(s) to assign to the user}
+        {--permission=* : The optional permission(s) to assign to the user}';
 
     /**
      * The console command description
@@ -49,6 +51,14 @@ class UserAdd extends Command
             $user->roles()
                 ->attach(
                     Role::where('role', $role)
+                        ->first()
+                );
+        }
+
+        foreach ($this->option('permission') as $permission) {
+            $user->permissions()
+                ->attach(
+                    Permission::where('permission', $permission)
                         ->first()
                 );
         }
