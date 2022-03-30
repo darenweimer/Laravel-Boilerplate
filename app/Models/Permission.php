@@ -30,14 +30,14 @@ class Permission extends Model
     /**
      * Relationship Many:Many
      *
-     * Returns the groups associated with the permission
+     * Returns the roles associated with the permission
      *
      * @return mixed
      */
-    public function groups() : mixed
+    public function roles() : mixed
     {
-        return $this->belongsToMany(Group::class)
-            ->using(GroupPermission::class)
+        return $this->belongsToMany(Role::class)
+            ->using(PermissionRole::class)
             ->withPivot('id')
             ->withTimestamps();
     }

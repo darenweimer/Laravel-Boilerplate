@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Group;
 use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
-class GroupPermissionSeeder extends Seeder
+class PermissionRoleSeeder extends Seeder
 {
 
     /**
@@ -16,23 +16,23 @@ class GroupPermissionSeeder extends Seeder
      */
     protected $seeds = [
         [
-            'group'      => 'Admin',
+            'role'       => 'Admin',
             'permission' => 'List Users',
         ],
         [
-            'group'      => 'Admin',
+            'role'       => 'Admin',
             'permission' => 'Show User',
         ],
         [
-            'group'      => 'Admin',
+            'role'       => 'Admin',
             'permission' => 'Create User',
         ],
         [
-            'group'      => 'Admin',
+            'role'       => 'Admin',
             'permission' => 'Edit User',
         ],
         [
-            'group'      => 'Admin',
+            'role'       => 'Admin',
             'permission' => 'Delete User',
         ],
     ];
@@ -45,7 +45,7 @@ class GroupPermissionSeeder extends Seeder
     public function run() : void
     {
         foreach ($this->seeds as $seed) {
-            Group::where('group', $seed['group'])
+            Role::where('role', $seed['role'])
                 ->first()
                 ->permissions()
                 ->attach(

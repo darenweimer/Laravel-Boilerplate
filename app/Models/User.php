@@ -53,7 +53,7 @@ class User extends Authenticatable // implements MustVerifyEmail
         'password',
         'two_factor_secret',
         'remember_token',
-        'groups',
+        'roles',
     ];
 
     /**
@@ -63,7 +63,7 @@ class User extends Authenticatable // implements MustVerifyEmail
      */
     protected $appends = [
         'two_factor_enabled',
-        'groups_list',
+        'roles_list',
         'permissions_list',
     ];
 
@@ -80,15 +80,15 @@ class User extends Authenticatable // implements MustVerifyEmail
     }
 
     /**
-     * Interacts with the 'groups_list' attribute
+     * Interacts with the 'roles_list' attribute
      *
      * @return Attribute
      */
-    protected function groupsList() : Attribute
+    protected function rolesList() : Attribute
     {
         return Attribute::make(
-            get: fn() => $this->groups
-                ->pluck('group')
+            get: fn() => $this->roles
+                ->pluck('role')
                 ->unique()
                 ->toArray(),
         );
@@ -102,7 +102,7 @@ class User extends Authenticatable // implements MustVerifyEmail
     protected function permissionsList() : Attribute
     {
         return Attribute::make(
-            get: fn() => $this->groups
+            get: fn() => $this->roles
                 ->pluck('permissions.*.permission')
                 ->collapse()
                 ->unique()
@@ -122,21 +122,21 @@ class User extends Authenticatable // implements MustVerifyEmail
      * @var array
      */
     protected $with = [
-        'groups.permissions',
+        'roles.permissions',
         'userSettings',
     ];
 
     /**
      * Relationship Many:Many
      *
-     * Returns the groups associated with the user
+     * Returns the roles associated with the user
      *
      * @return mixed
      */
-    public function groups() : mixed
+    public function roles() : mixed
     {
-        return $this->belongsToMany(Group::class)
-            ->using(GroupUser::class)
+        return $this->belongsToMany(Role::class)
+            ->using(RoleUser::class)
             ->withPivot('id')
             ->withTimestamps();
     }
@@ -202,15 +202,15 @@ class User extends Authenticatable // implements MustVerifyEmail
     }
 
     /**
-     * Returns true if the user is attached to the specified groups
+     * Returns true if the user is attached to the specified roles
      *
-     * @param string $groups
+     * @param string $roles
      *
      * @return bool
      */
-    public function grouped(string $groups) : bool
+    public function hasRoles(string $roles) : bool
     {
-        return array_matches($this->groups_list, $groups);
+        return array_matches($this->roles_list, $roles);
     }
 
     /**
@@ -220,7 +220,7 @@ class User extends Authenticatable // implements MustVerifyEmail
      *
      * @return bool
      */
-    public function permitted(string $permissions) : bool
+    public function hasPermissions(string $permissions) : bool
     {
         return $this->su || array_matches($this->permissions_list, $permissions);
     }

@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up() : void
     {
-        Artisan::call('db:seed --class=GroupPermissionSeeder --force');
+        Artisan::call('db:seed --class=PermissionRoleSeeder --force');
     }
 
     /**

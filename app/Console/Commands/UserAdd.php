@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Group;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +20,7 @@ class UserAdd extends Command
         {last : The last name of the user}
         {email : The email address for the user account}
         {password : The password for the user account}
-        {--group=* : The optional groups to assign to the user}';
+        {--role=* : The optional role(s) to assign to the user}';
 
     /**
      * The console command description
@@ -45,10 +45,11 @@ class UserAdd extends Command
             ),
         ]);
 
-        foreach ($this->option('group') as $group) {
-            $user->groups()
+        foreach ($this->option('role') as $role) {
+            $user->roles()
                 ->attach(
-                    Group::where('group', $group)->first()
+                    Role::where('role', $role)
+                        ->first()
                 );
         }
 

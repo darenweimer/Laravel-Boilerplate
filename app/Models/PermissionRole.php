@@ -6,7 +6,7 @@ use App\Models\Traits\DateDisplay;
 use App\Models\Traits\Revisions;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class GroupPermission extends Pivot
+class PermissionRole extends Pivot
 {
     use DateDisplay, Revisions;
 
@@ -23,7 +23,7 @@ class GroupPermission extends Pivot
      * @var array
      */
     protected $fillable = [
-        'group_id',
+        'role_id',
         'permission_id',
     ];
 
@@ -33,7 +33,7 @@ class GroupPermission extends Pivot
      * @var array
      */
     protected $casts = [
-        'group_id'      => 'integer',
+        'role_id'       => 'integer',
         'permission_id' => 'integer',
     ];
 
@@ -46,19 +46,19 @@ class GroupPermission extends Pivot
     /**
      * Relationship Many:1
      *
-     * Returns the group associated with the group permission
+     * Returns the role associated with the permission role
      *
      * @return mixed
      */
-    public function group() : mixed
+    public function role() : mixed
     {
-        return $this->belongsTo(Group::class);
+        return $this->belongsTo(Role::class);
     }
 
     /**
      * Relationship Many:1
      *
-     * Returns the permission associated with the group permission
+     * Returns the permission associated with the permission role
      *
      * @return mixed
      */

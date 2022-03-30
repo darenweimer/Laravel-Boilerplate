@@ -14,11 +14,12 @@ return new class extends Migration
      */
     public function up() : void
     {
-        Schema::create('group_permission', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('group_id')->index()->constrained();
-            $table->foreignId('permission_id')->index()->constrained();
+            $table->string('role')->unique();
+            $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,7 +30,7 @@ return new class extends Migration
      */
     public function down() : void
     {
-        Schema::dropIfExists('group_permission');
+        Schema::dropIfExists('roles');
     }
 
 };

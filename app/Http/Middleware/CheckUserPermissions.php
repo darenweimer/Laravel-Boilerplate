@@ -19,7 +19,7 @@ class CheckUserPermissions
      */
     public function handle(Request $request, Closure $next, string $permissions) : mixed
     {
-        if ($request->user()?->permitted($permissions)) {
+        if ($request->user()?->hasPermissions($permissions)) {
             return $next($request);
         }
 

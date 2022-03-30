@@ -7,7 +7,7 @@ use App\Models\Traits\Revisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Group extends Model
+class Role extends Model
 {
     use DateDisplay, Revisions, SoftDeletes;
 
@@ -17,7 +17,7 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'group',
+        'role',
         'description',
     ];
 
@@ -30,14 +30,14 @@ class Group extends Model
     /**
      * Relationship Many:Many
      *
-     * Returns the permissions associated with the group
+     * Returns the permissions associated with the role
      *
      * @return mixed
      */
     public function permissions() : mixed
     {
         return $this->belongsToMany(Permission::class)
-            ->using(GroupPermission::class)
+            ->using(PermissionRole::class)
             ->withPivot('id')
             ->withTimestamps();
     }
@@ -45,14 +45,14 @@ class Group extends Model
     /**
      * Relationship Many:Many
      *
-     * Returns the users associated with the group
+     * Returns the users associated with the role
      *
      * @return mixed
      */
     public function users() : mixed
     {
         return $this->belongsToMany(User::class)
-            ->using(GroupUser::class)
+            ->using(RoleUser::class)
             ->withPivot('id')
             ->withTimestamps();
     }

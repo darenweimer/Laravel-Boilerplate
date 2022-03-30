@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Group;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +18,7 @@ class TestDataUsers extends Command
     protected $signature = 'testdata:users
         {total : The number of test users to create}
         {password=password : The optional password to use for all users}
-        {--group=* : The optional groups to assign to all users}';
+        {--role=* : The optional role(s) to assign to all users}';
 
     /**
      * The console command description
@@ -104,15 +104,15 @@ class TestDataUsers extends Command
     }
 
     /**
-     * Gets all attachable database groups
+     * Gets all attachable database roles
      *
      * @return array
      */
-    protected function getAllAttachableGroups() : array
+    protected function getAllAttachableRoles() : array
     {
-        if ($groups = $this->option('group')) {
-            return Group::select('id')
-                ->whereIn('group', $groups)
+        if ($roles = $this->option('role')) {
+            return Role::select('id')
+                ->whereIn('role', $roles)
                 ->pluck('id')
                 ->all();
         }
@@ -157,7 +157,7 @@ class TestDataUsers extends Command
 
         $mailServers = $this->getAllTestMailServers();
 
-        $groups = $this->getAllAttachableGroups();
+        $roles = $this->getAllAttachableRoles();
 
         for ($i = 1; $i <= $total; $i++) {
             $user = $users[
@@ -175,9 +175,9 @@ class TestDataUsers extends Command
                 'password'   => $password,
             ]);
 
-            if ($groups) {
-                $model->groups()
-                    ->attach($groups);
+            if ($roles) {
+                $model->roles()
+                    ->attach($roles);
             }
 
             $this->comment("Added user {$i} of {$total}");

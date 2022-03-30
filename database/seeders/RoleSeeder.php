@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Group;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
-class GroupSeeder extends Seeder
+class RoleSeeder extends Seeder
 {
 
     /**
@@ -15,7 +15,7 @@ class GroupSeeder extends Seeder
      */
     protected $seeds = [
         [
-            'group'       => 'Admin',
+            'role'        => 'Admin',
             'description' => 'System administrators',
         ],
     ];
@@ -28,7 +28,7 @@ class GroupSeeder extends Seeder
     public function run() : void
     {
         foreach ($this->seeds as $seed) {
-            Group::create($seed);
+            Role::create($seed);
         }
     }
 
