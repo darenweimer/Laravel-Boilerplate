@@ -53,8 +53,6 @@ class User extends Authenticatable // implements MustVerifyEmail
         'password',
         'two_factor_secret',
         'remember_token',
-        'roles',
-        'permissions',
     ];
 
     /**
@@ -64,8 +62,6 @@ class User extends Authenticatable // implements MustVerifyEmail
      */
     protected $appends = [
         'two_factor_enabled',
-        'roles_list',
-        'permissions_list',
     ];
 
     /**
@@ -90,7 +86,6 @@ class User extends Authenticatable // implements MustVerifyEmail
         return Attribute::make(
             get: fn() => $this->roles
                 ->pluck('role')
-                ->unique()
                 ->toArray(),
         );
     }
@@ -119,20 +114,62 @@ class User extends Authenticatable // implements MustVerifyEmail
 
     /*
     |---------------------------------------------------------------------------
-    | Relationships
+    | Scopes
     |---------------------------------------------------------------------------
     */
 
     /**
-     * The relationships that should always be loaded
+     * Scopes a query to include permissions-related relationships
      *
-     * @var array
+     * @param mixed $query
+     *
+     * @return mixed
      */
-    protected $with = [
-        'roles.permissions',
-        'permissions',
-        'userSettings',
-    ];
+    public function scopeGetWithPermissions(mixed $query) : mixed
+    {
+        return $query
+            ->with([
+                'roles.permissions',
+                'permissions',
+            ])
+            ->get()
+            ->makeHidden([
+                'roles',
+                'permissions',
+            ])
+            ->append([
+                'roles_list',
+                'permissions_list',
+            ]);
+    }
+
+    /**
+     * Scopes a model to include permissions-related relationships
+     *
+     * @return static
+     */
+    public function withPermissions() : static
+    {
+        return $this
+            ->loadMissing([
+                'roles.permissions',
+                'permissions',
+            ])
+            ->makeHidden([
+                'roles',
+                'permissions',
+            ])
+            ->append([
+                'roles_list',
+                'permissions_list',
+            ]);
+    }
+
+    /*
+    |---------------------------------------------------------------------------
+    | Relationships
+    |---------------------------------------------------------------------------
+    */
 
     /**
      * Relationship Many:Many
