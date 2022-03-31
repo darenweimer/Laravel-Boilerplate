@@ -4,13 +4,13 @@ namespace App\Models;
 
 use App\Enums\NotifyOptions;
 use App\Models\Concerns\DateDisplay;
-use App\Models\Concerns\Revisions;
+use App\Models\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserSetting extends Model
 {
-    use DateDisplay, Revisions, SoftDeletes;
+    use DateDisplay, HasRevisions, SoftDeletes;
 
     /**
      * The primary key associated with the table

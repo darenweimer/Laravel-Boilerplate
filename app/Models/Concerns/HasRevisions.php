@@ -6,7 +6,7 @@ use App\Models\Revision;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
 
-trait Revisions
+trait HasRevisions
 {
 
     /**
@@ -21,7 +21,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterCreated() : void
+    protected function hasRevisionsAfterCreated() : void
     {
         if ($id = $this->attributes[$this->primaryKey] ?? null) {
             $exclusions = array_merge(
@@ -35,14 +35,13 @@ trait Revisions
             );
 
             foreach ($attributes as $attribute => $value) {
-                Revision::create([
-                    'revisionable_type' => static::class,
-                    'revisionable_id'   => $id,
-                    'user_id'           => Auth::id(),
-                    'key'               => $attribute,
-                    'old_value'         => null,
-                    'new_value'         => $value,
-                ]);
+                $this->revisions()
+                    ->create([
+                        'user_id'   => Auth::id(),
+                        'key'       => $attribute,
+                        'old_value' => null,
+                        'new_value' => $value,
+                    ]);
             }
         }
     }
@@ -52,7 +51,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterUpdated() : void
+    protected function hasRevisionsAfterUpdated() : void
     {
         $exclusions = array_merge(
             $this->hidden ?? [],
@@ -65,14 +64,13 @@ trait Revisions
         );
 
         foreach ($attributes as $attribute => $value) {
-            Revision::create([
-                'revisionable_type' => static::class,
-                'revisionable_id'   => $this->attributes[$this->primaryKey],
-                'user_id'           => Auth::id(),
-                'key'               => $attribute,
-                'old_value'         => $this->original[$attribute] ?? null,
-                'new_value'         => $value,
-            ]);
+            $this->revisions()
+                ->create([
+                    'user_id'   => Auth::id(),
+                    'key'       => $attribute,
+                    'old_value' => $this->original[$attribute] ?? null,
+                    'new_value' => $value,
+                ]);
         }
     }
 
@@ -81,7 +79,7 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterDeleting() : void
+    protected function hasRevisionsAfterDeleting() : void
     {
         $this->revisionsDeleting = $this->attributes[$this->primaryKey] ?? null;
 
@@ -107,17 +105,16 @@ trait Revisions
      *
      * @return void
      */
-    protected function revisionsAfterDeleted() : void
+    protected function hasRevisionsAfterDeleted() : void
     {
         if (isset($this->revisionsDeleting)) {
-            Revision::create([
-                'revisionable_type' => static::class,
-                'revisionable_id'   => $this->revisionsDeleting,
-                'user_id'           => Auth::id(),
-                'key'               => 'deleted_at',
-                'old_value'         => null,
-                'new_value'         => $this->attributes['deleted_at'] ?? now(),
-            ]);
+            $this->revisions()
+                ->create([
+                    'user_id'   => Auth::id(),
+                    'key'       => 'deleted_at',
+                    'old_value' => null,
+                    'new_value' => $this->attributes['deleted_at'] ?? now(),
+                ]);
 
             $this->revisionsDeleting = null;
         }
@@ -128,22 +125,22 @@ trait Revisions
      *
      * @return void
      */
-    public static function bootRevisions() : void
+    public static function bootHasRevisions() : void
     {
         static::created(function ($model) {
-            $model->revisionsAfterCreated();
+            $model->hasRevisionsAfterCreated();
         });
 
         static::updated(function ($model) {
-            $model->revisionsAfterUpdated();
+            $model->hasRevisionsAfterUpdated();
         });
 
         static::deleting(function ($model) {
-            $model->revisionsAfterDeleting();
+            $model->hasRevisionsAfterDeleting();
         });
 
         static::deleted(function ($model) {
-            $model->revisionsAfterDeleted();
+            $model->hasRevisionsAfterDeleted();
         });
     }
 

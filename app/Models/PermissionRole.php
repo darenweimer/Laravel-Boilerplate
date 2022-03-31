@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Models\Concerns\DateDisplay;
-use App\Models\Concerns\Revisions;
+use App\Models\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PermissionRole extends Pivot
 {
-    use DateDisplay, Revisions;
+    use DateDisplay, HasRevisions;
 
     /**
      * Indicates if the model's primary key is auto-incrementing

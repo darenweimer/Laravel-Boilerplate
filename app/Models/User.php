@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Concerns\DateDisplay;
+use App\Models\Concerns\HasRevisions;
 use App\Models\Concerns\HasUserSettings;
-use App\Models\Concerns\Revisions;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable // implements MustVerifyEmail
 {
-    use DateDisplay, HasApiTokens, HasFactory, HasUserSettings, Notifiable, Revisions, SoftDeletes;
+    use DateDisplay, HasApiTokens, HasFactory, HasRevisions, HasUserSettings, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable
