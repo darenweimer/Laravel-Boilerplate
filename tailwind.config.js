@@ -19,10 +19,7 @@ module.exports = {
             ],
         },
         {
-            pattern: /font-(thin|normal|medium|bold|black)/,
-        },
-        {
-            pattern: /text-(left|center|right|success|error)/,
+            pattern: /text-(left|center|right)/,
         },
         {
             pattern: /align-(top|middle|bottom)/,
