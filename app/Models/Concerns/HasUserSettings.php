@@ -4,7 +4,7 @@ namespace App\Models\Concerns;
 
 use App\Models\UserSetting;
 
-trait UserSettings
+trait HasUserSettings
 {
 
     /**
@@ -14,9 +14,8 @@ trait UserSettings
      */
     protected function userSettingsAfterCreated() : void
     {
-        UserSetting::create([
-            'user_id' => $this->id,
-        ]);
+        $this->userSettings()
+            ->create();
     }
 
     /**
@@ -26,7 +25,8 @@ trait UserSettings
      */
     protected function userSettingsAfterDeleted() : void
     {
-        UserSetting::find($this->id)->delete();
+        $this->userSettings
+            ->delete();
     }
 
     /**
@@ -36,7 +36,10 @@ trait UserSettings
      */
     protected function userSettingsAfterRestored() : void
     {
-        UserSetting::withTrashed()->find($this->id)->restore();
+        $this->userSettings()
+            ->withTrashed()
+            ->first()
+            ->restore();
     }
 
     /**
@@ -59,6 +62,18 @@ trait UserSettings
                 $model->userSettingsAfterRestored();
             });
         }
+    }
+
+    /**
+     * Relationship 1:1
+     *
+     * Returns the user settings associated with the user
+     *
+     * @return mixed
+     */
+    public function userSettings() : mixed
+    {
+        return $this->hasOne(UserSetting::class);
     }
 
 }

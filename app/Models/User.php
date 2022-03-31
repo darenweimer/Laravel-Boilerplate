@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Models\Concerns\DateDisplay;
+use App\Models\Concerns\HasUserSettings;
 use App\Models\Concerns\Revisions;
-use App\Models\Concerns\UserSettings;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable // implements MustVerifyEmail
 {
-    use DateDisplay, HasApiTokens, HasFactory, Notifiable, Revisions, SoftDeletes, UserSettings;
+    use DateDisplay, HasApiTokens, HasFactory, HasUserSettings, Notifiable, Revisions, SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -199,18 +199,6 @@ class User extends Authenticatable // implements MustVerifyEmail
             ->using(PermissionUser::class)
             ->withPivot('id')
             ->withTimestamps();
-    }
-
-    /**
-     * Relationship 1:1
-     *
-     * Returns the user settings associated with the user
-     *
-     * @return mixed
-     */
-    public function userSettings() : mixed
-    {
-        return $this->hasOne(UserSetting::class);
     }
 
     /*
