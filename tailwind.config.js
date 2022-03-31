@@ -123,7 +123,6 @@ module.exports = {
             fontFamily: {
                 'default': ['Noto Sans Display'],
                 'mono':    ['Inconsolata'],
-                'title':   ['Noto Sans Display'],
             },
             fontWeight: {
                 'thin':   250,
