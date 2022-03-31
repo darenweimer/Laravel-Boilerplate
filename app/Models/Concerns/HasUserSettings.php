@@ -12,7 +12,7 @@ trait HasUserSettings
      *
      * @return void
      */
-    protected function userSettingsAfterCreated() : void
+    protected function hasUserSettingsAfterCreated() : void
     {
         $this->userSettings()
             ->create();
@@ -23,7 +23,7 @@ trait HasUserSettings
      *
      * @return void
      */
-    protected function userSettingsAfterDeleted() : void
+    protected function hasUserSettingsAfterDeleted() : void
     {
         $this->userSettings
             ->delete();
@@ -34,7 +34,7 @@ trait HasUserSettings
      *
      * @return void
      */
-    protected function userSettingsAfterRestored() : void
+    protected function hasUserSettingsAfterRestored() : void
     {
         $this->userSettings()
             ->withTrashed()
@@ -47,19 +47,19 @@ trait HasUserSettings
      *
      * @return void
      */
-    public static function bootUserSettings() : void
+    public static function bootHasUserSettings() : void
     {
         static::created(function ($model) {
-            $model->userSettingsAfterCreated();
+            $model->hasUserSettingsAfterCreated();
         });
 
         static::deleted(function ($model) {
-            $model->userSettingsAfterDeleted();
+            $model->hasUserSettingsAfterDeleted();
         });
 
         if (method_exists(static::class, 'restored')) {
             static::restored(function ($model) {
-                $model->userSettingsAfterRestored();
+                $model->hasUserSettingsAfterRestored();
             });
         }
     }
