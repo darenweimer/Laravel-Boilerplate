@@ -13,9 +13,8 @@
     </title>
 
     <link href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Armata:wght@400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;400;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@250;350;550;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@250;350;550;700;900&display=swap" rel="stylesheet"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet"/>
 
@@ -24,7 +23,7 @@
 
 
 
-<body class="bg-default font-default font-normal text-base text-default tracking-wide">
+<body class="bg-default font-default font-normal text-base text-default tracking-wide antialiased">
     @routes
     @inertia
 </body>
