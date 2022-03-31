@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Traits\DateDisplay;
-use App\Models\Traits\Revisions;
+use App\Models\Concerns\DateDisplay;
+use App\Models\Concerns\Revisions;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PermissionUser extends Pivot

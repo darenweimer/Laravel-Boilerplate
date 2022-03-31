@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use App\Enums\NotifyOptions;
-use App\Models\Traits\DateDisplay;
-use App\Models\Traits\Revisions;
+use App\Models\Concerns\DateDisplay;
+use App\Models\Concerns\Revisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

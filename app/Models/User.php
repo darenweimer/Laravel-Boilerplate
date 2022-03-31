@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Traits\DateDisplay;
-use App\Models\Traits\Revisions;
-use App\Models\Traits\UserSettings;
+use App\Models\Concerns\DateDisplay;
+use App\Models\Concerns\Revisions;
+use App\Models\Concerns\UserSettings;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
