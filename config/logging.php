@@ -1,6 +1,8 @@
 <?php
 
 use Monolog\Handler\NullHandler;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\SyslogUdpHandler;
 
 return [
 
@@ -39,25 +41,9 @@ return [
     | the box, Laravel uses the Monolog PHP logging library. This gives
     | you a variety of powerful log handlers / formatters to utilize.
     |
-    | Available Drivers: "single", "daily", "slack", "syslog",
-    |                    "errorlog", "monolog",
-    |                    "custom", "stack"
-    |
     */
 
     'channels' => [
-
-        'stack' => [
-            'driver'            => 'stack',
-            'channels'          => ['daily'],
-            'ignore_exceptions' => false,
-        ],
-
-        'single' => [
-            'driver' => 'single',
-            'path'   => storage_path('logs/laravel.log'),
-            'level'  => env('LOG_LEVEL', 'debug'),
-        ],
 
         'daily' => [
             'driver' => 'daily',
@@ -66,9 +52,64 @@ return [
             'days'   => env('LOG_RETENTION', 14),
         ],
 
+        'emergency' => [
+            'path' => storage_path('logs/laravel.log'),
+        ],
+
+        'errorlog' => [
+            'driver' => 'errorlog',
+            'level'  => env('LOG_LEVEL', 'debug'),
+        ],
+
         'null' => [
             'driver'  => 'monolog',
             'handler' => NullHandler::class,
+        ],
+
+        'papertrail' => [
+            'driver'       => 'monolog',
+            'level'        => env('LOG_LEVEL', 'debug'),
+            'handler'      => env('LOG_PAPERTRAIL_HANDLER', SyslogUdpHandler::class),
+            'handler_with' => [
+                'host'             => env('PAPERTRAIL_URL'),
+                'port'             => env('PAPERTRAIL_PORT'),
+                'connectionString' => 'tls://' . env('PAPERTRAIL_URL') . ':' . env('PAPERTRAIL_PORT'),
+            ],
+        ],
+
+        'single' => [
+            'driver' => 'single',
+            'path'   => storage_path('logs/laravel.log'),
+            'level'  => env('LOG_LEVEL', 'debug'),
+        ],
+
+        'slack' => [
+            'driver'   => 'slack',
+            'url'      => env('LOG_SLACK_WEBHOOK_URL'),
+            'username' => 'Laravel Log',
+            'emoji'    => ':boom:',
+            'level'    => env('LOG_LEVEL', 'critical'),
+        ],
+
+        'stack' => [
+            'driver'            => 'stack',
+            'channels'          => ['daily'],
+            'ignore_exceptions' => false,
+        ],
+
+        'stderr' => [
+            'driver'    => 'monolog',
+            'level'     => env('LOG_LEVEL', 'debug'),
+            'handler'   => StreamHandler::class,
+            'formatter' => env('LOG_STDERR_FORMATTER'),
+            'with'      => [
+                'stream' => 'php://stderr',
+            ],
+        ],
+
+        'syslog' => [
+            'driver' => 'syslog',
+            'level'  => env('LOG_LEVEL', 'debug'),
         ],
 
     ],

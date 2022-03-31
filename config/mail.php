@@ -28,12 +28,43 @@ return [
     | sending an e-mail. You will specify which one you are using for your
     | mailers below. You are free to add additional mailers as required.
     |
-    | Supported: "smtp", "sendmail", "mailgun", "ses",
-    |            "postmark", "log", "array", "failover"
-    |
     */
 
     'mailers' => [
+
+        'array' => [
+            'transport' => 'array',
+        ],
+
+        'failover' => [
+            'transport' => 'failover',
+            'mailers'   => [
+                'smtp',
+                'log',
+            ],
+        ],
+
+        'log' => [
+            'transport' => 'log',
+            'channel'   => env('MAIL_LOG_CHANNEL'),
+        ],
+
+        'mailgun' => [
+            'transport' => 'mailgun',
+        ],
+
+        'postmark' => [
+            'transport' => 'postmark',
+        ],
+
+        'sendmail' => [
+            'transport' => 'sendmail',
+            'path'      => env('MAIL_SENDMAIL_PATH', '/usr/sbin/sendmail -bs -i'),
+        ],
+
+        'ses' => [
+            'transport' => 'ses',
+        ],
 
         'smtp' => [
             'transport'  => 'smtp',

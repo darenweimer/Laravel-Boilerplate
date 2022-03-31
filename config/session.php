@@ -13,12 +13,12 @@ return [
     | requests. By default, we will use the lightweight native driver but
     | you may specify any of the other wonderful drivers provided here.
     |
-    | Supported: "file", "cookie", "database", "apc",
-    |            "memcached", "redis", "dynamodb", "array"
+    | Supported: "apc", "array", "cookie", "database", "dynamodb", "file",
+    |            "memcached", "redis"
     |
     */
 
-    'driver' => env('SESSION_DRIVER', 'file'),
+    'driver' => env('SESSION_DRIVER', 'database'),
 
     /*
     |---------------------------------------------------------------------------

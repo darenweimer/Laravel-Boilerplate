@@ -26,7 +26,6 @@ return [
     | Of course, examples of configuring each database platform that is
     | supported by Laravel is shown below to make development simple.
     |
-    |
     | All database work in Laravel is done through the PHP PDO facilities
     | so make sure you have the driver for your particular database of
     | choice installed on your machine before you begin development.
@@ -50,9 +49,11 @@ return [
             'prefix_indexes' => true,
             'strict'         => true,
             'engine'         => null,
-            'options'        => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'options'        => extension_loaded('pdo_mysql')
+                ? array_filter([
+                    PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                ])
+                : [],
         ],
 
         'pgsql' => [
@@ -70,6 +71,27 @@ return [
             'sslmode'        => 'prefer',
         ],
 
+        'sqlite' => [
+            'driver'                  => 'sqlite',
+            'url'                     => env('DATABASE_URL'),
+            'database'                => env('DB_DATABASE', database_path('database.sqlite')),
+            'prefix'                  => '',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        'sqlsrv' => [
+            'driver'         => 'sqlsrv',
+            'url'            => env('DATABASE_URL'),
+            'host'           => env('DB_HOST'),
+            'port'           => env('DB_PORT'),
+            'database'       => env('DB_DATABASE'),
+            'username'       => env('DB_USERNAME'),
+            'password'       => env('DB_PASSWORD'),
+            'charset'        => 'utf8',
+            'prefix'         => '',
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*
@@ -84,5 +106,47 @@ return [
     */
 
     'migrations' => 'migrations',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redis Databases
+    |--------------------------------------------------------------------------
+    |
+    | Redis is an open source, fast, and advanced key-value store that also
+    | provides a richer body of commands than a typical key-value system
+    | such as APC or Memcached. Laravel makes it easy to dig right in.
+    |
+    */
+
+    'redis' => [
+
+        'client' => env('REDIS_CLIENT'),
+
+        'options' => [
+            'cluster' => env('REDIS_CLUSTER'),
+            'prefix'  => env(
+                'REDIS_PREFIX', Str::slug(env('APP_NAME'), '_') . '_database_'
+            ),
+        ],
+
+        'default' => [
+            'url'      => env('REDIS_URL'),
+            'host'     => env('REDIS_HOST'),
+            'username' => env('REDIS_USERNAME'),
+            'password' => env('REDIS_PASSWORD'),
+            'port'     => env('REDIS_PORT'),
+            'database' => env('REDIS_DB'),
+        ],
+
+        'cache' => [
+            'url'      => env('REDIS_URL'),
+            'host'     => env('REDIS_HOST'),
+            'username' => env('REDIS_USERNAME'),
+            'password' => env('REDIS_PASSWORD'),
+            'port'     => env('REDIS_PORT'),
+            'database' => env('REDIS_CACHE_DB'),
+        ],
+
+    ],
 
 ];

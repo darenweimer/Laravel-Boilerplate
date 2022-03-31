@@ -31,8 +31,6 @@ return [
     | users are actually retrieved out of your database or other storage
     | mechanisms used by this application to persist your user's data.
     |
-    | Supported: "session", "token"
-    |
     */
 
     'guards' => [
@@ -57,11 +55,14 @@ return [
     | sources which represent each model / table. These sources may then
     | be assigned to any extra authentication guards you have defined.
     |
-    | Supported: "database", "eloquent"
-    |
     */
 
     'providers' => [
+
+        // 'users' => [
+        //     'driver' => 'database',
+        //     'table'  => 'users',
+        // ],
 
         'users' => [
             'driver' => 'eloquent',

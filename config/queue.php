@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_CONNECTION', 'sync'),
+    'default' => env('QUEUE_CONNECTION', 'database'),
 
     /*
     |---------------------------------------------------------------------------
@@ -24,14 +24,17 @@ return [
     | is used by your application. A default configuration has been added
     | for each back-end shipped with Laravel. You are free to add more.
     |
-    | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
-    |
     */
 
     'connections' => [
 
-        'sync' => [
-            'driver' => 'sync',
+        'beanstalkd' => [
+            'driver'       => 'beanstalkd',
+            'host'         => 'localhost',
+            'queue'        => 'default',
+            'retry_after'  => env('QUEUE_RETRY_AFTER', 90),
+            'block_for'    => 0,
+            'after_commit' => false,
         ],
 
         'database' => [
@@ -40,6 +43,30 @@ return [
             'queue'        => 'default',
             'retry_after'  => env('QUEUE_RETRY_AFTER', 90),
             'after_commit' => false,
+        ],
+
+        'redis' => [
+            'driver'       => 'redis',
+            'connection'   => 'default',
+            'queue'        => 'default',
+            'retry_after'  => env('QUEUE_RETRY_AFTER', 90),
+            'block_for'    => null,
+            'after_commit' => false,
+        ],
+
+        'sqs' => [
+            'driver'       => 'sqs',
+            'key'          => env('AWS_ACCESS_KEY_ID'),
+            'secret'       => env('AWS_SECRET_ACCESS_KEY'),
+            'prefix'       => env('SQS_PREFIX'),
+            'queue'        => 'default',
+            'suffix'       => env('SQS_SUFFIX'),
+            'region'       => env('AWS_DEFAULT_REGION'),
+            'after_commit' => false,
+        ],
+
+        'sync' => [
+            'driver' => 'sync',
         ],
 
     ],
