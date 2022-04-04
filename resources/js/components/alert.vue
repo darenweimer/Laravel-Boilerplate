@@ -2,7 +2,8 @@
     <div v-if="visible" :class="`block w-full border border-alert-${color} rounded-md bg-alert-${color} font-default font-medium text-sm text-alert-${color} px-4 py-2`">
         <div class="flex flex-row items-center">
             <div class="grow">
-                <slot/>
+                <slot>
+                </slot>
             </div>
 
             <div v-if="closeable" :class="`flex-none ml-4 border-l border-alert-${color} text-lg pl-4`">

@@ -1,7 +1,8 @@
 <template>
     <div class="relative inline font-default font-normal text-base">
         <button class="inline cursor-pointer focus:outline-none" @click="active = !active" @blur="active = false">
-            <slot/>
+            <slot>
+            </slot>
         </button>
 
         <transition :style="getPositionStyle()" enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0">

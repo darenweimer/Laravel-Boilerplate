@@ -12,7 +12,8 @@
                     <div v-show="show" :class="`flex flex-col max-w-${size} max-h-full mx-auto rounded-lg shadow-xl font-default font-normal text-base text-default p-0 overflow-hidden transform transition-all`">
                         <div v-if="$slots.header" :class="`flex-none flex flex-row border-b border-card-${color} bg-card-${color}-header font-title font-medium text-xl text-card-${color}-header p-4 pb-3`">
                             <div class="grow">
-                                <slot name="header"/>
+                                <slot name="header">
+                                </slot>
                             </div>
 
                             <div v-if="closeable" class="flex-none">
@@ -23,11 +24,13 @@
                         </div>
 
                         <div :class="`grow bg-card-${color}-body text-card-${color}-body p-4 overflow-scroll`">
-                            <slot/>
+                            <slot>
+                            </slot>
                         </div>
 
                         <div v-if="$slots.footer" :class="`flex-none border-t border-card-${color} bg-card-${color}-footer text-card-${color}-footer p-4`">
-                            <slot name="footer"/>
+                            <slot name="footer">
+                            </slot>
                         </div>
                     </div>
                 </transition>
