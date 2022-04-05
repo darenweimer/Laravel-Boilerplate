@@ -19,6 +19,7 @@ class TestDataUsers extends Command
     protected $signature = 'testdata:users
         {total : The number of test users to create}
         {password=password : The optional password to use for all users}
+        {--su : Assigns super user status to all users}
         {--role=* : The optional role(s) to assign to all users}
         {--permission=* : The optional permission(s) to assign to all users}';
 
@@ -174,6 +175,8 @@ class TestDataUsers extends Command
             $this->argument('password')
         );
 
+        $su = $this->option('su');
+
         $mailServers = $this->getAllTestMailServers();
 
         $roles = $this->getAllAttachableRoles();
@@ -194,6 +197,7 @@ class TestDataUsers extends Command
                 'last_name'  => $last,
                 'email'      => $this->createEmail($first, $last, $mailServers),
                 'password'   => $password,
+                'su'         => $su,
             ]);
 
             if ($roles) {

@@ -21,6 +21,7 @@ class UserAdd extends Command
         {last : The last name of the user}
         {email : The email address for the user account}
         {password : The password for the user account}
+        {--su : Assigns super user status to the user}
         {--role=* : The optional role(s) to assign to the user}
         {--permission=* : The optional permission(s) to assign to the user}';
 
@@ -45,6 +46,7 @@ class UserAdd extends Command
             'password'   => Hash::make(
                 $this->argument('password')
             ),
+            'su'         => $this->option('su'),
         ]);
 
         foreach ($this->option('role') as $role) {
