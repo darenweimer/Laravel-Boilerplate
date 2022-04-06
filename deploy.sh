@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 UUID=$(cat /proc/sys/kernel/random/uuid)
 
