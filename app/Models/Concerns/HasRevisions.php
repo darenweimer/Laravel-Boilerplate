@@ -127,21 +127,23 @@ trait HasRevisions
      */
     public static function bootHasRevisions() : void
     {
-        static::created(function ($model) {
-            $model->hasRevisionsAfterCreated();
-        });
+        if (config('logging.log_revisions')) {
+            static::created(function ($model) {
+                $model->hasRevisionsAfterCreated();
+            });
 
-        static::updated(function ($model) {
-            $model->hasRevisionsAfterUpdated();
-        });
+            static::updated(function ($model) {
+                $model->hasRevisionsAfterUpdated();
+            });
 
-        static::deleting(function ($model) {
-            $model->hasRevisionsAfterDeleting();
-        });
+            static::deleting(function ($model) {
+                $model->hasRevisionsAfterDeleting();
+            });
 
-        static::deleted(function ($model) {
-            $model->hasRevisionsAfterDeleted();
-        });
+            static::deleted(function ($model) {
+                $model->hasRevisionsAfterDeleted();
+            });
+        }
     }
 
     /**
