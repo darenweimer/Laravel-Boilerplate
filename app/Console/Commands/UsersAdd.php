@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
-class UserAdd extends Command
+class UsersAdd extends Command
 {
 
     /**
@@ -16,7 +16,7 @@ class UserAdd extends Command
      *
      * @var string
      */
-    protected $signature = 'user:add
+    protected $signature = 'users:add
         {first : The first name of the user}
         {last : The last name of the user}
         {email : The email address for the user account}

@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class UserExpire extends Command
+class UsersExpire extends Command
 {
 
     /**
@@ -13,7 +13,7 @@ class UserExpire extends Command
      *
      * @var string
      */
-    protected $signature = 'user:expire
+    protected $signature = 'users:expire
         {--id=* : The optional user id(s) to expire}';
 
     /**
@@ -21,7 +21,7 @@ class UserExpire extends Command
      *
      * @var string
      */
-    protected $description = 'Expires user sessions';
+    protected $description = 'Expires one or more user sessions';
 
     /**
      * Executes the console command
