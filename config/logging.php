@@ -125,6 +125,6 @@ return [
     |
     */
 
-    'log_revisions' => env('LOG_REVISIONS', true),
+    'log_revisions' => (bool) env('LOG_REVISIONS', true),
 
 ];
