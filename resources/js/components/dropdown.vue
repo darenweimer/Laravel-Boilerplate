@@ -1,19 +1,19 @@
 <template>
-    <div class="relative inline font-default font-normal text-base">
-        <button class="inline cursor-pointer focus:outline-none" @click="active = !active" @blur="active = false">
+    <div class="relative inline">
+        <button type="button" class="inline focus:outline-none" @click="show = !show" @blur="show = false">
             <slot>
             </slot>
         </button>
 
-        <transition :style="getPositionStyle()" enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0">
-            <div v-if="active" class="absolute inline z-50 border border-dropdown rounded bg-dropdown-normal text-left whitespace-nowrap py-1" :class="getPositionClass()">
+        <transition enter-active-class="transition ease-out duration-150" :enter-from-class="`${origin} scale-0`" :enter-to-class="`${origin} scale-100`" leave-active-class="transition ease-in duration-150" :leave-from-class="`${origin} scale-100`" :leave-to-class="`${origin} scale-0`">
+            <div v-show="show" :class="`absolute inline z-[100] ${position} rounded shadow-md bg-dropdown-normal font-default font-normal text-base text-dropdown-normal tracking-wide text-left py-1 whitespace-nowrap`">
                 <ul>
-                    <inertia-link v-for="(option, label) in options" :href="option.link" :key="label">
-                        <li class="text-dropdown-normal pl-4 pr-12 py-1 hover:bg-dropdown-highlight hover:text-dropdown-highlight">
-                            <i v-if="option.icon" class="mr-3 fa-fw text-xl align-middle opacity-50" :class="option.icon"></i>
+                    <inertia-link v-for="(option, index) in options" :key="index" :href="option.href">
+                        <li class="hover:bg-dropdown-highlight hover:text-dropdown-highlight py-1.5">
+                            <i v-if="option.icon" :class="`${option.icon} fa-fw mx-3 text-xl align-middle`"></i>
 
-                            <span class="align-middle">
-                                {{ label }}
+                            <span class="mr-5 align-middle">
+                                {{ option.name }}
                             </span>
                         </li>
                     </inertia-link>
@@ -27,53 +27,53 @@
     export default {
         props: {
             options: {
-                type: Object,
+                type: Array,
                 required: true,
             },
-            position: {
+            anchor: {
                 type: String,
-                default: '',
+                default: 'topleft',
             },
             offset: {
                 type: String,
                 default: null,
             },
         },
+        computed: {
+            origin() {
+                return 'origin-'
+                    + (this.anchor.includes('bottom') ? 'bottom' : 'top')
+                    + '-'
+                    + (this.anchor.includes('right') ? 'right' : 'left');
+            },
+            position() {
+                let position =
+                    (this.anchor.includes('right') ? 'right-0' : 'left-0')
+                    + ' '
+                    + (this.anchor.includes('bottom') ? 'bottom-full' : 'top-full');
+
+                if (this.offset) {
+                    if (this.anchor.includes('bottom')) {
+                        position += ` mb-${this.offset}`;
+                    } else {
+                        position += ` mt-${this.offset}`;
+                    }
+                }
+
+                return position;
+            },
+        },
         data() {
             return {
-                active: false,
+                show: false,
             };
         },
         emits: [
             'state',
         ],
         watch: {
-            active() {
-                this.$emit('state', this.active);
-            },
-        },
-        methods: {
-            getPositionStyle() {
-                const xpos = this.position.includes('right') ? 'right' : 'left';
-                const ypos = this.position.includes('bottom') ? 'top' : 'bottom';
-
-                return `transform-origin: ${xpos} ${ypos}`;
-            },
-            getPositionClass() {
-                const xpos = this.position.includes('right') ? 'right-0' : 'left-0';
-                const ypos = this.position.includes('bottom') ? 'top-full' : 'bottom-full';
-
-                let margin = '';
-
-                if (this.offset) {
-                    if (this.position.includes('bottom')) {
-                        margin = `mt-${this.offset}`;
-                    } else {
-                        margin = `mb-${this.offset}`;
-                    }
-                }
-
-                return `${xpos} ${ypos} ${margin}`;
+            show() {
+                this.$emit('state', this.show);
             },
         },
     };

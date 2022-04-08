@@ -1,37 +1,24 @@
 <template>
-    <div v-if="label || success || error" class="font-default font-medium">
-        <label v-if="label" class="block w-full text-base text-default" :class="{ 'mt-1': below, 'mb-1': !below }">
-            {{ label }}
-        </label>
-
-        <label v-if="success" class="block w-full text-sm text-success" :class="{ 'mt-1': below, 'mb-1': !below }">
-            {{ success }}
-        </label>
-
-        <label v-if="error" class="block w-full text-sm text-error" :class="{ 'mt-1': below, 'mb-1': !below }">
-            {{ error }}
-        </label>
-    </div>
+    <label v-if="enabled" class="block w-full font-default font-medium tracking-wide" :class="{ 'mb-1 text-base': !footnote, 'mt-1 text-sm': footnote, 'text-default': (!footnote) && (valid === null), 'text-info': footnote && (valid === null), 'text-success': valid === true, 'text-error': valid === false }">
+        <slot>
+        </slot>
+    </label>
 </template>
 
 <script>
     export default {
         props: {
-            label: {
-                type: String,
-                default: null,
+            enabled: {
+                type: Boolean,
+                default: true,
             },
-            success: {
-                type: String,
-                default: null,
-            },
-            error: {
-                type: String,
-                default: null,
-            },
-            below: {
+            footnote: {
                 type: Boolean,
                 default: false,
+            },
+            valid: {
+                type: Boolean,
+                default: null,
             },
         },
     };

@@ -1,10 +1,10 @@
 <template>
-    <select ref="select" class="block w-full border rounded-md font-default font-normal text-base placeholder-input tracking-wide px-2 py-2.5 focus:outline-none focus:border-input-focused focus:ring focus:ring-input disabled:bg-input-disabled disabled:text-input-disabled" :class="{ 'border-input-normal bg-input-normal text-input-normal': !invalid, 'border-input-invalid bg-input-invalid text-input-invalid': invalid }" v-model="modelValue" :multiple="multiple" @input="update($event.target.value)">
+    <select ref="select" v-model="modelValue" :multiple="multiple" class="block w-full focus:outline-none focus:ring focus:ring-input rounded-md disabled:bg-input-disabled font-default font-normal text-base disabled:text-input-disabled disabled:placeholder-input-disabled tracking-wide px-2 py-2.5" :class="{ 'bg-input text-input placeholder-input': valid, 'bg-input-invalid text-input-invalid placeholder-input-invalid': !valid }" @input="update($event.target.value)">
         <option v-if="placeholder && (!multiple)" :value="null" disabled selected>
             {{ placeholder }}
         </option>
 
-        <option v-for="option in options" :value="option.id" :key="option.id">
+        <option v-for="(option, index) in options" :key="index" :value="option.id">
             {{ option.text }}
         </option>
     </select>
@@ -21,16 +21,16 @@
                 type: Boolean,
                 default: false,
             },
-            placeholder: {
-                type: String,
-                default: null,
-            },
             modelValue: {
                 default: null,
             },
-            invalid: {
-                type: [Boolean, String],
-                default: false,
+            valid: {
+                type: Boolean,
+                default: true,
+            },
+            placeholder: {
+                type: String,
+                default: null,
             },
         },
         emits: [

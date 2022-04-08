@@ -1,16 +1,16 @@
 <template>
-    <div :class="`border border-card-${color} rounded-lg font-default font-normal text-base p-0 overflow-hidden`">
-        <div v-if="$slots.header" :class="`border-b border-card-${color} bg-card-${color}-header font-title font-medium text-xl text-card-${color}-header px-4 py-3`">
+    <div :class="`rounded-lg bg-card-${color} font-default font-normal text-base text-card-${color} tracking-wide p-0 overflow-hidden`">
+        <div v-if="$slots.header" class="font-black text-xl px-4 py-3">
             <slot name="header">
             </slot>
         </div>
 
-        <div :class="`bg-card-${color}-body text-card-${color}-body p-4`">
+        <div class="bg-white bg-opacity-10 p-4">
             <slot>
             </slot>
         </div>
 
-        <div v-if="$slots.footer" :class="`border-t border-card-${color} bg-card-${color}-footer text-card-${color}-footer p-4`">
+        <div v-if="$slots.footer" class="p-4">
             <slot name="footer">
             </slot>
         </div>

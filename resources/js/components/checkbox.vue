@@ -1,14 +1,15 @@
 <template>
     <div>
         <label class="inline-flex flex-row items-center cursor-pointer">
-            <input type="checkbox" class="h-5 w-5 mr-2 appearance-none border border-input-normal rounded bg-input-normal cursor-pointer focus:outline-none focus:border-input-focused focus:ring focus:ring-input disabled:bg-input-disabled" v-model="proxyChecked" :disabled="disabled"/>
+            <input type="checkbox" v-model="proxyChecked" class="h-5 w-5 mr-3 appearance-none focus:outline-none focus:ring focus:ring-input rounded bg-input disabled:bg-input-disabled cursor-pointer" :disabled="disabled"/>
 
-            <span v-if="modelValue" class="absolute ml-0.5 mb-2 text-3xl" :class="{ 'text-input-normal': !disabled, 'text-input-disabled': disabled }">
+            <span v-if="modelValue" class="absolute ml-0.5 mb-2 text-3xl" :class="{ 'text-input': !disabled, 'text-input-disabled': disabled }">
                 &check;
             </span>
 
-            <span class="font-default font-medium text-base text-default">
-                {{ label }}
+            <span class="font-default font-normal text-base text-default tracking-wide">
+                <slot>
+                </slot>
             </span>
         </label>
     </div>
@@ -17,10 +18,6 @@
 <script>
     export default {
         props: {
-            label: {
-                type: String,
-                default: null,
-            },
             modelValue: {
                 type: Boolean,
                 default: false,
