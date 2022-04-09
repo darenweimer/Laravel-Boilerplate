@@ -32,7 +32,7 @@
         computed: {
             bodyClass() {
                 if (this.container) {
-                    let bodyClass = `border-l-4 border-r-4 border-card-${this.color} bg-default`;
+                    let bodyClass = `border-l-4 border-r-4 border-card-${this.color} bg-default text-default`;
 
                     if (!this.$slots.header) {
                         bodyClass += ' border-t-4 rounded-t-lg';
