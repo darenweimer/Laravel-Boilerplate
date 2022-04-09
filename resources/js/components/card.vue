@@ -24,14 +24,14 @@
                 type: String,
                 default: 'default',
             },
-            container: {
+            box: {
                 type: Boolean,
                 default: false,
             },
         },
         computed: {
             bodyClass() {
-                if (this.container) {
+                if (this.box) {
                     let bodyClass = `border-l-4 border-r-4 border-card-${this.color} bg-default text-default`;
 
                     if (!this.$slots.header) {
