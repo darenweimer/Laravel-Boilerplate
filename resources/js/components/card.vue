@@ -5,7 +5,7 @@
             </slot>
         </div>
 
-        <div class="bg-white bg-opacity-10 p-4">
+        <div class="p-4" :class="bodyClass">
             <slot>
             </slot>
         </div>
@@ -23,6 +23,29 @@
             color: {
                 type: String,
                 default: 'default',
+            },
+            container: {
+                type: Boolean,
+                default: false,
+            },
+        },
+        computed: {
+            bodyClass() {
+                if (this.container) {
+                    let bodyClass = `border-l-4 border-r-4 border-card-${this.color} bg-default`;
+
+                    if (!this.$slots.header) {
+                        bodyClass += ' border-t-4 rounded-t-lg';
+                    }
+
+                    if (!this.$slots.footer) {
+                        bodyClass += ' border-b-4 rounded-b-lg';
+                    }
+
+                    return bodyClass;
+                }
+
+                return 'bg-white bg-opacity-10';
             },
         },
     };

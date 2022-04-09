@@ -16,7 +16,7 @@ module.exports = {
             pattern: /m(t|b)-.+/,
         },
         {
-            pattern: /(bg|text)-(alert|btn|card)-.+/,
+            pattern: /(border|bg|text)-(alert|btn|card)-.+/,
             variants: [
                 'active',
                 'disabled',
@@ -41,7 +41,12 @@ module.exports = {
                 'input': colors.slate['200'],
             },
             borderColor: {
-                'default': colors.slate['400'],
+                'default':      colors.slate['400'],
+                'card-default': colors.slate['700'],
+                'card-primary': colors.fuchsia['900'],
+                'card-info':    colors.sky['900'],
+                'card-success': colors.green['900'],
+                'card-error':   colors.red['900'],
             },
             backgroundColor: {
                 'default':            colors.slate['900'],
