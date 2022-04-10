@@ -81,8 +81,8 @@ module.exports = {
                 'card-error':         colors.red['900'],
                 'dropdown-normal':    colors.slate['700'],
                 'dropdown-highlight': colors.slate['600'],
-                'input':              colors.slate['600'],
-                'input-disabled':     colors.neutral['600'],
+                'input':              colors.sky['900'],
+                'input-disabled':     colors.neutral['700'],
                 'input-invalid':      colors.red['900'],
             },
             fontFamily: {
@@ -124,9 +124,9 @@ module.exports = {
                 'card-error':         colors.red['100'],
                 'dropdown-normal':    colors.slate['300'],
                 'dropdown-highlight': colors.slate['100'],
-                'input':              colors.slate['200'],
+                'input':              colors.sky['100'],
                 'input-disabled':     colors.neutral['400'],
-                'input-invalid':      colors.red['200'],
+                'input-invalid':      colors.red['100'],
             },
             textDecorationColor: {
                 'link':       colors.orange['600'],
