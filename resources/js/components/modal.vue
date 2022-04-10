@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="grow bg-white bg-opacity-10 p-4 overflow-scroll">
+                        <div class="grow bg-white bg-opacity-[15%] p-4 overflow-scroll">
                             <slot>
                             </slot>
                         </div>

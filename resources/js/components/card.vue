@@ -45,7 +45,7 @@
                     return bodyClass;
                 }
 
-                return 'bg-white bg-opacity-10';
+                return 'bg-white bg-opacity-[15%]';
             },
         },
     };
