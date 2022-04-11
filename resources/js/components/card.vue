@@ -28,18 +28,22 @@
                 type: Boolean,
                 default: false,
             },
+            wall: {
+                type: String,
+                default: '4',
+            },
         },
         computed: {
             bodyClass() {
                 if (this.box) {
-                    let bodyClass = `border-l-4 border-r-4 border-card-${this.color} bg-default text-default`;
+                    let bodyClass = `border-x-${this.wall} border-card-${this.color} bg-default text-default`;
 
                     if (!this.$slots.header) {
-                        bodyClass += ' border-t-4 rounded-t-lg';
+                        bodyClass += ` border-t-${this.wall} rounded-t-lg`;
                     }
 
                     if (!this.$slots.footer) {
-                        bodyClass += ' border-b-4 rounded-b-lg';
+                        bodyClass += ` border-b-${this.wall} rounded-b-lg`;
                     }
 
                     return bodyClass;

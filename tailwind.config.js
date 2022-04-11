@@ -16,6 +16,9 @@ module.exports = {
             pattern: /m(t|b)-.+/,
         },
         {
+            pattern: /border-(x|t|b)-.+/,
+        },
+        {
             pattern: /(border|bg|text)-(alert|btn|card)-.+/,
             variants: [
                 'active',
