@@ -33,6 +33,9 @@ module.exports = {
         {
             pattern: /align-(top|middle|bottom)/,
         },
+        {
+            pattern: /origin-.+/,
+        },
     ],
     theme: {
         container: {
