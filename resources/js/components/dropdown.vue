@@ -6,7 +6,7 @@
         </button>
 
         <transition :class="origin" enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0">
-            <div v-show="show" :class="`absolute inline z-[100] ${position} rounded shadow-md bg-dropdown-normal font-default font-normal text-base text-dropdown-normal tracking-wide text-left py-1 whitespace-nowrap`">
+            <div v-show="show" :class="`absolute inline z-[100] ${position} rounded shadow-md bg-dropdown font-default font-normal text-base text-dropdown tracking-wide text-left py-1 whitespace-nowrap`">
                 <ul>
                     <inertia-link v-for="(option, index) in options" :key="index" :href="option.href">
                         <li class="hover:bg-dropdown-highlight hover:text-dropdown-highlight py-1.5">
