@@ -1,26 +1,34 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card class="w-full max-w-lg m-auto">
+            <v-card :box="true" class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Password Reset Request
                     </div>
                 </template>
 
-                <div class="w-96 mx-auto my-4">
-                    <v-label class="mb-2 text-center" label="Confirm your email address:"/>
-                    <v-input type="email" v-model="form.email" :invalid="form.errors.email" @input="form.clearErrors()" placeholder="Enter email address..." required autofocus/>
-                    <v-label class="text-center" :success="status" :error="form.errors.email" :below="true"/>
+                <v-alert v-if="status" color="success" class="mb-8">
+                    {{ status }}
+                </v-alert>
+
+                <v-alert v-if="form.errors.email" color="error" class="mb-8">
+                    {{ form.errors.email }}
+                </v-alert>
+
+                <div class="mt-4 mb-8">
+                    <v-label class="mb-2 text-center">
+                        Confirm your email address:
+                    </v-label>
+
+                    <v-input type="email" v-model="form.email" @input="form.clearErrors()" placeholder="Enter email address..." required autofocus/>
                 </div>
 
-                <template v-slot:footer>
-                    <div class="text-center">
-                        <v-button type="submit" color="primary" :disabled="form.processing">
-                            Email Password Reset Link
-                        </v-button>
-                    </div>
-                </template>
+                <div class="mb-4 text-center">
+                    <v-button type="submit" color="primary" :disabled="form.processing">
+                        Email Password Reset Link
+                    </v-button>
+                </div>
             </v-card>
         </div>
     </form>
@@ -37,8 +45,6 @@
         },
         methods: {
             submit() {
-                this.$page.props.status = null;
-
                 this.form
                     .clearErrors()
                     .post(

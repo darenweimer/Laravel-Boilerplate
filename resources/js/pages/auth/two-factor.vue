@@ -1,26 +1,30 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card class="w-full max-w-lg m-auto">
+            <v-card :box="true" class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Two-Factor Authentication
                     </div>
                 </template>
 
-                <div class="my-4">
-                    <v-label class="mb-2 text-center" label="Enter your authenticator code:"/>
-                    <v-input type="text" class="w-48 mx-auto text-2xl text-center tracking-[0.25em]" v-model="form.two_factor_code" :invalid="form.errors.two_factor_code" @input="form.clearErrors()" required autofocus/>
-                    <v-label class="text-center" :error="form.errors.two_factor_code" :below="true"/>
+                <v-alert v-if="form.errors.two_factor_code" color="error" class="mb-8">
+                    {{ form.errors.two_factor_code }}
+                </v-alert>
+
+                <div class="mt-4 mb-8">
+                    <v-label class="mb-2 text-center">
+                        Enter your authenticator code:
+                    </v-label>
+
+                    <v-input type="text" v-model="form.two_factor_code" class="w-48 mx-auto text-2xl text-center tracking-[0.5rem]" @input="form.clearErrors()" required autofocus/>
                 </div>
 
-                <template v-slot:footer>
-                    <div class="text-center">
-                        <v-button type="submit" color="primary" :disabled="form.processing">
-                            Authenticate
-                        </v-button>
-                    </div>
-                </template>
+                <div class="mb-4 text-center">
+                    <v-button type="submit" color="primary" :disabled="form.processing">
+                        Authenticate
+                    </v-button>
+                </div>
             </v-card>
         </div>
     </form>

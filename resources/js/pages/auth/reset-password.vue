@@ -1,34 +1,42 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card class="w-full max-w-lg m-auto">
+            <v-card :box="true" class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Password Reset
                     </div>
                 </template>
 
-                <div class="mt-4">
-                    <v-label label="New Password"/>
-                    <v-input type="password" v-model="form.password" :invalid="form.errors.password" @input="form.clearErrors()" placeholder="Enter password..." required autofocus/>
-                    <v-label :error="form.errors.password" :below="true"/>
-                </div>
+                <v-alert v-if="form.errors.password" color="error" class="mb-8">
+                    {{ form.errors.password }}
+                </v-alert>
+
+                <v-alert v-if="form.errors.password_confirmation" color="error" class="mb-8">
+                    {{ form.errors.password_confirmation }}
+                </v-alert>
 
                 <div class="my-4">
-                    <v-label label="Confirm Password"/>
-                    <v-input type="password" v-model="form.password_confirmation" :invalid="form.errors.password_confirmation" @input="form.clearErrors()" placeholder="Confirm password..." required/>
-                    <v-label :error="form.errors.password_confirmation" :below="true"/>
+                    <v-label>
+                        New Password
+                    </v-label>
+
+                    <v-input type="password" v-model="form.password" @input="form.clearErrors()" placeholder="Enter password..." required autofocus/>
                 </div>
 
-                <v-label class="text-center" :error="form.errors.email"/>
+                <div class="mb-8">
+                    <v-label>
+                        Confirm Password
+                    </v-label>
 
-                <template v-slot:footer>
-                    <div class="text-center">
-                        <v-button type="submit" color="primary" :disabled="form.processing">
-                            Reset Password
-                        </v-button>
-                    </div>
-                </template>
+                    <v-input type="password" v-model="form.password_confirmation" @input="form.clearErrors()" placeholder="Confirm password..." required/>
+                </div>
+
+                <div class="mb-4 text-center">
+                    <v-button type="submit" color="primary" :disabled="form.processing">
+                        Reset Password
+                    </v-button>
+                </div>
             </v-card>
         </div>
     </form>
