@@ -13,8 +13,8 @@
     </title>
 
     <link href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@250;400;550;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@250;400;550;700;900&display=swap" rel="stylesheet"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet"/>
 

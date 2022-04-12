@@ -97,7 +97,7 @@ module.exports = {
             },
             fontWeight: {
                 'thin':   250,
-                'normal': 375,
+                'normal': 400,
                 'medium': 550,
                 'bold':   700,
                 'black':  900,
