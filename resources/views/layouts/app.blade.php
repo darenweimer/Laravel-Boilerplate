@@ -23,7 +23,7 @@
 
 
 
-<body class="bg-default font-default font-normal text-base text-default tracking-wide antialiased highlight-transparent">
+<body class="bg-canvas font-default font-normal text-base text-default tracking-wide antialiased">
     @routes
     @inertia
 </body>

@@ -1,5 +1,5 @@
 <template>
-    <component :is="native ? 'a' : 'inertia-link'" class="focus:outline-none focus:ring-none" :class="{ 'inline-block underline underline-offset-4 hover:underline-offset-[3px] decoration-1 hover:decoration-2 decoration-link hover:decoration-link-hover': styled }">
+    <component :is="native ? 'a' : 'inertia-link'" class="focus:outline-none" :class="{ 'inline-block underline underline-offset-4 hover:underline-offset-[3px] decoration-1 hover:decoration-2 decoration-link hover:decoration-link-hover': styled }">
         <slot>
         </slot>
     </component>

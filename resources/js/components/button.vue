@@ -1,8 +1,10 @@
 <template>
-    <button :type="type" :class="`focus:outline-none focus:ring focus:ring-input rounded bg-btn-${color} hover:bg-btn-${color}-hover active:bg-btn-${color}-active font-default font-bold text-sm text-btn-${color} tracking-wide uppercase px-2.5 py-1.5 disabled:opacity-40 transition`">
-        <slot>
-        </slot>
-    </button>
+    <div class="inline-block">
+        <button :type="type" class="active:mt-px active:-mb-px focus:outline-none shadow-[0_3px_6px_rgb(0,0,0,0.25)] active:shadow-[0_1px_2px_rgb(0,0,0,0.25)] font-default font-bold tracking-wide disabled:opacity-40 select-none" :class="buttonClass">
+            <slot>
+            </slot>
+        </button>
+    </div>
 </template>
 
 <script>
@@ -10,11 +12,59 @@
         props: {
             type: {
                 type: String,
+                validator: (v) => ['button', 'submit', 'reset'].includes(v),
                 default: 'button',
             },
             color: {
                 type: String,
                 default: 'default',
+            },
+            size: {
+                type: String,
+                validator: (v) => ['small', 'regular', 'large'].includes(v),
+                default: 'regular',
+            },
+            rounded: {
+                type: Boolean,
+                default: false,
+            },
+            outlined: {
+                type: Boolean,
+                default: false,
+            },
+        },
+        computed: {
+            buttonClass() {
+                let buttonClass = [];
+
+                if (this.outlined) {
+                    buttonClass.push(
+                        `border-2 border-${this.color} text-${this.color}`
+                    );
+                } else {
+                    buttonClass.push(
+                        `bg-btn-${this.color} text-btn-${this.color}`
+                    );
+                }
+
+                switch (this.size) {
+                    case 'small':
+                        buttonClass.push('text-xs px-2 py-1.5');
+                        break;
+                    case 'large':
+                        buttonClass.push('text-lg px-5 py-4');
+                        break;
+                    default:
+                        buttonClass.push('text-base px-3 py-2');
+                }
+
+                if (this.rounded) {
+                    buttonClass.push('rounded-full');
+                } else {
+                    buttonClass.push('rounded');
+                }
+
+                return buttonClass.join(' ');
             },
         },
     };

@@ -23,7 +23,7 @@
 
 
 
-<body class="bg-default font-default font-normal text-base text-default tracking-wide antialiased highlight-transparent">
+<body class="bg-canvas font-default font-normal text-base text-default tracking-wide antialiased">
     <div class="flex h-screen p-4">
         <div class="w-full max-w-lg m-auto">
             <div class="font-title font-medium text-4xl text-center tracking-widest">
