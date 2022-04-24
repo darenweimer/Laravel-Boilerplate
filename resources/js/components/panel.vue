@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <div class="rounded-lg shadow-[0_7px_15px_rgb(0,0,0,0.25)] bg-default font-default font-normal text-base text-default tracking-wide px-5 py-4 overflow-hidden" :class="borderClass">
+        <div class="rounded-lg shadow-[0_7px_15px_rgb(0,0,0,0.25)] bg-default font-default font-normal text-base text-default tracking-wide px-5 py-4 overflow-hidden" :class="panelClass">
             <div v-if="$slots.header" class="mb-4 border-b border-default font-bold text-2xl text-title pb-4">
                 <slot name="header">
                 </slot>
@@ -26,7 +26,7 @@
             },
         },
         computed: {
-            borderClass() {
+            panelClass() {
                 return this.borderColor
                     ? `border-4 border-${this.borderColor}`
                     : null;
