@@ -71,6 +71,8 @@
                         return 'fa-solid fa-circle-info text-info';
                     case 'question':
                         return 'fa-regular fa-circle-question text-info';
+                    case 'loading':
+                        return 'fa-solid fa-arrows-spin fa-spin text-info';
                     case 'success':
                         return 'fa-regular fa-circle-check text-success';
                     case 'warning':
