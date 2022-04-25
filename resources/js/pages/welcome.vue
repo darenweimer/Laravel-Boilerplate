@@ -3,7 +3,7 @@
         <div class="m-auto text-center">
             <div class="mb-8 font-black text-5xl text-info">
                 Laravel
-                <i class="fa-solid fa-fire-burner block sm:inline mx-0 sm:mx-2 my-3 sm:my-0 text-accent"></i>
+                <i class="fa-solid fa-fire-burner block sm:inline mx-0 sm:mx-2 my-3 sm:my-0 text-warning"></i>
                 Boilerplate
             </div>
 
