@@ -1,26 +1,28 @@
 <template>
-    <transition leave-active-class="ease-in duration-300" leave-from-class="translate-x-0 opacity-100" leave-to-class="-translate-x-full opacity-0">
-        <div v-if="show" :class="`block w-full rounded-md bg-alert-${color} font-default font-medium text-sm text-alert-${color} tracking-wide overflow-hidden`">
-            <div class="flex flex-row items-stretch">
-                <div v-if="iconClass" class="flex-none w-12 bg-black bg-opacity-10 backdrop-saturate-[1.25]">
-                    <button type="button" class="w-full h-full text-lg" disabled>
-                        <i :class="`${iconClass} fa-lg`"></i>
-                    </button>
-                </div>
+    <div class="w-full">
+        <transition leave-active-class="ease-in duration-200" leave-from-class="translate-x-0 opacity-100" leave-to-class="-translate-x-full opacity-0">
+            <div v-if="show" class="rounded-md font-default font-medium text-sm tracking-wide overflow-hidden" :class="`bg-alert-${color} text-alert-${color}`">
+                <div class="flex flex-row">
+                    <div v-if="icon" class="flex-none w-12 backdrop-brightness-[0.93] backdrop-saturate-[1.25]">
+                        <button type="button" class="w-full h-full text-lg" disabled>
+                            <i class="fa-lg" :class="iconClass"></i>
+                        </button>
+                    </div>
 
-                <div class="grow px-4 py-3">
-                    <slot>
-                    </slot>
-                </div>
+                    <div class="grow px-4 py-3">
+                        <slot>
+                        </slot>
+                    </div>
 
-                <div v-if="closeable" class="flex-none w-10 bg-black bg-opacity-10 backdrop-saturate-[1.25]">
-                    <button type="button" class="w-full h-full focus:outline-none text-xl" @click="show = false">
-                        &times;
-                    </button>
+                    <div v-if="closeable" class="flex-none w-10 backdrop-brightness-[0.93] backdrop-saturate-[1.25]">
+                        <button type="button" class="w-full h-full focus:outline-none text-xl" @click="show = false">
+                            &times;
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </transition>
+        </transition>
+    </div>
 </template>
 
 <script>
@@ -46,7 +48,7 @@
         computed: {
             iconClass() {
                 if (this.icon === false) {
-                    return false;
+                    return null;
                 }
 
                 if (this.icon === true) {
@@ -54,11 +56,13 @@
                         case 'info':
                             return 'fa-solid fa-circle-info';
                         case 'success':
-                            return 'fa-solid fa-circle-check';
+                            return 'fa-regular fa-circle-check';
+                        case 'warning':
+                            return 'fa-solid fa-triangle-exclamation';
                         case 'error':
-                            return 'fa-solid fa-circle-exclamation';
+                            return 'fa-regular fa-circle-xmark';
                         default:
-                            return 'fa-solid fa-bell';
+                            return 'fa-regular fa-bell';
                     }
                 }
 
