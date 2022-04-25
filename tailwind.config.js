@@ -10,6 +10,9 @@ module.exports = {
     ],
     safelist: [
         {
+            pattern: /max-w-.+/,
+        },
+        {
             pattern: /(border|bg|text)-(|.+-)(default|primary|info|success|warning|error)/,
         },
     ],
