@@ -1,7 +1,7 @@
 <template>
-    <div class="w-full">
-        <transition leave-active-class="ease-in duration-200" leave-from-class="translate-x-0 opacity-100" leave-to-class="-translate-x-full opacity-0">
-            <div v-if="show" class="rounded-md font-default font-medium text-sm tracking-wide overflow-hidden" :class="`bg-alert-${color} text-alert-${color}`">
+    <transition leave-active-class="ease-in duration-200" leave-from-class="translate-x-0 opacity-100" leave-to-class="-translate-x-full opacity-0">
+        <div v-if="show" class="w-full">
+            <div class="rounded-md font-default font-medium text-sm tracking-wide overflow-hidden" :class="`bg-alert-${color} text-alert-${color}`">
                 <div class="flex flex-row">
                     <div v-if="icon" class="flex-none w-12 brightness-[0.93] saturate-[1.25]" :class="`bg-alert-${color}`">
                         <button type="button" class="w-full h-full text-lg" disabled>
@@ -21,8 +21,8 @@
                     </div>
                 </div>
             </div>
-        </transition>
-    </div>
+        </div>
+    </transition>
 </template>
 
 <script>
