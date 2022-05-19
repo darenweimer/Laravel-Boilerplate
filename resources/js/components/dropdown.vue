@@ -5,26 +5,22 @@
             </slot>
         </button>
 
-        <transition :class="origin" enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0">
-            <div v-show="show" :class="`absolute inline z-[100] ${position} rounded shadow-md bg-dropdown font-default font-normal text-base text-dropdown tracking-wide text-left py-1 whitespace-nowrap`">
-                <ul>
-                    <inertia-link v-for="(option, index) in options" :key="index" :href="option.href">
-                        <li class="hover:bg-dropdown-highlight hover:text-dropdown-highlight py-1.5">
-                            <i v-if="option.icon" :class="`${option.icon} fa-fw mx-3 text-xl align-middle`"></i>
-
-                            <span class="mr-5 align-middle">
-                                {{ option.name }}
-                            </span>
-                        </li>
-                    </inertia-link>
-                </ul>
+        <transition :class="originClass" enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0">
+            <div v-show="show" class="absolute inline z-[100] rounded shadow-[0_10px_20px_rgb(0,0,0)] bg-dropdown font-default font-normal text-base text-dropdown tracking-wide whitespace-nowrap py-2 overflow-hidden" :class="positionClass">
+                <dropdown-group :options="options">
+                </dropdown-group>
             </div>
         </transition>
     </div>
 </template>
 
 <script>
+    import DropdownGroup from './dropdown-group';
+
     export default {
+        components: {
+            DropdownGroup,
+        },
         props: {
             options: {
                 type: Array,
@@ -40,27 +36,27 @@
             },
         },
         computed: {
-            origin() {
-                return 'origin-'
-                    + (this.anchor.includes('bottom') ? 'bottom' : 'top')
-                    + '-'
-                    + (this.anchor.includes('right') ? 'right' : 'left');
+            originClass() {
+                let originClass = [
+                    this.anchor.includes('bottom') ? 'bottom' : 'top',
+                    this.anchor.includes('right') ? 'right' : 'left',
+                ];
+
+                return 'origin-' + originClass.join('-');
             },
-            position() {
-                let position =
-                    (this.anchor.includes('right') ? 'right-0' : 'left-0')
-                    + ' '
-                    + (this.anchor.includes('bottom') ? 'bottom-full' : 'top-full');
+            positionClass() {
+                let positionClass = [
+                    this.anchor.includes('right') ? 'right-0' : 'left-0',
+                    this.anchor.includes('bottom') ? 'bottom-full' : 'top-full',
+                ];
 
                 if (this.offset) {
-                    if (this.anchor.includes('bottom')) {
-                        position += ` mb-${this.offset}`;
-                    } else {
-                        position += ` mt-${this.offset}`;
-                    }
+                    positionClass.push(
+                        (this.anchor.includes('bottom') ? 'mb-' : 'mt-') + this.offset
+                    );
                 }
 
-                return position;
+                return positionClass.join(' ');
             },
         },
         data() {
