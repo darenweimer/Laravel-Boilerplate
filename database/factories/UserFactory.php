@@ -15,7 +15,9 @@ class UserFactory extends Factory
      */
     public function definition() : array
     {
-        $name = explode(' ', $this->faker->name());
+        $name = explode(
+            ' ', $this->faker->name()
+        );
 
         return [
             'first_name'        => $name[0],

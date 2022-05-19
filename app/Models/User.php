@@ -259,9 +259,9 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function grantRoles(string|array $roles) : static
     {
         $grantable = Role::whereIn(
-                'role', is_array($roles) ? $roles : [$roles]
-            )
-            ->get();
+            'role', is_array($roles) ? $roles : [$roles]
+        )
+        ->get();
 
         if ($grantable->isNotEmpty()) {
             $this->roles()
@@ -281,9 +281,9 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function revokeRoles(string|array $roles) : static
     {
         $revokable = Role::whereIn(
-                'role', is_array($roles) ? $roles : [$roles]
-            )
-            ->get();
+            'role', is_array($roles) ? $roles : [$roles]
+        )
+        ->get();
 
         if ($revokable->isNotEmpty()) {
             $this->roles()
@@ -315,9 +315,9 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function grantPermissions(string|array $permissions) : static
     {
         $grantable = Permission::whereIn(
-                'permission', is_array($permissions) ? $permissions : [$permissions]
-            )
-            ->get();
+            'permission', is_array($permissions) ? $permissions : [$permissions]
+        )
+        ->get();
 
         if ($grantable->isNotEmpty()) {
             $this->permissions()
@@ -337,9 +337,9 @@ class User extends Authenticatable // implements MustVerifyEmail
     public function revokePermissions(string|array $permissions) : static
     {
         $revokable = Permission::whereIn(
-                'permission', is_array($permissions) ? $permissions : [$permissions]
-            )
-            ->get();
+            'permission', is_array($permissions) ? $permissions : [$permissions]
+        )
+        ->get();
 
         if ($revokable->isNotEmpty()) {
             $this->permissions()
@@ -358,7 +358,9 @@ class User extends Authenticatable // implements MustVerifyEmail
      */
     public function hasPermissions(string $permissions) : bool
     {
-        return $this->su || array_matches($this->permissions_list, $permissions);
+        return $this->su || array_matches(
+            $this->permissions_list, $permissions
+        );
     }
 
 }

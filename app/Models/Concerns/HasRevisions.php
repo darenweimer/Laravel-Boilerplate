@@ -27,7 +27,10 @@ trait HasRevisions
             $exclusions = array_merge(
                 $this->hidden ?? [],
                 $this->dontRevision ?? [],
-                [$this->primaryKey, 'updated_at']
+                [
+                    $this->primaryKey,
+                    'updated_at',
+                ]
             );
 
             $attributes = array_diff_key(
@@ -96,7 +99,8 @@ trait HasRevisions
             ->get();
 
         if ($matches->count() === 1) {
-            $this->revisionsDeleting = $matches->first()->{$this->primaryKey};
+            $this->revisionsDeleting = $matches->first()
+                ->{$this->primaryKey};
         }
     }
 

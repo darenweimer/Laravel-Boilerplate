@@ -27,7 +27,8 @@ trait HasValues
         return array_map(
             fn($name) => ltrim(
                 preg_replace(
-                    '/[\s_]+/', ' ',
+                    '/[\s_]+/',
+                    ' ',
                     preg_replace('/(?<!\ )[A-Z]/', ' $0', $name)
                 )
             ),
@@ -75,12 +76,15 @@ trait HasValues
         $pairs = [];
 
         foreach (static::cases() as $case) {
-            $pairs[ltrim(
-                preg_replace(
-                    '/[\s_]+/', ' ',
-                    preg_replace('/(?<!\ )[A-Z]/', ' $0', $case->name)
+            $pairs[
+                ltrim(
+                    preg_replace(
+                        '/[\s_]+/',
+                        ' ',
+                        preg_replace('/(?<!\ )[A-Z]/', ' $0', $case->name)
+                    )
                 )
-            )] = $case->value;
+            ] = $case->value;
         }
 
         return $pairs;

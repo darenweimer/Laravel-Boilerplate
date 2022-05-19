@@ -49,7 +49,8 @@ class ExceptionNotification extends Mailable
             $subject .= " ({$environment} environment)";
         }
 
-        return $this->subject($subject)
+        return $this
+            ->subject($subject)
             ->view('mail.exception')
             ->with([
                 'exception' => $this->exception,

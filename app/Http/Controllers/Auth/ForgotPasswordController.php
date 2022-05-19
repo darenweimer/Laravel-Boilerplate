@@ -103,14 +103,18 @@ class ForgotPasswordController extends Controller
     public function reset(ResetPasswordRequest $request) : mixed
     {
         $status = Password::reset(
-            $request->only(
-                'token', 'email', 'password', 'password_confirmation'
-            ),
+            $request->only([
+                'token',
+                'email',
+                'password',
+                'password_confirmation',
+            ]),
             function ($user) use ($request) {
                 $user->forceFill([
                     'password'       => Hash::make($request->password),
                     'remember_token' => Str::random(60),
-                ])->save();
+                ])
+                ->save();
 
                 event(new PasswordReset($user));
             }

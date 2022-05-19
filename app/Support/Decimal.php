@@ -255,9 +255,7 @@ class Decimal
             bcdiv(
                 bcadd(
                     bcmul(
-                        $this->value,
-                        $power = bcpow(10, $precision + 1),
-                        0
+                        $this->value, $power = bcpow(10, $precision + 1), 0
                     ),
                     (strpos($this->value, '-') === 0) ? -5 : 5
                 ),
@@ -279,9 +277,7 @@ class Decimal
         return new static(
             bcsub(
                 $this->value,
-                bcmod(
-                    $this->value, $divisor, $this->precision
-                ),
+                bcmod($this->value, $divisor, $this->precision),
                 $this->precision
             ),
             $this->precision
