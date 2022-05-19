@@ -50,12 +50,14 @@ class Handler extends ExceptionHandler
      */
     protected function notify(Throwable $e) : void
     {
-        $users = User::whereHas('userSettings',
-            fn($userSettings) => $userSettings->where(
-                'notify_exceptions', '<>', 'none'
+        $users = User::orderBy('id')
+            ->whereHas(
+                'userSettings',
+                fn($userSettings) => $userSettings->where(
+                    'notify_exceptions', '<>', 'none'
+                )
             )
-        )
-        ->get();
+            ->get();
 
         foreach ($users as $user) {
             $via = $user->userSettings->notify_exceptions;
