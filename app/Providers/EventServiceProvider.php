@@ -11,7 +11,7 @@ class EventServiceProvider extends ServiceProvider
 {
 
     /**
-     * The event listener mappings for the application
+     * The event to listener mappings for the application
      *
      * @var array
      */
