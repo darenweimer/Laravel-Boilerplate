@@ -37,8 +37,8 @@ VueApp.mixin({
         InertiaLink,
     },
     props: {
-        myself: Object,
         env: String,
+        myself: Object,
         status: String,
     },
     methods: {
