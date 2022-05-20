@@ -131,7 +131,7 @@ trait HasRevisions
      */
     public static function bootHasRevisions() : void
     {
-        if (config('logging.log_revisions')) {
+        if (config('revisions.enabled')) {
             static::created(function ($model) {
                 $model->hasRevisionsAfterCreated();
             });

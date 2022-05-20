@@ -4,10 +4,11 @@ namespace App\Models;
 
 use App\Models\Concerns\DateDisplay;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
 
 class Revision extends Model
 {
-    use DateDisplay;
+    use DateDisplay, Prunable;
 
     /**
      * The attributes that are mass assignable
@@ -61,6 +62,38 @@ class Revision extends Model
     public function user() : mixed
     {
         return $this->belongsTo(User::class);
+    }
+
+    /*
+    |---------------------------------------------------------------------------
+    | Methods
+    |---------------------------------------------------------------------------
+    */
+
+    /**
+     * Gets the current connection name for the model
+     *
+     * @return string|null
+     */
+    public function getConnectionName() : ?string
+    {
+        return config('revisions.connection');
+    }
+
+    /**
+     * Gets the prunable model query
+     *
+     * @return mixed
+     */
+    public function prunable() : mixed
+    {
+        if (($retention = config('revisions.retention')) && ($retention > 0)) {
+            return static::where(
+                'created_at', '<', now()->subDay($retention)->startOfDay()
+            );
+        }
+
+        return static::whereRaw('0');
     }
 
 }

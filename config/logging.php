@@ -117,17 +117,4 @@ return [
 
     ],
 
-    /*
-    |---------------------------------------------------------------------------
-    | Enable / Disable Revision Logging
-    |---------------------------------------------------------------------------
-    |
-    | Set this option to false to turn off revision logging for model creations
-    | and updates. This can be helpful in development environments to speed up
-    | requests, particularly when creating test data through console commands.
-    |
-    */
-
-    'log_revisions' => (bool) env('LOG_REVISIONS', true),
-
 ];
