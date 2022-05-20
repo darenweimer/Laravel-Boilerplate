@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\NotifyOptions;
 use App\Models\Concerns\DateDisplay;
 use App\Models\Concerns\HasRevisions;
-use App\Models\Concerns\HasUserSettings;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -15,7 +15,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable // implements MustVerifyEmail
 {
-    use DateDisplay, HasApiTokens, HasFactory, HasRevisions, HasUserSettings, Notifiable, SoftDeletes;
+    use DateDisplay, HasApiTokens, HasFactory, HasRevisions, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -30,6 +30,8 @@ class User extends Authenticatable // implements MustVerifyEmail
         'two_factor_secret',
         'su',
         'compromised',
+        'timezone',
+        'notify_exceptions',
     ];
 
     /**
@@ -42,6 +44,7 @@ class User extends Authenticatable // implements MustVerifyEmail
         'two_factor_secret' => 'encrypted',
         'su'                => 'boolean',
         'compromised'       => 'boolean',
+        'notify_exceptions' => NotifyOptions::class,
     ];
 
     /**

@@ -51,26 +51,18 @@ class Handler extends ExceptionHandler
     protected function notify(Throwable $e) : void
     {
         $users = User::orderBy('id')
-            ->whereHas(
-                'userSettings',
-                fn($userSettings) => $userSettings->where(
-                    'notify_exceptions', '<>', 'none'
-                )
-            )
+            ->where('notify_exceptions', '<>', 'none')
             ->get();
 
         foreach ($users as $user) {
-            $via = $user->userSettings
-                ->notify_exceptions;
-
-            if (in_array($via, [NotifyOptions::Email, NotifyOptions::Both])) {
+            if (in_array($user->notify_exceptions, [NotifyOptions::Email, NotifyOptions::Both])) {
                 Mail::to($user)
                     ->queue(
                         new ExceptionNotification($e)
                     );
             }
 
-            if (in_array($via, [NotifyOptions::Text, NotifyOptions::Both])) {
+            if (in_array($user->notify_exceptions, [NotifyOptions::Text, NotifyOptions::Both])) {
                 // Send text notification
             }
         }

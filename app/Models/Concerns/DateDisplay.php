@@ -20,7 +20,7 @@ trait DateDisplay
     {
         $date = parent::asDateTime($value);
 
-        if ($timezone = Auth::user()?->userSettings->timezone) {
+        if ($timezone = Auth::user()?->timezone) {
             $date->timezone($timezone);
         }
 

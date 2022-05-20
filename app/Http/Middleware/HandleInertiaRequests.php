@@ -45,9 +45,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(
             parent::share($request), [
                 'env'    => fn() => config('app.env'),
-                'myself' => fn() => $request->user()
-                    ?->loadMissing('userSettings')
-                    ->withPermissions(),
+                'myself' => fn() => $request->user()?->withPermissions(),
                 'status' => fn() => session('status'),
             ]
         );
