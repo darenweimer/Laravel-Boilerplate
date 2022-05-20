@@ -29,6 +29,7 @@ class CacheFill extends Command
      */
     public function handle() : int
     {
+        Artisan::call('cache:clear');
         Artisan::call('config:cache');
         Artisan::call('route:cache');
         Artisan::call('view:cache');

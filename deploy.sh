@@ -13,10 +13,7 @@ composer install -n
 
 php artisan migrate --force
 
-php artisan cache:clear
-php artisan config:cache
-php artisan route:cache
-php artisan view:cache
+php artisan cache:fill
 
 npm install
 npm run production
