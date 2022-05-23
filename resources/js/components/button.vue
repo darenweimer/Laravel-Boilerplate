@@ -26,7 +26,7 @@
                 type: Boolean,
                 default: false,
             },
-            outlined: {
+            outline: {
                 type: Boolean,
                 default: false,
             },
@@ -35,7 +35,7 @@
             buttonClass() {
                 let buttonClass = [];
 
-                if (this.outlined) {
+                if (this.outline) {
                     buttonClass.push(
                         `border-2 border-${this.color} text-${this.color}`
                     );
