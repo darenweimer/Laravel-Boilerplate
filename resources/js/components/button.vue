@@ -1,7 +1,9 @@
 <template>
     <button :type="type" class="active:mt-px active:-mb-px focus:outline-none shadow-[0_3px_6px_rgb(0,0,0,0.25)] active:shadow-[0_1px_2px_rgb(0,0,0,0.25)] font-default font-bold tracking-wide disabled:opacity-40 select-none" :class="buttonClass">
-        <slot>
-        </slot>
+        <span :class="{ 'px-0.5': round }">
+            <slot>
+            </slot>
+        </span>
     </button>
 </template>
 
