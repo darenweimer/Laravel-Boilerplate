@@ -1,10 +1,8 @@
 <template>
-    <div class="inline-block">
-        <button :type="type" class="active:mt-px active:-mb-px focus:outline-none shadow-[0_3px_6px_rgb(0,0,0,0.25)] active:shadow-[0_1px_2px_rgb(0,0,0,0.25)] font-default font-bold tracking-wide disabled:opacity-40 select-none" :class="buttonClass">
-            <slot>
-            </slot>
-        </button>
-    </div>
+    <button :type="type" class="active:mt-px active:-mb-px focus:outline-none shadow-[0_3px_6px_rgb(0,0,0,0.25)] active:shadow-[0_1px_2px_rgb(0,0,0,0.25)] font-default font-bold tracking-wide disabled:opacity-40 select-none" :class="buttonClass">
+        <slot>
+        </slot>
+    </button>
 </template>
 
 <script>
@@ -24,7 +22,7 @@
                 validator: (v) => ['small', 'regular', 'large'].includes(v),
                 default: 'regular',
             },
-            rounded: {
+            round: {
                 type: Boolean,
                 default: false,
             },
@@ -58,7 +56,7 @@
                         buttonClass.push('text-base px-3 py-2');
                 }
 
-                if (this.rounded) {
+                if (this.round) {
                     buttonClass.push('rounded-full');
                 } else {
                     buttonClass.push('rounded');
