@@ -17,6 +17,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet"/>
 
     <style>
+        .mb-1 {
+            margin-bottom: 0.75rem;
+        }
+
+        .mb-2 {
+            margin-bottom: 2.50rem;
+        }
+
+        .p-1 {
+            padding: 1.00rem;
+        }
+
+        .overflow-scroll {
+            overflow: scroll;
+        }
+
+        .bg-pre {
+            background-color: #ddd;
+        }
+
         .font-normal {
             font-family: 'Roboto';
             font-size: 1.00rem;
@@ -49,33 +69,13 @@
         .text-center {
             text-align: center;
         }
-
-        .bg-pre {
-            background-color: #ddd;
-        }
-
-        .mb-1 {
-            margin-bottom: 0.75rem;
-        }
-
-        .mb-2 {
-            margin-bottom: 2.50rem;
-        }
-
-        .p-1 {
-            padding: 1.00rem;
-        }
-
-        .overflow-scroll {
-            overflow: scroll;
-        }
     </style>
 </head>
 
 
 
-<body class="font-normal text-normal p-1">
-    <div class="font-title text-center mb-2">
+<body class="p-1 font-normal text-normal">
+    <div class="mb-2 font-title text-center">
         {{ config('app.name') }}: @yield('title')
     </div>
 

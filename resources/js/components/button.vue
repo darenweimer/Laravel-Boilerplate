@@ -49,13 +49,13 @@
 
                 switch (this.size) {
                     case 'small':
-                        buttonClass.push('text-xs px-2 py-1.5');
+                        buttonClass.push('px-2 py-1.5 text-xs');
                         break;
                     case 'large':
-                        buttonClass.push('text-lg px-5 py-4');
+                        buttonClass.push('px-5 py-4 text-lg');
                         break;
                     default:
-                        buttonClass.push('text-base px-3 py-2');
+                        buttonClass.push('px-3 py-2 text-base');
                 }
 
                 if (this.round) {

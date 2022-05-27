@@ -10,8 +10,8 @@
                 </transition>
 
                 <transition enter-active-class="ease-out duration-150" enter-from-class="opacity-0 scale-50" enter-to-class="opacity-100 scale-100" leave-active-class="ease-in duration-150" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-50">
-                    <div v-show="show" class="flex flex-col max-h-full mx-auto rounded-lg shadow-[0_25px_50px_rgb(0,0,0)] bg-default font-default font-normal text-base text-default tracking-wide px-5 py-4 overflow-hidden transform transition-all" :class="`max-w-${size}`">
-                        <div v-if="$slots.header" class="flex-none flex flex-row items-center mb-4 border-b border-default text-2xl pb-4">
+                    <div v-show="show" class="flex flex-col max-h-full mx-auto px-5 py-4 overflow-hidden rounded-lg shadow-[0_25px_50px_rgb(0,0,0)] bg-default font-default font-normal text-base text-default tracking-wide transform transition-all" :class="`max-w-${size}`">
+                        <div v-if="$slots.header" class="flex-none flex flex-row items-center mb-4 pb-4 border-b border-default text-2xl">
                             <div class="grow font-bold text-title">
                                 <slot name="header">
                                 </slot>
@@ -33,7 +33,7 @@
                             </slot>
                         </div>
 
-                        <div v-if="$slots.footer" class="flex-none mt-4 border-t border-default pt-4">
+                        <div v-if="$slots.footer" class="flex-none mt-4 pt-4 border-t border-default">
                             <slot name="footer">
                             </slot>
                         </div>

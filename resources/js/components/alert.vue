@@ -1,6 +1,6 @@
 <template>
     <transition leave-active-class="ease-in duration-200" leave-from-class="translate-x-0 opacity-100" leave-to-class="-translate-x-full opacity-0">
-        <div v-if="show" class="w-full rounded-md font-default font-medium text-sm tracking-wide overflow-hidden" :class="`bg-alert-${color} text-alert-${color}`">
+        <div v-if="show" class="w-full overflow-hidden rounded-md font-default font-medium text-sm tracking-wide" :class="`bg-alert-${color} text-alert-${color}`">
             <div class="flex flex-row">
                 <div v-if="icon" class="flex-none w-12 brightness-[0.93] saturate-[1.25]" :class="`bg-alert-${color}`">
                     <button type="button" class="w-full h-full text-lg" disabled>

@@ -1,8 +1,8 @@
 <template>
-    <table class="table-auto border-collapse w-full">
+    <table class="w-full table-auto border-collapse">
         <tbody>
             <tr v-if="label">
-                <td colspan="4" class="font-medium text-sm pr-4 py-0.5 opacity-50 select-none" :style="`padding-left:${1 + (indent * 0.75)}rem`">
+                <td colspan="4" class="pr-4 py-0.5 font-medium text-sm opacity-50 select-none" :style="`padding-left:${1 + (indent * 0.75)}rem`">
                     {{ label }}
                 </td>
             </tr>

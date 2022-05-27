@@ -10,7 +10,7 @@
     <div class="mb-1">
         Application URL:
 
-        <a class="text-link" href="{{ config('app.url') }}">
+        <a href="{{ config('app.url') }}" class="text-link">
             {{ config('app.url') }}
         </a>
     </div>
@@ -52,7 +52,7 @@
     <div class="mb-1">
         Stack Trace:
 
-        <pre class="bg-pre p-1 overflow-scroll"><!--
+        <pre class="p-1 overflow-scroll bg-pre"><!--
             -->{{ $exception['trace'] }}<!--
         --></pre>
     </div>
