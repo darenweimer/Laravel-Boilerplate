@@ -1,2 +1,2 @@
-require('./bootstrap');
-require('./inertia-vue');
+import './bootstrap';
+import './inertia-vue';
