@@ -1,5 +1,5 @@
 <template>
-    <div class="relative inline">
+    <div class="inline relative">
         <button type="button" class="inline focus:outline-none" @click="show = !show" @blur="show = false">
             <slot>
             </slot>

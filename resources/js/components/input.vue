@@ -1,5 +1,5 @@
 <template>
-    <div class="inline-block relative">
+    <div class="inline relative">
         <i v-if="icon" class="fa-fw absolute left-3 top-1/2 -translate-y-1/2" :class="iconClass"></i>
 
         <input v-bind="$attrs" :type="type" :value="modelValue" :class="inputClass" @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled"/>
