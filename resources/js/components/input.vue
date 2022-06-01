@@ -1,5 +1,12 @@
 <template>
-    <input :type="type" :value="modelValue" class="block w-full focus:outline-none focus:ring focus:ring-input rounded-md disabled:bg-input-disabled font-default font-normal text-base disabled:text-input-disabled disabled:placeholder-input-disabled tracking-wide px-2.5 pt-2 pb-1.5" :class="{ 'bg-input text-input placeholder-input': valid, 'bg-input-invalid text-input-invalid placeholder-input-invalid': !valid }" @input="$emit('update:modelValue', $event.target.value)"/>
+    <div class="inline-block relative">
+        <i v-if="icon" class="fa-fw absolute left-3 top-1/2 -translate-y-1/2" :class="iconClass"></i>
+
+        <input v-bind="$attrs" :type="type" :value="modelValue" :class="inputClass" @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled"/>
+
+        <i v-if="success && (!disabled)" class="fa-solid fa-check fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-success"></i>
+        <i v-else-if="error && (!disabled)" class="fa-solid fa-xmark fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-error"></i>
+    </div>
 </template>
 
 <script>
@@ -7,14 +14,72 @@
         props: {
             type: {
                 type: String,
+                validator: (v) => ['text', 'number', 'email', 'password', 'date', 'time'].includes(v),
                 default: 'text',
             },
             modelValue: {
                 default: null,
             },
-            valid: {
+            icon: {
+                type: String,
+                default: null,
+            },
+            success: {
                 type: Boolean,
-                default: true,
+                default: false,
+            },
+            error: {
+                type: Boolean,
+                default: false,
+            },
+            disabled: {
+                type: Boolean,
+                default: false,
+            },
+        },
+        computed: {
+            iconClass() {
+                let iconClass = [
+                    this.icon,
+                ];
+
+                if (this.disabled) {
+                    iconClass.push('text-input-disabled');
+                } else if (this.success) {
+                    iconClass.push('text-input-success');
+                } else if (this.error) {
+                    iconClass.push('text-input-error');
+                } else {
+                    iconClass.push('text-input');
+                }
+
+                return iconClass.join(' ');
+            },
+            inputClass() {
+                let inputClass = [
+                    'w-full focus:-m-px py-1 appearance-none',
+                    'focus:outline-none border focus:border-2 focus:border-input-focused disabled:border-input-disabled rounded-md',
+                    'bg-transparent disabled:bg-input-disabled',
+                    'font-default font-normal text-base focus:text-input disabled:text-input-disabled tracking-wide',
+                    'placeholder:text-placeholder disabled:placeholder:text-placeholder-disabled',
+                    'transition ease-linear duration-300',
+                ];
+
+                if (this.icon) {
+                    inputClass.push('pl-10');
+                } else {
+                    inputClass.push('pl-2');
+                }
+
+                if (this.success && (!this.disabled)) {
+                    inputClass.push('pr-10 border-input-success text-input-success');
+                } else if (this.error && (!this.disabled)) {
+                    inputClass.push('pr-10 border-input-error text-input-error');
+                } else {
+                    inputClass.push('pr-2 border-input text-input');
+                }
+
+                return inputClass.join(' ');
             },
         },
         emits: [
@@ -22,3 +87,17 @@
         ],
     };
 </script>
+
+<style scoped>
+    input::-webkit-calendar-picker-indicator {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: auto;
+        height: auto;
+        background: transparent;
+        color: transparent;
+    }
+</style>
