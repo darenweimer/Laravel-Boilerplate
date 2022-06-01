@@ -4,8 +4,8 @@
 
         <input v-bind="$attrs" :type="type" :value="modelValue" :class="inputClass" @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled"/>
 
-        <i v-if="success && (!disabled)" class="fa-solid fa-check fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-success"></i>
-        <i v-else-if="error && (!disabled)" class="fa-solid fa-xmark fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-error"></i>
+        <i v-if="(validation === true) && (!disabled)" class="fa-solid fa-check fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-success"></i>
+        <i v-else-if="(validation === false) && (!disabled)" class="fa-solid fa-xmark fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-error"></i>
     </div>
 </template>
 
@@ -24,13 +24,9 @@
                 type: String,
                 default: null,
             },
-            success: {
+            validation: {
                 type: Boolean,
-                default: false,
-            },
-            error: {
-                type: Boolean,
-                default: false,
+                default: null,
             },
             disabled: {
                 type: Boolean,
@@ -45,9 +41,9 @@
 
                 if (this.disabled) {
                     iconClass.push('text-input-disabled');
-                } else if (this.success) {
+                } else if (this.validation === true) {
                     iconClass.push('text-input-success');
-                } else if (this.error) {
+                } else if (this.validation === false) {
                     iconClass.push('text-input-error');
                 } else {
                     iconClass.push('text-input');
@@ -71,9 +67,9 @@
                     inputClass.push('pl-2');
                 }
 
-                if (this.success && (!this.disabled)) {
+                if ((this.validation === true) && (!this.disabled)) {
                     inputClass.push('pr-10 border-input-success text-input-success');
-                } else if (this.error && (!this.disabled)) {
+                } else if ((this.validation === false) && (!this.disabled)) {
                     inputClass.push('pr-10 border-input-error text-input-error');
                 } else {
                     inputClass.push('pr-2 border-input text-input');

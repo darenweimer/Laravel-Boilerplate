@@ -12,8 +12,8 @@
             </option>
         </select>
 
-        <i v-if="success && (!disabled)" class="fa-solid fa-check fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-success"></i>
-        <i v-else-if="error && (!disabled)" class="fa-solid fa-xmark fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-error"></i>
+        <i v-if="(validation === true) && (!disabled)" class="fa-solid fa-check fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-success"></i>
+        <i v-else-if="(validation === false) && (!disabled)" class="fa-solid fa-xmark fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-error"></i>
     </div>
 </template>
 
@@ -39,13 +39,9 @@
                 type: String,
                 default: null,
             },
-            success: {
+            validation: {
                 type: Boolean,
-                default: false,
-            },
-            error: {
-                type: Boolean,
-                default: false,
+                default: null,
             },
             disabled: {
                 type: Boolean,
@@ -60,9 +56,9 @@
 
                 if (this.disabled) {
                     iconClass.push('text-input-disabled');
-                } else if (this.success) {
+                } else if (this.validation === true) {
                     iconClass.push('text-input-success');
-                } else if (this.error) {
+                } else if (this.validation === false) {
                     iconClass.push('text-input-error');
                 } else {
                     iconClass.push('text-input');
@@ -84,7 +80,7 @@
                 } else {
                     placeholderClass.push('text-placeholder');
 
-                    if (this.success || this.error) {
+                    if ([true, false].includes(this.validation)) {
                         placeholderClass.push('right-10');
                     } else {
                         placeholderClass.push('right-2');
@@ -108,9 +104,9 @@
                     selectClass.push('pl-2');
                 }
 
-                if (this.success && (!this.disabled)) {
+                if ((this.validation === true) && (!this.disabled)) {
                     selectClass.push('pr-10 border-input-success text-input-success');
-                } else if (this.error && (!this.disabled)) {
+                } else if ((this.validation === false) && (!this.disabled)) {
                     selectClass.push('pr-10 border-input-error text-input-error');
                 } else {
                     selectClass.push('pr-2 border-input text-input');
