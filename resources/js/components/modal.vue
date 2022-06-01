@@ -46,6 +46,7 @@
 
 <script>
     export default {
+        inheritAttrs: false,
         props: {
             show: {
                 type: Boolean,
