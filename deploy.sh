@@ -9,7 +9,7 @@ echo Your secret key to bypass maintenance mode is: $UUID
 git checkout .
 git pull
 
-composer install -n
+composer install -n --optimize-autoloader --no-dev
 
 php artisan migrate --force
 
