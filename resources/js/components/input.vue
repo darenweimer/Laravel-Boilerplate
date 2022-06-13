@@ -53,8 +53,8 @@
             },
             inputClass() {
                 let inputClass = [
-                    'w-full focus:-m-px py-1 appearance-none',
-                    'focus:outline-none border focus:border-2 focus:border-input-focused disabled:border-input-disabled rounded-md',
+                    'w-full py-1 appearance-none',
+                    'focus:outline-none border focus:border-input-focused disabled:border-input-disabled rounded-md',
                     'bg-transparent disabled:bg-input-disabled',
                     'font-default font-normal text-base focus:text-input disabled:text-input-disabled tracking-wide',
                     'placeholder:text-placeholder disabled:placeholder:text-placeholder-disabled',
