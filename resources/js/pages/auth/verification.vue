@@ -1,37 +1,39 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card :box="true" class="w-full max-w-lg m-auto">
+            <v-panel class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Verification Required
                     </div>
                 </template>
 
-                <v-alert v-if="status" color="success" class="mb-8">
+                <v-alert v-if="status" color="success">
                     {{ status }}
                 </v-alert>
 
-                <div class="mt-4 mb-8 text-justify">
+                <div class="mt-6 mb-8 text-justify">
                     Please verify your email address by clicking on the link we
                     emailed to you. If you didn't receive the email, we will
                     gladly send you another.
                 </div>
 
-                <div class="mb-4 text-center">
-                    <div class="inline-grid grid-cols-2 gap-4">
-                        <v-button type="submit" color="primary" class="w-full" :disabled="form.processing">
-                            Resend Email
-                        </v-button>
-
-                        <v-link :href="route('logout')">
-                            <v-button type="button" color="error" class="w-full">
-                                Logout
+                <template v-slot:footer>
+                    <div class="text-center">
+                        <div class="inline-grid grid-cols-2 gap-4">
+                            <v-button type="submit" color="primary" class="w-full" :disabled="form.processing">
+                                Resend Email
                             </v-button>
-                        </v-link>
+
+                            <v-link :href="route('logout')">
+                                <v-button type="button" color="error" class="w-full">
+                                    Logout
+                                </v-button>
+                            </v-link>
+                        </div>
                     </div>
-                </div>
-            </v-card>
+                </template>
+            </v-panel>
         </div>
     </form>
 </template>

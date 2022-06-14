@@ -59,7 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(ConfirmPasswordController::class)->group(function () {
 
-        Route::get('confirm-password', 'confirmForm')->name('confirm-password');
+        Route::get('confirm-password', 'confirmForm')->name('password.confirm');
         Route::post('confirm-password', 'confirm');
 
     });

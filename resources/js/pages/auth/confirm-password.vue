@@ -1,31 +1,33 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card :box="true" class="w-full max-w-lg m-auto">
+            <v-panel class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Password Confirmation
                     </div>
                 </template>
 
-                <v-alert v-if="form.errors.password" color="error" class="mb-8">
-                    {{ form.errors.password }}
-                </v-alert>
-
-                <div class="mt-4 mb-8">
-                    <v-label class="mb-2 text-center">
+                <v-form-group class="mt-6 mb-8">
+                    <template v-slot:label>
                         Confirm your password:
-                    </v-label>
+                    </template>
 
-                    <v-input type="password" v-model="form.password" @input="form.clearErrors()" placeholder="Enter password..." required autofocus/>
-                </div>
+                    <v-input type="password" v-model="form.password" :validation="form.errors.password ? false : null" @input="form.clearErrors()" placeholder="Confirm password..." required autofocus/>
 
-                <div class="mb-4 text-center">
-                    <v-button type="submit" color="primary" :disabled="form.processing">
-                        Confirm Password
-                    </v-button>
-                </div>
-            </v-card>
+                    <template v-slot:error>
+                        {{ form.errors.password }}
+                    </template>
+                </v-form-group>
+
+                <template v-slot:footer>
+                    <div class="text-center">
+                        <v-button type="submit" color="primary" :disabled="form.processing">
+                            Confirm Password
+                        </v-button>
+                    </div>
+                </template>
+            </v-panel>
         </div>
     </form>
 </template>
@@ -44,7 +46,7 @@
                 this.form
                     .clearErrors()
                     .post(
-                        this.route('confirm-password'), {
+                        this.route('password.confirm'), {
                             onFinish: () => this.form.reset(),
                         }
                     );

@@ -1,35 +1,37 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card :box="true" class="w-full max-w-lg m-auto">
+            <v-panel class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Password Reset Request
                     </div>
                 </template>
 
-                <v-alert v-if="status" color="success" class="mb-8">
-                    {{ status }}
-                </v-alert>
+                <v-form-group class="mt-6 mb-8">
+                    <template v-slot:label>
+                        Email Address
+                    </template>
 
-                <v-alert v-if="form.errors.email" color="error" class="mb-8">
-                    {{ form.errors.email }}
-                </v-alert>
+                    <v-input type="email" v-model="form.email" :validation="status ? true : (form.errors.email ? false : null)" @input="form.clearErrors()" placeholder="Enter email address..." required autofocus/>
 
-                <div class="mt-4 mb-8">
-                    <v-label class="mb-2 text-center">
-                        Confirm your email address:
-                    </v-label>
+                    <template v-slot:success>
+                        {{ status }}
+                    </template>
 
-                    <v-input type="email" v-model="form.email" @input="form.clearErrors()" placeholder="Enter email address..." required autofocus/>
-                </div>
+                    <template v-slot:error>
+                        {{ form.errors.email }}
+                    </template>
+                </v-form-group>
 
-                <div class="mb-4 text-center">
-                    <v-button type="submit" color="primary" :disabled="form.processing">
-                        Email Password Reset Link
-                    </v-button>
-                </div>
-            </v-card>
+                <template v-slot:footer>
+                    <div class="text-center">
+                        <v-button type="submit" color="primary" :disabled="form.processing">
+                            Email Password Reset Link
+                        </v-button>
+                    </div>
+                </template>
+            </v-panel>
         </div>
     </form>
 </template>

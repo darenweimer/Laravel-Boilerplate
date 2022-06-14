@@ -1,85 +1,87 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card :box="true" class="w-full max-w-lg m-auto">
+            <v-panel class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Account Registration
                     </div>
                 </template>
 
-                <div class="my-4">
-                    <v-label>
+                <v-form-group class="mt-6">
+                    <template v-slot:label>
                         First Name
-                    </v-label>
+                    </template>
 
-                    <v-input type="text" v-model="form.first_name" @input="form.clearErrors('first_name')" placeholder="Enter first name..." required autofocus/>
+                    <v-input type="text" v-model="form.first_name" :validation="form.errors.first_name ? false : null" @input="form.clearErrors('first_name')" placeholder="Enter first name..." required autofocus/>
 
-                    <v-label :enabled="form.errors.first_name" :footnote="true" :valid="false">
+                    <template v-slot:error>
                         {{ form.errors.first_name }}
-                    </v-label>
-                </div>
+                    </template>
+                </v-form-group>
 
-                <div class="mb-4">
-                    <v-label>
+                <v-form-group class="mt-4">
+                    <template v-slot:label>
                         Last Name
-                    </v-label>
+                    </template>
 
-                    <v-input type="text" v-model="form.last_name" @input="form.clearErrors('last_name')" placeholder="Enter last name..." required/>
+                    <v-input type="text" v-model="form.last_name" :validation="form.errors.last_name ? false : null" @input="form.clearErrors('last_name')" placeholder="Enter last name..." required/>
 
-                    <v-label :enabled="form.errors.last_name" :footnote="true" :valid="false">
+                    <template v-slot:error>
                         {{ form.errors.last_name }}
-                    </v-label>
-                </div>
+                    </template>
+                </v-form-group>
 
-                <div class="mb-4">
-                    <v-label>
+                <v-form-group class="mt-4">
+                    <template v-slot:label>
                         Email Address
-                    </v-label>
+                    </template>
 
-                    <v-input type="email" v-model="form.email" @input="form.clearErrors('email')" placeholder="Enter email address..." required/>
+                    <v-input type="email" v-model="form.email" :validation="form.errors.email ? false : null" @input="form.clearErrors('email')" placeholder="Enter email address..." required/>
 
-                    <v-label :enabled="form.errors.email" :footnote="true" :valid="false">
+                    <template v-slot:error>
                         {{ form.errors.email }}
-                    </v-label>
-                </div>
+                    </template>
+                </v-form-group>
 
-                <div class="mb-4">
-                    <v-label>
+                <v-form-group class="mt-4">
+                    <template v-slot:label>
                         Password
-                    </v-label>
+                    </template>
 
-                    <v-input type="password" v-model="form.password" @input="form.clearErrors('password')" placeholder="Enter password..." required/>
+                    <v-input type="password" v-model="form.password" :validation="form.errors.password ? false : null" @input="form.clearErrors('password')" placeholder="Enter password..." required/>
 
-                    <v-label :enabled="form.errors.password" :footnote="true" :valid="false">
+                    <template v-slot:error>
                         {{ form.errors.password }}
-                    </v-label>
-                </div>
+                    </template>
+                </v-form-group>
 
-                <div class="mb-8">
-                    <v-label>
+                <v-form-group class="mt-4 mb-8">
+                    <template v-slot:label>
                         Confirm Password
-                    </v-label>
+                    </template>
 
-                    <v-input type="password" v-model="form.password_confirmation" @input="form.clearErrors('password_confirmation')" placeholder="Confirm password..." required/>
+                    <v-input type="password" v-model="form.password_confirmation" :validation="form.errors.password_confirmation ? false : null" @input="form.clearErrors('password_confirmation')" placeholder="Confirm password..." required/>
 
-                    <v-label :enabled="form.errors.password_confirmation" :footnote="true" :valid="false">
+                    <template v-slot:error>
                         {{ form.errors.password_confirmation }}
-                    </v-label>
-                </div>
+                    </template>
+                </v-form-group>
 
-                <div class="mb-4 text-center">
-                    <v-button type="submit" color="primary" class="mb-4" :disabled="form.processing">
-                        Create Account
-                    </v-button>
+                <template v-slot:footer>
+                    <div class="text-center">
+                        <v-button type="submit" color="primary" :disabled="form.processing">
+                            Create Account
+                        </v-button>
 
-                    <div class="text-sm">
-                        <v-link :href="route('login')">
-                            Return to Application Login
-                        </v-link>
+                        <div class="mt-3 mb-1">
+                            <v-link :href="route('login')" class="text-sm">
+                                Return to Application Login
+                            </v-link>
+                        </div>
                     </div>
-                </div>
-            </v-card>
+                </template>
+            </v-panel>
         </div>
     </form>
 </template>

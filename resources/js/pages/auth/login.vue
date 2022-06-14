@@ -1,59 +1,61 @@
 <template>
     <form @submit.prevent="submit">
         <div class="flex h-screen p-4">
-            <v-card :box="true" class="w-full max-w-lg m-auto">
+            <v-panel class="w-full max-w-lg m-auto">
                 <template v-slot:header>
                     <div class="text-center">
                         Application Login
                     </div>
                 </template>
 
-                <v-alert v-if="form.errors.email" color="error" class="mb-8">
-                    {{ form.errors.email }}
-                </v-alert>
-
-                <div class="my-4">
-                    <v-label>
+                <v-form-group class="mt-6">
+                    <template v-slot:label>
                         Email Address
-                    </v-label>
+                    </template>
 
-                    <v-input type="email" v-model="form.email" @input="form.clearErrors()" placeholder="Enter email address..." required autofocus/>
-                </div>
+                    <v-input type="email" v-model="form.email" :validation="form.errors.email ? false : null" @input="form.clearErrors()" placeholder="Enter email address..." required autofocus/>
 
-                <div class="mb-6">
-                    <v-label>
+                    <template v-slot:error>
+                        {{ form.errors.email }}
+                    </template>
+                </v-form-group>
+
+                <v-form-group class="mt-4">
+                    <template v-slot:label>
                         Password
-                    </v-label>
+                    </template>
 
                     <v-input type="password" v-model="form.password" @input="form.clearErrors()" placeholder="Enter password..." required/>
-                </div>
+                </v-form-group>
 
-                <div class="mb-8">
-                    <v-checkbox v-model="form.remember" class="text-center">
+                <div class="my-6 text-center">
+                    <v-checkbox v-model="form.remember">
                         Remember Me
                     </v-checkbox>
                 </div>
 
-                <div class="mb-4 text-center">
-                    <div class="inline-grid grid-cols-2 gap-4 mb-4">
-                        <v-button type="submit" color="primary" class="w-full" :disabled="form.processing">
-                            Authenticate
-                        </v-button>
-
-                        <v-link :href="route('register')">
-                            <v-button type="button" color="success" class="w-full">
-                                Create Account
+                <template v-slot:footer>
+                    <div class="text-center">
+                        <div class="inline-grid grid-cols-2 gap-4">
+                            <v-button type="submit" color="primary" class="w-full" :disabled="form.processing">
+                                Authenticate
                             </v-button>
-                        </v-link>
-                    </div>
 
-                    <div class="text-sm">
-                        <v-link :href="route('forgot-password')">
-                            Forgot Your Password?
-                        </v-link>
+                            <v-link :href="route('register')">
+                                <v-button type="button" color="success" class="w-full">
+                                    Create Account
+                                </v-button>
+                            </v-link>
+                        </div>
+
+                        <div class="mt-3 mb-1">
+                            <v-link :href="route('forgot-password')" class="text-sm">
+                                Forgot Your Password?
+                            </v-link>
+                        </div>
                     </div>
-                </div>
-            </v-card>
+                </template>
+            </v-panel>
         </div>
     </form>
 </template>
