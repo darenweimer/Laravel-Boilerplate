@@ -4,7 +4,7 @@ services:
 
     application:
         container_name: laravel-boilerplate-application
-        image: darenweimer/ubuntu-20.04:apache2-php8.1-composer2-node16
+        image: darenweimer/ubuntu-22.04:nginx-php8.1-composer2-node16
         command: sh -c "
             cd /var/www
             && { ./permissions.sh & }
@@ -12,7 +12,9 @@ services:
             && crontab -u www-data crontab.conf
             && cp supervisor.conf /etc/supervisor/conf.d/
             && service supervisor start
-            && apache2ctl -DFOREGROUND"
+            && cp nginx.conf /etc/nginx/sites-available/default
+            && service php8.1-fpm start
+            && nginx -g \"daemon off;\""
         depends_on:
             - database
         # Specify ports in your docker-compose.override.yml file
