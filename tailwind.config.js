@@ -101,7 +101,7 @@ module.exports = {
                 'placeholder-disabled': colors.zinc['600'],
             },
             textDecorationColor: {
-                'link':       colors.amber['700'],
+                'link':       colors.amber['800'],
                 'link-hover': colors.amber['600'],
             },
         },
