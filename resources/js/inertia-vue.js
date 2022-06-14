@@ -57,13 +57,11 @@ import Checkbox from '@/components/checkbox';
 import Dropdown from '@/components/dropdown';
 import FormGroup from '@/components/form-group';
 import Input from '@/components/input';
-import Label from '@/components/label';
 import Link from '@/components/link';
 import Modal from '@/components/modal';
 import Panel from '@/components/panel';
 import Radio from '@/components/radio';
 import Select from '@/components/select';
-import Table from '@/components/table';
 
 VueApp.component('v-alert', Alert);
 VueApp.component('v-button', Button);
@@ -71,13 +69,11 @@ VueApp.component('v-checkbox', Checkbox);
 VueApp.component('v-dropdown', Dropdown);
 VueApp.component('v-form-group', FormGroup);
 VueApp.component('v-input', Input);
-VueApp.component('v-label', Label);
 VueApp.component('v-link', Link);
 VueApp.component('v-modal', Modal);
 VueApp.component('v-panel', Panel);
 VueApp.component('v-radio', Radio);
 VueApp.component('v-select', Select);
-VueApp.component('v-table', Table);
 
 /*
 |-------------------------------------------------------------------------------
