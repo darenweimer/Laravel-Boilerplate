@@ -61,6 +61,7 @@ import Label from '@/components/label';
 import Link from '@/components/link';
 import Modal from '@/components/modal';
 import Panel from '@/components/panel';
+import Radio from '@/components/radio';
 import Select from '@/components/select';
 import Table from '@/components/table';
 
@@ -74,6 +75,7 @@ VueApp.component('v-label', Label);
 VueApp.component('v-link', Link);
 VueApp.component('v-modal', Modal);
 VueApp.component('v-panel', Panel);
+VueApp.component('v-radio', Radio);
 VueApp.component('v-select', Select);
 VueApp.component('v-table', Table);
 
