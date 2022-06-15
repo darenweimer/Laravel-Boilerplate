@@ -6,6 +6,234 @@
     html {
         -webkit-tap-highlight-color: transparent;
     }
+
+    .border-default {
+        @apply border-light-default dark:border-dark-default;
+    }
+
+    .border-primary {
+        @apply border-light-primary dark:border-dark-primary;
+    }
+
+    .border-info {
+        @apply border-light-info dark:border-dark-info;
+    }
+
+    .border-success {
+        @apply border-light-success dark:border-dark-success;
+    }
+
+    .border-warning {
+        @apply border-light-warning dark:border-dark-warning;
+    }
+
+    .border-error {
+        @apply border-light-error dark:border-dark-error;
+    }
+
+    .border-input {
+        @apply border-light-input dark:border-dark-input;
+    }
+
+    .border-input-focused {
+        @apply border-light-input-focused dark:border-dark-input-focused;
+    }
+
+    .border-input-success {
+        @apply border-light-input-success dark:border-dark-input-success;
+    }
+
+    .border-input-error {
+        @apply border-light-input-error dark:border-dark-input-error;
+    }
+
+    .border-input-disabled {
+        @apply border-light-input-disabled dark:border-dark-input-disabled;
+    }
+
+    .bg-canvas {
+        @apply bg-light-canvas dark:bg-dark-canvas;
+    }
+
+    .bg-default {
+        @apply bg-light-default dark:bg-dark-default;
+    }
+
+    .bg-btn-default {
+        @apply bg-light-btn-default dark:bg-dark-btn-default;
+    }
+
+    .bg-btn-primary {
+        @apply bg-light-btn-primary dark:bg-dark-btn-primary;
+    }
+
+    .bg-btn-info {
+        @apply bg-light-btn-info dark:bg-dark-btn-info;
+    }
+
+    .bg-btn-success {
+        @apply bg-light-btn-success dark:bg-dark-btn-success;
+    }
+
+    .bg-btn-warning {
+        @apply bg-light-btn-warning dark:bg-dark-btn-warning;
+    }
+
+    .bg-btn-error {
+        @apply bg-light-btn-error dark:bg-dark-btn-error;
+    }
+
+    .bg-alert-default {
+        @apply bg-light-alert-default dark:bg-dark-alert-default;
+    }
+
+    .bg-alert-primary {
+        @apply bg-light-alert-primary dark:bg-dark-alert-primary;
+    }
+
+    .bg-alert-info {
+        @apply bg-light-alert-info dark:bg-dark-alert-info;
+    }
+
+    .bg-alert-success {
+        @apply bg-light-alert-success dark:bg-dark-alert-success;
+    }
+
+    .bg-alert-warning {
+        @apply bg-light-alert-warning dark:bg-dark-alert-warning;
+    }
+
+    .bg-alert-error {
+        @apply bg-light-alert-error dark:bg-dark-alert-error;
+    }
+
+    .bg-dropdown {
+        @apply bg-light-dropdown dark:bg-dark-dropdown;
+    }
+
+    .bg-dropdown-hover {
+        @apply bg-light-dropdown-hover dark:bg-dark-dropdown-hover;
+    }
+
+    .bg-input-disabled {
+        @apply bg-light-input-disabled dark:bg-dark-input-disabled;
+    }
+
+    .text-default {
+        @apply text-light-default dark:text-dark-default;
+    }
+
+    .text-title {
+        @apply text-light-title dark:text-dark-title;
+    }
+
+    .text-primary {
+        @apply text-light-primary dark:text-dark-primary;
+    }
+
+    .text-info {
+        @apply text-light-info dark:text-dark-info;
+    }
+
+    .text-success {
+        @apply text-light-success dark:text-dark-success;
+    }
+
+    .text-warning {
+        @apply text-light-warning dark:text-dark-warning;
+    }
+
+    .text-error {
+        @apply text-light-error dark:text-dark-error;
+    }
+
+    .text-btn-default {
+        @apply text-light-btn-default dark:text-dark-btn-default;
+    }
+
+    .text-btn-primary {
+        @apply text-light-btn-primary dark:text-dark-btn-primary;
+    }
+
+    .text-btn-info {
+        @apply text-light-btn-info dark:text-dark-btn-info;
+    }
+
+    .text-btn-success {
+        @apply text-light-btn-success dark:text-dark-btn-success;
+    }
+
+    .text-btn-warning {
+        @apply text-light-btn-warning dark:text-dark-btn-warning;
+    }
+
+    .text-btn-error {
+        @apply text-light-btn-error dark:text-dark-btn-error;
+    }
+
+    .text-alert-default {
+        @apply text-light-alert-default dark:text-dark-alert-default;
+    }
+
+    .text-alert-primary {
+        @apply text-light-alert-primary dark:text-dark-alert-primary;
+    }
+
+    .text-alert-info {
+        @apply text-light-alert-info dark:text-dark-alert-info;
+    }
+
+    .text-alert-success {
+        @apply text-light-alert-success dark:text-dark-alert-success;
+    }
+
+    .text-alert-warning {
+        @apply text-light-alert-warning dark:text-dark-alert-warning;
+    }
+
+    .text-alert-error {
+        @apply text-light-alert-error dark:text-dark-alert-error;
+    }
+
+    .text-dropdown {
+        @apply text-light-dropdown dark:text-dark-dropdown;
+    }
+
+    .text-dropdown-hover {
+        @apply text-light-dropdown-hover dark:text-dark-dropdown-hover;
+    }
+
+    .text-input {
+        @apply text-light-input dark:text-dark-input;
+    }
+
+    .text-input-success {
+        @apply text-light-input-success dark:text-dark-input-success;
+    }
+
+    .text-input-error {
+        @apply text-light-input-error dark:text-dark-input-error;
+    }
+
+    .text-input-disabled {
+        @apply text-light-input-disabled dark:text-dark-input-disabled;
+    }
+
+    .text-placeholder {
+        @apply text-light-placeholder dark:text-dark-placeholder;
+    }
+
+    .text-placeholder-disabled {
+        @apply text-light-placeholder-disabled dark:text-dark-placeholder-disabled;
+    }
+
+    .decoration-link {
+        @apply decoration-light-link dark:decoration-dark-link;
+    }
+
+    .decoration-link-hover {
+        @apply decoration-light-link-hover dark:decoration-dark-link-hover;
+    }
 }
 
 @layer utilities {
