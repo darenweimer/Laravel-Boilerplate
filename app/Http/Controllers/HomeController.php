@@ -42,7 +42,7 @@ class HomeController extends Controller
      */
     public function theme() : mixed
     {
-        return Inertia::render('theme', [
+        return Inertia::render('theme/index', [
             'tableRows' => DB::table('users')
                 ->orderBy('id')
                 ->select([
