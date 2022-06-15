@@ -19,6 +19,16 @@
     <link href="{{ mix('css/app.css') }}" rel="stylesheet"/>
 
     <script src="{{ mix('js/app.js') }}" defer></script>
+
+    <script>
+        if (!('theme' in localStorage)) {
+            localStorage.theme = 'system';
+        }
+
+        if ((localStorage.theme === 'dark') || ((localStorage.theme === 'system') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
 </head>
 
 

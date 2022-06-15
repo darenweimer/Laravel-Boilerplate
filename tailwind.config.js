@@ -176,4 +176,5 @@ module.exports = {
             },
         },
     },
+    darkMode: 'class',
 };
