@@ -56,6 +56,7 @@ module.exports = {
             backgroundColor: {
                 light: {
                     'canvas':         colors.gray['900'],
+                    'default':        colors.gray['800'],
                     'btn-default':    colors.gray['600'],
                     'btn-primary':    colors.fuchsia['800'],
                     'btn-info':       colors.sky['700'],
@@ -74,6 +75,7 @@ module.exports = {
                 },
                 dark: {
                     'canvas':         colors.gray['900'],
+                    'default':        colors.gray['800'],
                     'btn-default':    colors.gray['600'],
                     'btn-primary':    colors.fuchsia['800'],
                     'btn-info':       colors.sky['700'],
