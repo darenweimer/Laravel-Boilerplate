@@ -55,10 +55,6 @@
         @apply bg-light-canvas dark:bg-dark-canvas;
     }
 
-    .bg-default {
-        @apply bg-light-default dark:bg-dark-default;
-    }
-
     .bg-btn-default {
         @apply bg-light-btn-default dark:bg-dark-btn-default;
     }

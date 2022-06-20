@@ -10,32 +10,34 @@
                 </transition>
 
                 <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0 scale-50" enter-to-class="opacity-100 scale-100" leave-active-class="ease-in duration-150" leave-from-class="opacity-100 scale-100" leave-to-class="opacity-0 scale-50">
-                    <div v-show="show" class="flex flex-col max-h-full mx-auto px-5 py-4 overflow-hidden rounded-lg shadow-[0_25px_50px_rgb(0,0,0)] bg-default font-default font-normal text-base text-default tracking-wide transform transition-all" :class="`max-w-${size}`">
-                        <div v-if="$slots.header" class="flex-none flex flex-row items-center mb-4 pb-4 border-b border-default text-2xl">
-                            <div class="grow font-bold text-title">
-                                <slot name="header">
+                    <div v-show="show" class="max-h-full mx-auto overflow-hidden rounded-lg shadow-[0_25px_50px_rgb(0,0,0)] bg-canvas font-default font-normal text-base text-default tracking-wide transform transition-all" :class="`max-w-${size}`">
+                        <div class="flex flex-col px-5 py-4 bg-white/[5%]">
+                            <div v-if="$slots.header" class="flex-none flex flex-row items-center mb-4 pb-4 border-b border-default text-2xl">
+                                <div class="grow font-bold text-title">
+                                    <slot name="header">
+                                    </slot>
+                                </div>
+
+                                <div v-if="closeable" class="flex-none">
+                                    <button class="focus:outline-none" @click="close()">
+                                        &times;
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="grow overflow-scroll">
+                                <div v-if="icon" class="mb-3 text-6xl text-center">
+                                    <i :class="iconClass"></i>
+                                </div>
+
+                                <slot>
                                 </slot>
                             </div>
 
-                            <div v-if="closeable" class="flex-none">
-                                <button class="focus:outline-none" @click="close()">
-                                    &times;
-                                </button>
+                            <div v-if="$slots.footer" class="flex-none mt-4 pt-4 border-t border-default">
+                                <slot name="footer">
+                                </slot>
                             </div>
-                        </div>
-
-                        <div class="grow overflow-scroll">
-                            <div v-if="icon" class="mb-3 text-6xl text-center">
-                                <i :class="iconClass"></i>
-                            </div>
-
-                            <slot>
-                            </slot>
-                        </div>
-
-                        <div v-if="$slots.footer" class="flex-none mt-4 pt-4 border-t border-default">
-                            <slot name="footer">
-                            </slot>
                         </div>
                     </div>
                 </transition>
