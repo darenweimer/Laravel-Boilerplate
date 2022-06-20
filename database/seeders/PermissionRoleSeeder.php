@@ -17,23 +17,23 @@ class PermissionRoleSeeder extends Seeder
     protected $seeds = [
         [
             'role'       => 'Admin',
-            'permission' => 'List Users',
+            'permission' => 'users:list',
         ],
         [
             'role'       => 'Admin',
-            'permission' => 'Show User',
+            'permission' => 'users:show',
         ],
         [
             'role'       => 'Admin',
-            'permission' => 'Create User',
+            'permission' => 'users:create',
         ],
         [
             'role'       => 'Admin',
-            'permission' => 'Edit User',
+            'permission' => 'users:edit',
         ],
         [
             'role'       => 'Admin',
-            'permission' => 'Delete User',
+            'permission' => 'users:delete',
         ],
     ];
 

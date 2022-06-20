@@ -16,27 +16,27 @@ class PermissionSeeder extends Seeder
     protected $seeds = [
         [
             'category'    => 'User Management',
-            'permission'  => 'List Users',
+            'permission'  => 'users:list',
             'description' => 'Can see a list of existing users',
         ],
         [
             'category'    => 'User Management',
-            'permission'  => 'Show User',
+            'permission'  => 'users:show',
             'description' => 'Can see details about an existing user',
         ],
         [
             'category'    => 'User Management',
-            'permission'  => 'Create User',
+            'permission'  => 'users:create',
             'description' => 'Can create a new user',
         ],
         [
             'category'    => 'User Management',
-            'permission'  => 'Edit User',
+            'permission'  => 'users:edit',
             'description' => 'Can edit an existing user',
         ],
         [
             'category'    => 'User Management',
-            'permission'  => 'Delete User',
+            'permission'  => 'users:delete',
             'description' => 'Can delete an existing user',
         ],
     ];
