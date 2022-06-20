@@ -14,34 +14,35 @@ use App\Models\Setting;
 /**
  * Returns true if an array matches an items expression
  *
- * $items can be a single item or a combination of items linked by || or &&.
+ * The items expression can be a single item or a combination of items linked
+ * by parentheses and the logical operators && and ||.
  *
  * @param array $array
- * @param string $items
+ * @param string $expression
  *
  * @return bool
  */
-function array_matches(array $array, string $items) : bool
+function array_matches(array $array, string $expression) : bool
 {
-    $items = array_map(
-        'trim', preg_split('/(?=(&&|\|\|))/', $items)
+    preg_match_all('/[^\(\)\|\&]+/', $expression, $matches);
+
+    $matches = array_filter(
+        array_map('trim', $matches[0])
     );
 
-    foreach ($items as $index => $item) {
-        if ($index === 0) {
-            $result = in_array($item, $array);
-        } elseif (str_starts_with($item, '||')) {
-            $result = $result || in_array(
-                ltrim(substr($item, 2)), $array
-            );
-        } elseif (str_starts_with($item, '&&')) {
-            $result = $result && in_array(
-                ltrim(substr($item, 2)), $array
-            );
-        }
+    $seek = [];
+
+    $replace = [];
+
+    foreach ($matches as $match) {
+        $seek[] = $match;
+
+        $replace[] = in_array($match, $array) ? 'true' : 'false';
     }
 
-    return $result;
+    $expression = str_replace($seek, $replace, $expression);
+
+    return eval("return {$expression};");
 }
 
 /**
