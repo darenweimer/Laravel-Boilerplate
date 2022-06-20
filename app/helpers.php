@@ -24,7 +24,7 @@ use App\Models\Setting;
  */
 function array_matches(array $array, string $expression) : bool
 {
-    preg_match_all('/[^\(\)\|\&]+/', $expression, $matches);
+    preg_match_all('/[^!\(\)\|\&]+/', $expression, $matches);
 
     $matches = array_filter(
         array_map('trim', $matches[0])
