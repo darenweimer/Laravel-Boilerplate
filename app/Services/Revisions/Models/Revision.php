@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Revisions\Models;
 
 use App\Models\Concerns\DateDisplay;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Prunable;
 

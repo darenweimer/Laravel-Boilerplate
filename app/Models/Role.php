@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Concerns\DateDisplay;
-use App\Models\Concerns\HasRevisions;
+use App\Services\Revisions\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Concerns;
+namespace App\Services\Revisions\Concerns;
 
-use App\Models\Revision;
+use App\Services\Revisions\Models\Revision;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
 
@@ -90,7 +90,7 @@ trait HasRevisions
             return;
         }
 
-        if (!($this instanceOf \Illuminate\Database\Eloquent\Relations\Pivot)) {
+        if (!($this instanceOf Pivot)) {
             return;
         }
 
@@ -99,8 +99,7 @@ trait HasRevisions
             ->get();
 
         if ($matches->count() === 1) {
-            $this->revisionsDeleting = $matches->first()
-                ->{$this->primaryKey};
+            $this->revisionsDeleting = $matches->first()->{$this->primaryKey};
         }
     }
 
