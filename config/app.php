@@ -193,6 +193,7 @@ return [
          * Application Services...
          */
         App\Services\Revisions\Service::class,
+        App\Services\Permissions\Service::class,
     ],
 
     /*

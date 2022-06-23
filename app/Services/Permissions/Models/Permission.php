@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Permissions\Models;
 
 use App\Models\Concerns\DateDisplay;
 use App\Services\Revisions\Concerns\HasRevisions;

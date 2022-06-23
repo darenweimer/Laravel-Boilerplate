@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Permissions\Models;
 
 use App\Models\Concerns\DateDisplay;
 use App\Services\Revisions\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class RoleUser extends Pivot
+class PermissionRole extends Pivot
 {
     use DateDisplay, HasRevisions;
 
@@ -23,8 +23,8 @@ class RoleUser extends Pivot
      * @var array
      */
     protected $fillable = [
-        'user_id',
         'role_id',
+        'permission_id',
     ];
 
     /**
@@ -33,8 +33,8 @@ class RoleUser extends Pivot
      * @var array
      */
     protected $casts = [
-        'user_id' => 'integer',
-        'role_id' => 'integer',
+        'role_id'       => 'integer',
+        'permission_id' => 'integer',
     ];
 
     /*
@@ -46,25 +46,25 @@ class RoleUser extends Pivot
     /**
      * Relationship Many:1
      *
-     * Returns the user associated with the role user
-     *
-     * @return mixed
-     */
-    public function user() : mixed
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    /**
-     * Relationship Many:1
-     *
-     * Returns the role associated with the role user
+     * Returns the role associated with the permission role
      *
      * @return mixed
      */
     public function role() : mixed
     {
         return $this->belongsTo(Role::class);
+    }
+
+    /**
+     * Relationship Many:1
+     *
+     * Returns the permission associated with the permission role
+     *
+     * @return mixed
+     */
+    public function permission() : mixed
+    {
+        return $this->belongsTo(Permission::class);
     }
 
 }
