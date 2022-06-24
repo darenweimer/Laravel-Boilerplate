@@ -187,6 +187,18 @@ trait HasPermissions
     }
 
     /**
+     * Returns true if the user is attached to a specified role
+     *
+     * @param string $role
+     *
+     * @return bool
+     */
+    public function hasRole(string $role) : bool
+    {
+        return in_array($role, $this->roles_list);
+    }
+
+    /**
      * Returns true if the user is attached to the specified roles
      *
      * @param string $roles
@@ -240,6 +252,18 @@ trait HasPermissions
         }
 
         return $this;
+    }
+
+    /**
+     * Returns true if the user is attached to a specified permission
+     *
+     * @param string $permission
+     *
+     * @return bool
+     */
+    public function hasPermission(string $permission) : bool
+    {
+        return $this->su || in_array($permission, $this->permissions_list);
     }
 
     /**
