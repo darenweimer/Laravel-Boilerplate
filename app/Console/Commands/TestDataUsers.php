@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Permission;
-use App\Models\Role;
 use App\Models\User;
+use App\Services\Permissions\Models\Permission;
+use App\Services\Permissions\Models\Role;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
