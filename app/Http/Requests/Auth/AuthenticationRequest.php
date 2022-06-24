@@ -45,10 +45,13 @@ class AuthenticationRequest extends FormRequest
         );
 
         throw ValidationException::withMessages([
-            'email' => trans('auth.throttle', [
-                'seconds' => $seconds,
-                'minutes' => ceil($seconds / 60),
-            ]),
+            'email' => trans(
+                'auth.throttle',
+                [
+                    'seconds' => $seconds,
+                    'minutes' => ceil($seconds / 60),
+                ]
+            ),
         ]);
     }
 

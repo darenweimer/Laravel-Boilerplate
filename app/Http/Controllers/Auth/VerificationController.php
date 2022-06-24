@@ -81,7 +81,10 @@ class VerificationController extends Controller
             ->sendEmailVerificationNotification();
 
         return back()
-            ->with('status', 'A new verification link has been sent to your email address.');
+            ->with(
+                'status',
+                'A new verification link has been sent to your email address.'
+            );
     }
 
 }

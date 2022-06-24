@@ -99,7 +99,8 @@ trait HasRevisions
             ->get();
 
         if ($matches->count() === 1) {
-            $this->revisionsDeleting = $matches->first()->{$this->primaryKey};
+            $this->revisionsDeleting = $matches->first()
+                ->{$this->primaryKey};
         }
     }
 
