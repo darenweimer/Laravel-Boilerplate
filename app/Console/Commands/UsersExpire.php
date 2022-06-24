@@ -38,7 +38,7 @@ class UsersExpire extends Command
 
         $query->delete();
 
-        $this->info('All selected user sessions have been expired.');
+        $this->info('All specified user sessions have been expired.');
 
         return 0;
     }
