@@ -24,25 +24,26 @@ use App\Models\Setting;
  */
 function array_matches(array $array, string $expression) : bool
 {
-    preg_match_all('/[^!\(\)\|\&]+/', $expression, $matches);
-
-    $matches = array_filter(
-        array_map('trim', $matches[0])
+    $conditions = array_filter(
+        array_map(
+            'trim',
+            preg_split(
+                '/([!\(\)\&\|]+)/', $expression, -1, PREG_SPLIT_DELIM_CAPTURE
+            )
+        )
     );
 
-    $seek = [];
+    $evaluation = '';
 
-    $replace = [];
-
-    foreach ($matches as $match) {
-        $seek[] = $match;
-
-        $replace[] = in_array($match, $array) ? 'true' : 'false';
+    foreach ($conditions as $condition) {
+        if (in_array($condition[0], ['!', '(', ')', '&', '|'])) {
+            $evaluation .= $condition;
+        } else {
+            $evaluation .= in_array($condition, $array) ? 'true' : 'false';
+        }
     }
 
-    $expression = str_replace($seek, $replace, $expression);
-
-    return eval("return {$expression};");
+    return eval("return {$evaluation};");
 }
 
 /**
