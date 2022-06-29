@@ -1,10 +1,14 @@
 <template>
     <div class="flex h-screen">
         <div class="m-auto text-center">
-            <div class="mb-8 font-black text-5xl text-info">
+            <div class="mb-4 font-black text-5xl text-info">
                 Laravel
                 <i class="fa-solid fa-fire-burner block sm:inline mx-0 sm:mx-2 my-3 sm:my-0 text-warning"></i>
                 Boilerplate
+            </div>
+
+            <div class="mb-4">
+                Matches Laravel Framework v9.1.10
             </div>
 
             <div class="mb-12">
