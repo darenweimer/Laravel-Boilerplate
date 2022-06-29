@@ -1,2 +1,2 @@
 import './bootstrap';
-import './inertia-vue';
+import './vue-app';
