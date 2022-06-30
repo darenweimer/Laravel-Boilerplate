@@ -1,4 +1,4 @@
-export default function lorem(start, count) {
+export default function lorem(count, start) {
     return [
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         'Nunc eget lorem dolor sed viverra ipsum nunc.',
