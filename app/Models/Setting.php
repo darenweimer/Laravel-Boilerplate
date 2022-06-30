@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\DataTypes;
+use App\Enums\DataType;
 use App\Models\Concerns\DateDisplay;
 use App\Models\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Model;
@@ -30,7 +30,7 @@ class Setting extends Model
      * @var array
      */
     protected $casts = [
-        'data_type'  => DataTypes::class,
+        'data_type'  => DataType::class,
         'expires_at' => 'timestamp',
     ];
 

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-use App\Enums\NotifyOptions;
+use App\Enums\NotifyOption;
 use App\Mail\ExceptionNotification;
 use App\Models\User;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
@@ -55,14 +55,14 @@ class Handler extends ExceptionHandler
             ->get();
 
         foreach ($users as $user) {
-            if (in_array($user->notify_exceptions, [NotifyOptions::Email, NotifyOptions::Both])) {
+            if (in_array($user->notify_exceptions, [NotifyOption::Email, NotifyOption::Both])) {
                 Mail::to($user)
                     ->queue(
                         new ExceptionNotification($e)
                     );
             }
 
-            if (in_array($user->notify_exceptions, [NotifyOptions::Text, NotifyOptions::Both])) {
+            if (in_array($user->notify_exceptions, [NotifyOption::Text, NotifyOption::Both])) {
                 // Send text notification
             }
         }

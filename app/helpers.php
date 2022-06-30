@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\DataTypes;
+use App\Enums\DataType;
 use App\Models\Setting;
 use App\Support\Decimal;
 
@@ -63,12 +63,12 @@ function setting(string $setting, mixed $default = null) : mixed
 
     if ($data && ((!$data->expires_at) || ($data->expires_at > time()))) {
         return match ($data->data_type) {
-            DataTypes::String  => (string) $data->value,
-            DataTypes::Integer => (int) $data->value,
-            DataTypes::Float   => (float) $data->value,
-            DataTypes::Decimal => new Decimal($data->value),
-            DataTypes::Array   => json_decode($data->value, true),
-            DataTypes::Object  => json_decode($data->value, false),
+            DataType::String  => (string) $data->value,
+            DataType::Integer => (int) $data->value,
+            DataType::Float   => (float) $data->value,
+            DataType::Decimal => new Decimal($data->value),
+            DataType::Array   => json_decode($data->value, true),
+            DataType::Object  => json_decode($data->value, false),
             default            => $data->value,
         };
     }

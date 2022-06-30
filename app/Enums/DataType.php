@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Enums\Concerns\HasValues;
 
-enum DataTypes : string
+enum DataType : string
 {
     use HasValues;
 

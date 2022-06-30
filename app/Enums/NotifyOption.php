@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use App\Enums\Concerns\HasValues;
 
-enum NotifyOptions : string
+enum NotifyOption : string
 {
     use HasValues;
 

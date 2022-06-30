@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\NotifyOptions;
+use App\Enums\NotifyOption;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('su')->default(false);
             $table->boolean('compromised')->default(false);
             $table->string('timezone')->nullable();
-            $table->enum('notify_exceptions', NotifyOptions::values())->default('none');
+            $table->enum('notify_exceptions', NotifyOption::values())->default('none');
             $table->timestamps();
             $table->softDeletes();
         });
