@@ -20,9 +20,7 @@ class Decimal implements CastsAttributes
      */
     public function get(mixed $model, string $key, mixed $value, array $attributes) : ?DecimalCast
     {
-        return isset($value)
-            ? (new DecimalCast($value))
-            : null;
+        return isset($value) ? (new DecimalCast($value)) : null;
     }
 
     /**
@@ -37,9 +35,7 @@ class Decimal implements CastsAttributes
      */
     public function set(mixed $model, string $key, mixed $value, array $attributes) : ?string
     {
-        return isset($value)
-            ? ((string) $value)
-            : null;
+        return isset($value) ? ((string) $value) : null;
     }
 
 }
