@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Settings\Models;
+namespace App\Models;
 
+use App\Enums\DataTypes;
 use App\Models\Concerns\DateDisplay;
-use App\Services\Revisions\Concerns\HasRevisions;
-use App\Services\Settings\Enums\DataTypes;
+use App\Models\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

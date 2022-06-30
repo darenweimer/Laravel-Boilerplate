@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Services\Permissions\Models;
+namespace App\Models;
 
 use App\Models\Concerns\DateDisplay;
-use App\Services\Revisions\Concerns\HasRevisions;
+use App\Models\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PermissionRole extends Pivot

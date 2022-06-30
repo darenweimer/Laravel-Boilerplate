@@ -189,12 +189,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        /*
-         * Application Services...
-         */
-        App\Services\Revisions\Service::class,
-        App\Services\Permissions\Service::class,
-        App\Services\Settings\Service::class,
     ],
 
     /*

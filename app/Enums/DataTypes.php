@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Settings\Enums;
+namespace App\Enums;
 
 use App\Enums\Concerns\HasValues;
 

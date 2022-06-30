@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services\Permissions\Concerns;
+namespace App\Models\Concerns;
 
-use App\Services\Permissions\Models\Permission;
-use App\Services\Permissions\Models\PermissionUser;
-use App\Services\Permissions\Models\Role;
-use App\Services\Permissions\Models\RoleUser;
+use App\Models\Permission;
+use App\Models\PermissionUser;
+use App\Models\Role;
+use App\Models\RoleUser;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasPermissions

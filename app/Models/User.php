@@ -4,8 +4,8 @@ namespace App\Models;
 
 use App\Enums\NotifyOptions;
 use App\Models\Concerns\DateDisplay;
-use App\Services\Permissions\Concerns\HasPermissions;
-use App\Services\Revisions\Concerns\HasRevisions;
+use App\Models\Concerns\HasPermissions;
+use App\Models\Concerns\HasRevisions;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
