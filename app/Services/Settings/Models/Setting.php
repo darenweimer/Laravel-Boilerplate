@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Settings\Models;
 
 use App\Models\Concerns\DateDisplay;
 use App\Services\Revisions\Concerns\HasRevisions;
+use App\Services\Settings\Enums\DataTypes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,6 +19,7 @@ class Setting extends Model
      */
     protected $fillable = [
         'setting',
+        'data_type',
         'value',
         'expires_at',
     ];
@@ -28,6 +30,7 @@ class Setting extends Model
      * @var array
      */
     protected $casts = [
+        'data_type'  => DataTypes::class,
         'expires_at' => 'timestamp',
     ];
 

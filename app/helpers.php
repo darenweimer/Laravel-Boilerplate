@@ -1,7 +1,5 @@
 <?php
 
-use App\Models\Setting;
-
 /*
 |-------------------------------------------------------------------------------
 | Global Helpers
@@ -44,45 +42,6 @@ function array_matches(array $array, string $expression) : bool
     }
 
     return eval("return {$evaluation};");
-}
-
-/**
- * Gets a setting from the database
- *
- * @param string $setting
- * @param mixed $default
- *
- * @return mixed
- */
-function get_setting(string $setting, mixed $default = null) : mixed
-{
-    $model = Setting::where('setting', $setting)
-        ->first();
-
-    if ($model && ((!$model->expires_at) || ($model->expires_at > time()))) {
-        return $model->value;
-    }
-
-    return $default;
-}
-
-/**
- * Puts a setting in the database
- *
- * @param string $setting
- * @param mixed $value
- * @param int $expiresAt
- *
- * @return void
- */
-function put_setting(string $setting, mixed $value, int $expiresAt = null) : void
-{
-    Setting::updateOrCreate([
-        'setting'    => $setting,
-    ], [
-        'value'      => $value,
-        'expires_at' => $expiresAt,
-    ]);
 }
 
 /**

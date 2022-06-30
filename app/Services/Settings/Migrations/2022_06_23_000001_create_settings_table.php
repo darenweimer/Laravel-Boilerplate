@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Settings\Enums\DataTypes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,6 +18,7 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('setting')->unique();
+            $table->enum('data_type', DataTypes::values())->default('string');
             $table->text('value')->nullable();
             $table->timestamp('expires_at')->nullable();
             $table->timestamps();

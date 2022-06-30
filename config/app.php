@@ -194,6 +194,7 @@ return [
          */
         App\Services\Revisions\Service::class,
         App\Services\Permissions\Service::class,
+        App\Services\Settings\Service::class,
     ],
 
     /*
