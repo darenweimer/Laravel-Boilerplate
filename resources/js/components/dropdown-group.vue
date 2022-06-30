@@ -60,9 +60,7 @@
         },
         methods: {
             getLinkOptionHref(option) {
-                return (option.type === 'link')
-                    ? (option.href ? option.href : '#')
-                    : null;
+                return (option.type === 'link') ? (option.href ?? '#') : null;
             },
             handleActionOptionClick(option) {
                 if (option.type === 'action') {
