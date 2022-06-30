@@ -16,6 +16,8 @@ import {
     useForm,
 } from '@inertiajs/inertia-vue3';
 
+import lorem from '@/mixins/lorem';
+
 import Alert from '@/components/alert';
 import Button from '@/components/button';
 import Checkbox from '@/components/checkbox';
@@ -56,6 +58,7 @@ vueCreateApp({
         status: String,
     },
     methods: {
+        lorem,
         route,
         useForm,
     },
