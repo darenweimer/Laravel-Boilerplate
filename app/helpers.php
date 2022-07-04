@@ -75,7 +75,7 @@ if (!function_exists('setting')) {
                 DataType::Decimal => new Decimal($data->value),
                 DataType::Array   => json_decode($data->value, true),
                 DataType::Object  => json_decode($data->value, false),
-                default            => $data->value,
+                default           => $data->value,
             };
         }
 
