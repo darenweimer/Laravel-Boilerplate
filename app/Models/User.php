@@ -80,12 +80,6 @@ class User extends Authenticatable // implements MustVerifyEmail
         );
     }
 
-    /*
-    |---------------------------------------------------------------------------
-    | Methods
-    |---------------------------------------------------------------------------
-    */
-
     /**
      * Enables two-factor authentication with a new secret key
      *
