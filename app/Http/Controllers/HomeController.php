@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -43,15 +43,9 @@ class HomeController extends Controller
     public function theme() : mixed
     {
         return Inertia::render('theme/index', [
-            'tableRows' => DB::table('users')
-                ->orderBy('id')
-                ->select([
-                    'id',
-                    'first_name',
-                    'last_name',
-                    'email',
-                ])
-                ->get(),
+            'tableRows' => User::factory()
+                ->count(25)
+                ->make(),
         ]);
     }
 
