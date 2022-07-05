@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
-use App\Services\Permissions\Models\Permission;
-use App\Services\Permissions\Models\Role;
+use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class TestDataUsers extends Command
@@ -31,90 +31,29 @@ class TestDataUsers extends Command
     protected $description = 'Adds test users to the database';
 
     /**
-     * Gets all possible test user combinations
+     * Retrieves all existing users by email
      *
      * @return array
      */
-    protected function getAllTestUsers() : array
+    protected function getExistingUsers() : array
     {
-        $testdata = json_decode(
-            base64_decode(
-                file_get_contents(__DIR__ . '/TestData/users.json')
-            )
-        );
-
-        $users = [];
-
-        foreach ($testdata->first_name as $first) {
-            foreach ($testdata->last_name as $last) {
-                $users[] = "{$first} {$last}";
-            }
-        }
-
-        sort($users);
-
-        return $users;
+        return DB::table('users')
+            ->select('email')
+            ->get()
+            ->pluck('email')
+            ->all();
     }
 
     /**
-     * Gets all existing database users
+     * Retrieves all existing selected roles
      *
      * @return array
      */
-    protected function getAllExistingUsers() : array
-    {
-        $existing = User::select([
-            'first_name',
-            'last_name',
-        ])
-        ->get();
-
-        $users = [];
-
-        foreach ($existing as $user) {
-            $users[] = "{$user->first_name} {$user->last_name}";
-        }
-
-        sort($users);
-
-        return $users;
-    }
-
-    /**
-     * Gets all possible mail server combinations
-     *
-     * @return array
-     */
-    protected function getAllTestMailServers() : array
-    {
-        $testdata = json_decode(
-            base64_decode(
-                file_get_contents(__DIR__ . '/TestData/mailservers.json')
-            )
-        );
-
-        $mailServers = [];
-
-        foreach ($testdata->server as $server) {
-            foreach ($testdata->domain as $domain) {
-                $mailServers[] = "{$server}.{$domain}";
-            }
-        }
-
-        sort($mailServers);
-
-        return $mailServers;
-    }
-
-    /**
-     * Gets all attachable database roles
-     *
-     * @return array
-     */
-    protected function getAllAttachableRoles() : array
+    protected function getAttachableRoles() : array
     {
         if ($roles = $this->option('role')) {
-            return Role::select('id')
+            return DB::table('roles')
+                ->select('id')
                 ->whereIn('role', $roles)
                 ->pluck('id')
                 ->all();
@@ -124,14 +63,15 @@ class TestDataUsers extends Command
     }
 
     /**
-     * Gets all attachable database permissions
+     * Retrieves all existing selected permissions
      *
      * @return array
      */
-    protected function getAllAttachablePermissions() : array
+    protected function getAttachablePermissions() : array
     {
         if ($permissions = $this->option('permission')) {
-            return Permission::select('id')
+            return DB::table('permissions')
+                ->select('id')
                 ->whereIn('permission', $permissions)
                 ->pluck('id')
                 ->all();
@@ -141,72 +81,69 @@ class TestDataUsers extends Command
     }
 
     /**
-     * Creates an email address for a test user
+     * Generates unique user accounts
      *
-     * @param string $first
-     * @param string $last
-     * @param array $mailServers
+     * @param int $count
+     * @param array $existing
      *
-     * @return string
+     * @return array
      */
-    protected function createEmail(string $first, string $last, array $mailServers) : string
+    protected function generateUsers(int $count, array $existing) : array
     {
-        $mailServer = $mailServers[
-            rand(0, count($mailServers) - 1)
-        ];
+        $users = [];
 
-        $first = preg_replace('/[^a-zA-Z0-9\.]/', '', $first);
-        $last  = preg_replace('/[^a-zA-Z0-9\.]/', '', $last);
-
-        return strtolower("{$first}{$last}@{$mailServer}");
-    }
-
-    /**
-     * Creates test users
-     *
-     * @param int $total
-     * @param array $users
-     *
-     * @return void
-     */
-    protected function createTestUsers(int $total, array $users) : void
-    {
         $password = Hash::make(
             $this->argument('password')
         );
 
         $su = $this->option('su');
 
-        $mailServers = $this->getAllTestMailServers();
+        while (count($users) < $count) {
+            try {
+                $user = [
+                    'first_name' => fake()->firstName(),
+                    'last_name'  => fake()->lastName(),
+                    'email'      => fake()->unique()->safeEmail(),
+                    'password'   => $password,
+                    'su'         => $su,
+                ];
 
-        $roles = $this->getAllAttachableRoles();
+                if (!in_array($user['email'], $existing)) {
+                    $users[] = $user;
+                }
+            } catch (Exception $e) {
+                break;
+            }
+        }
 
-        $permissions = $this->getAllAttachablePermissions();
+        return $users;
+    }
+
+    /**
+     * Inserts user accounts in the database
+     *
+     * @param array $users
+     *
+     * @return void
+     */
+    protected function insertUsers(array $users) : void
+    {
+        $roles = $this->getAttachableRoles();
+
+        $permissions = $this->getAttachablePermissions();
+
+        $total = count($users);
 
         for ($i = 1; $i <= $total; $i++) {
-            $user = $users[
-                $index = rand(0, count($users) - 1)
-            ];
-
-            list($first, $last) = explode(' ', $user);
-
-            array_splice($users, $index, 1);
-
-            $model = User::create([
-                'first_name' => $first,
-                'last_name'  => $last,
-                'email'      => $this->createEmail($first, $last, $mailServers),
-                'password'   => $password,
-                'su'         => $su,
-            ]);
+            $user = User::create($users[$i - 1]);
 
             if ($roles) {
-                $model->roles()
+                $user->roles()
                     ->attach($roles);
             }
 
             if ($permissions) {
-                $model->permissions()
+                $user->permissions()
                     ->attach($permissions);
             }
 
@@ -221,22 +158,18 @@ class TestDataUsers extends Command
      */
     public function handle() : int
     {
-        $users = $this->getAllTestUsers();
-
-        $existing = $this->getAllExistingUsers();
-
-        $users = array_diff($users, $existing);
-
-        $total = min(
-            $this->argument('total'), count($users)
+        $users = $this->generateUsers(
+            $total = $this->argument('total'), $this->getExistingUsers()
         );
 
-        if ($total > 0) {
-            $this->createTestUsers($total, $users);
+        if (($unique = count($users)) < $total) {
+            $this->error(
+                "No test users were added to the database: {$unique} unique available."
+            );
+        } else {
+            $this->insertUsers($users);
 
             $this->info("{$total} test users were added to the database.");
-        } else {
-            $this->error("No test users were added to the database: 0 unique remaining.");
         }
 
         return 0;
