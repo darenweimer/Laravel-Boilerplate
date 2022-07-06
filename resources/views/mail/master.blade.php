@@ -13,70 +13,21 @@
     </title>
 
     <link href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Armata:wght@400&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
 
-    <style>
-        .mb-1 {
-            margin-bottom: 0.75rem;
-        }
-
-        .mb-2 {
-            margin-bottom: 2.50rem;
-        }
-
-        .p-1 {
-            padding: 1.00rem;
-        }
-
-        .overflow-scroll {
-            overflow: scroll;
-        }
-
-        .bg-pre {
-            background-color: #ddd;
-        }
-
-        .font-normal {
-            font-family: 'Roboto';
-            font-size: 1.00rem;
-            font-weight: 400;
-        }
-
-        .font-title {
-            font-family: 'Armata';
-            font-size: 1.50rem;
-            font-weight: 400;
-        }
-
-        .text-normal {
-            color: #333;
-        }
-
-        .text-link {
-            color: #0ad;
-            text-decoration: none;
-        }
-
-        .text-success {
-            color: #0a0;
-        }
-
-        .text-error {
-            color: #c00;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-    </style>
+    @include('mail.master-styles')
 </head>
 
 
 
-<body class="p-1 font-normal text-normal">
-    <div class="mb-2 font-title text-center">
-        {{ config('app.name') }}: @yield('title')
+<body class="bg-default font-default font-normal text-base text-default tracking-wide antialiased">
+    <div class="mt-4 mb-4 font-black text-3xl text-center">
+        {{ config('app.name') }}
+    </div>
+
+    <div class="mb-10 font-bold text-xl text-center">
+        @yield('title')
     </div>
 
     @yield('content')

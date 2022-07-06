@@ -7,52 +7,68 @@
 @endsection
 
 @section('content')
-    <div class="mb-1">
-        Application URL:
+    <div class="mb-3">
+        <div class="font-bold">
+            Application URL:
+        </div>
 
         <a href="{{ config('app.url') }}" class="text-link">
             {{ config('app.url') }}
         </a>
     </div>
 
-    <div class="mb-1">
-        Environment: {{ config('app.env') }}
+    <div class="mb-3">
+        <div class="font-bold">
+            Environment:
+        </div>
+
+        {{ config('app.env') }}
     </div>
 
-    <div class="mb-1">
-        Exception:
+    <div class="mb-3">
+        <div class="font-bold">
+            Exception:
+        </div>
 
         <span class="text-error">
             {{ $exception['class'] }}
         </span>
     </div>
 
-    <div class="mb-1">
-        Message:
+    <div class="mb-3">
+        <div class="font-bold">
+            Message:
+        </div>
 
-        <span class="text-error">
-            {{ $exception['message'] }}
+        {{ $exception['message'] }}
+    </div>
+
+    <div class="mb-3">
+        <div class="font-bold">
+            File:
+        </div>
+
+        {{ $exception['file'] }}
+
+        <span class="font-semibold">
+            ({{ $exception['line'] }})
         </span>
     </div>
 
-    <div class="mb-1">
-        File:
+    <div class="mb-3">
+        <div class="font-bold">
+            Occurred:
+        </div>
 
-        <span class="text-error">
-            {{ $exception['file'] }}
-        </span>
-
-        on line
-
-        <span class="text-error">
-            {{ $exception['line'] }}
-        </span>
+        {{ now()->format('m/d/Y H:i:s P') }}
     </div>
 
-    <div class="mb-1">
-        Stack Trace:
+    <div class="mt-8 mb-8">
+        <div class="font-bold">
+            Stack Trace:
+        </div>
 
-        <pre class="p-1 overflow-scroll bg-pre"><!--
+        <pre class="pl-5 pr-5 pt-3 pb-3 overflow-scroll rounded-md bg-pre"><!--
             -->{{ $exception['trace'] }}<!--
         --></pre>
     </div>
