@@ -46,8 +46,13 @@ finished 'Place the application in maintenance mode'
 
 starting 'Pull the latest changes from the repository'
 
-git checkout . >> $LOG 2>&1
-git pull >> $LOG 2>&1
+if [ $ENV = 'local' ]
+then
+    # Do not refresh the repository
+else
+    git checkout . >> $LOG 2>&1
+    git pull >> $LOG 2>&1
+fi
 
 finished 'Pull the latest changes from the repository'
 
