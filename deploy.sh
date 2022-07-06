@@ -12,6 +12,10 @@ function finished {
     echo -e "\r\e[K\e[32m[$(date '+%H:%M:%S')] $1\e[0m"
 }
 
+function skipping {
+    echo -e "\r\e[K\e[2;32m[$(date '+%H:%M:%S')] $1 (skipped on local)\e[0m"
+}
+
 #-------------------------------------------------------------------------------
 # Store the application environment
 #-------------------------------------------------------------------------------
@@ -48,13 +52,13 @@ starting 'Pull the latest changes from the repository'
 
 if [ $ENV = 'local' ]
 then
-    # Do not refresh the repository
+    skipping 'Pull the latest changes from the repository'
 else
     git checkout . >> $LOG 2>&1
     git pull >> $LOG 2>&1
-fi
 
-finished 'Pull the latest changes from the repository'
+    finished 'Pull the latest changes from the repository'
+fi
 
 #-------------------------------------------------------------------------------
 # Refresh the Composer dependencies
@@ -101,11 +105,13 @@ starting 'Cache all application data'
 if [ $ENV = 'local' ]
 then
     php artisan cache:flush >> $LOG 2>&1
+
+    skipping 'Cache all application data'
 else
     php artisan cache:fill >> $LOG 2>&1
-fi
 
-finished 'Cache all application data'
+    finished 'Cache all application data'
+fi
 
 #-------------------------------------------------------------------------------
 # Update file and folder permissions
