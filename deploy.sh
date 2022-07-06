@@ -97,6 +97,16 @@ starting 'Update file and folder permissions'
 finished 'Update file and folder permissions'
 
 #-------------------------------------------------------------------------------
+# Ensure the Cron job is loaded
+#-------------------------------------------------------------------------------
+
+starting 'Ensure the Cron job is loaded'
+
+crontab -u www-data crontab.conf >> $LOG 2>&1
+
+finished 'Ensure the Cron job is loaded'
+
+#-------------------------------------------------------------------------------
 # Reload and restart Supervisor
 #-------------------------------------------------------------------------------
 
