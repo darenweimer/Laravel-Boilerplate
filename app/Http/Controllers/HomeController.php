@@ -15,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth.permits:Permissions')
+        // $this->middleware('auth.permissions:Permissions')
         //     ->only([
         //         'route',
         //     ]);
