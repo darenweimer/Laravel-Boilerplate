@@ -13,6 +13,12 @@ function finished {
 }
 
 #-------------------------------------------------------------------------------
+# Store the application environment
+#-------------------------------------------------------------------------------
+
+ENV=$(cat .env | grep 'APP_ENV=.*' | cut -d '=' -f2)
+
+#-------------------------------------------------------------------------------
 # Generate the log file and maintenance bypass key
 #-------------------------------------------------------------------------------
 
@@ -51,7 +57,12 @@ finished 'Pull the latest changes from the repository'
 
 starting 'Refresh the Composer dependencies'
 
-composer install -n --optimize-autoloader --no-dev >> $LOG 2>&1
+if [ $ENV = 'local' ]
+then
+    composer install -n >> $LOG 2>&1
+else
+    composer install -n --optimize-autoloader --no-dev >> $LOG 2>&1
+fi
 
 finished 'Refresh the Composer dependencies'
 
@@ -82,7 +93,12 @@ finished 'Run new database migrations'
 
 starting 'Cache all application data'
 
-php artisan cache:fill >> $LOG 2>&1
+if [ $ENV = 'local' ]
+then
+    php artisan cache:flush >> $LOG 2>&1
+else
+    php artisan cache:fill >> $LOG 2>&1
+fi
 
 finished 'Cache all application data'
 
