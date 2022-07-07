@@ -31,8 +31,11 @@ UUID=$(cat /proc/sys/kernel/random/uuid)
 
 echo
 comments "Your deployment log is located at: $LOG"
+echo
 comments "Your secret key to bypass maintenance mode is: $UUID"
 echo
+
+sleep 1
 
 #-------------------------------------------------------------------------------
 # Place the application in maintenance mode
@@ -157,6 +160,8 @@ finished 'Take the application out of maintenance mode'
 #-------------------------------------------------------------------------------
 # Complete the deployment
 #-------------------------------------------------------------------------------
+
+sleep 1
 
 echo
 comments 'Your deployment is complete'
