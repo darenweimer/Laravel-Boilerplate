@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace App\Services\Permissions\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 
-class UserPermissionsCheck
+class UserRolesCheck
 {
 
     /**
@@ -13,13 +13,13 @@ class UserPermissionsCheck
      *
      * @param Request $request
      * @param Closure $next
-     * @param string $permissions
+     * @param string $roles
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, string $permissions) : mixed
+    public function handle(Request $request, Closure $next, string $roles) : mixed
     {
-        if ($request->user()?->hasPermissions($permissions)) {
+        if ($request->user()?->hasRoles($roles)) {
             return $next($request);
         }
 
