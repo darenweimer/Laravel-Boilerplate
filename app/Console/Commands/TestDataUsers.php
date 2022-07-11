@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\User;
+use App\Services\Permissions\Models\Permission;
+use App\Services\Permissions\Models\Role;
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -52,8 +54,7 @@ class TestDataUsers extends Command
     protected function getAttachableRoles() : array
     {
         if ($roles = $this->option('role')) {
-            return DB::table('roles')
-                ->select('id')
+            return Role::select('id')
                 ->whereIn('role', $roles)
                 ->pluck('id')
                 ->all();
@@ -70,8 +71,7 @@ class TestDataUsers extends Command
     protected function getAttachablePermissions() : array
     {
         if ($permissions = $this->option('permission')) {
-            return DB::table('permissions')
-                ->select('id')
+            return Permission::select('id')
                 ->whereIn('permission', $permissions)
                 ->pluck('id')
                 ->all();

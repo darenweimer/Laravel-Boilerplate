@@ -33,6 +33,40 @@ class UsersAdd extends Command
     protected $description = 'Adds a new user to the database';
 
     /**
+     * Retrieves all existing selected roles
+     *
+     * @return array
+     */
+    protected function getAttachableRoles() : array
+    {
+        if ($roles = $this->option('role')) {
+            return Role::select('id')
+                ->whereIn('role', $roles)
+                ->pluck('id')
+                ->all();
+        }
+
+        return [];
+    }
+
+    /**
+     * Retrieves all existing selected permissions
+     *
+     * @return array
+     */
+    protected function getAttachablePermissions() : array
+    {
+        if ($permissions = $this->option('permission')) {
+            return Permission::select('id')
+                ->whereIn('permission', $permissions)
+                ->pluck('id')
+                ->all();
+        }
+
+        return [];
+    }
+
+    /**
      * Executes the console command
      *
      * @return int
@@ -49,20 +83,14 @@ class UsersAdd extends Command
             'su'         => $this->option('su'),
         ]);
 
-        foreach ($this->option('role') as $role) {
+        if ($roles = $this->getAttachableRoles()) {
             $user->roles()
-                ->attach(
-                    Role::where('role', $role)
-                        ->first()
-                );
+                ->attach($roles);
         }
 
-        foreach ($this->option('permission') as $permission) {
+        if ($permissions = $this->getAttachablePermissions()) {
             $user->permissions()
-                ->attach(
-                    Permission::where('permission', $permission)
-                        ->first()
-                );
+                ->attach($permissions);
         }
 
         $this->info('The user was added to the database.');
