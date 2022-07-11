@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models\Concerns;
+namespace App\Services\Revisions\Concerns;
 
-use App\Models\Revision;
+use App\Services\Revisions\Models\Revision;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Support\Facades\Auth;
 
