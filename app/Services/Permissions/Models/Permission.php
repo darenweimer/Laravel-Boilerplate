@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace App\Services\Permissions\Models;
 
 use App\Models\Concerns\DateDisplay;
+use App\Models\User;
 use App\Services\Revisions\Concerns\HasRevisions;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Role extends Model
+class Permission extends Model
 {
     use DateDisplay, HasRevisions, SoftDeletes;
 
@@ -17,20 +18,21 @@ class Role extends Model
      * @var array
      */
     protected $fillable = [
-        'role',
+        'category',
+        'permission',
         'description',
     ];
 
     /**
      * Relationship Many:Many
      *
-     * Returns the permissions associated with the role
+     * Returns the roles associated with the permission
      *
      * @return mixed
      */
-    public function permissions() : mixed
+    public function roles() : mixed
     {
-        return $this->belongsToMany(Permission::class)
+        return $this->belongsToMany(Role::class)
             ->using(PermissionRole::class)
             ->withPivot('id')
             ->withTimestamps();
@@ -39,14 +41,14 @@ class Role extends Model
     /**
      * Relationship Many:Many
      *
-     * Returns the users associated with the role
+     * Returns the users associated with the permission
      *
      * @return mixed
      */
     public function users() : mixed
     {
         return $this->belongsToMany(User::class)
-            ->using(RoleUser::class)
+            ->using(PermissionUser::class)
             ->withPivot('id')
             ->withTimestamps();
     }
