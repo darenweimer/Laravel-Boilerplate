@@ -25,6 +25,11 @@ module.exports = {
             // screens: screens,
         },
         extend: {
+            colors: {
+                neutral: {
+                    350: colors.neutral['350'] = '#b8b8b8',
+                },
+            },
             borderColor: {
                 light: {
                     'default':        colors.neutral['600'],
@@ -106,7 +111,7 @@ module.exports = {
             },
             textColor: {
                 light: {
-                    'default':              colors.neutral['400'],
+                    'default':              colors.neutral['350'],
                     'title':                colors.neutral['300'],
                     'primary':              colors.fuchsia['400'],
                     'info':                 colors.sky['400'],
@@ -135,7 +140,7 @@ module.exports = {
                     'placeholder-disabled': colors.neutral['600'],
                 },
                 dark: {
-                    'default':              colors.neutral['400'],
+                    'default':              colors.neutral['350'],
                     'title':                colors.neutral['300'],
                     'primary':              colors.fuchsia['400'],
                     'info':                 colors.sky['400'],
