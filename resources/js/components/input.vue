@@ -58,7 +58,7 @@
                     'bg-transparent disabled:bg-input-disabled',
                     'font-default font-normal text-base focus:text-input disabled:text-input-disabled tracking-wide',
                     'placeholder:text-placeholder disabled:placeholder:text-placeholder-disabled',
-                    'transition ease-linear duration-300',
+                    'transition ease-linear duration-200',
                 ];
 
                 if (this.icon) {

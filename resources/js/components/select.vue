@@ -95,7 +95,7 @@
                     'focus:outline-none border focus:border-input-focused disabled:border-input-disabled rounded-md',
                     'bg-transparent disabled:bg-input-disabled',
                     'font-default font-normal text-base focus:text-input disabled:text-input-disabled tracking-wide',
-                    'opacity-100 transition ease-linear duration-300',
+                    'opacity-100 transition ease-linear duration-200',
                 ];
 
                 if (this.icon) {
