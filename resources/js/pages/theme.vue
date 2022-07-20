@@ -30,14 +30,14 @@
     export default {
         computed: {
             colors() {
-                return [
-                    'default',
-                    'primary',
-                    'info',
-                    'success',
-                    'warning',
-                    'error',
-                ];
+                return {
+                    'Default': 'default',
+                    'Primary': 'primary',
+                    'Info': 'info',
+                    'Success': 'success',
+                    'Warning': 'warning',
+                    'Error': 'error',
+                };
             },
             dropdownMenus() {
                 let dropdownMenus = {
