@@ -85,7 +85,7 @@ finished 'Refresh the Composer dependencies'
 starting 'Refresh the Node dependencies'
 
 npm install >> $LOG 2>&1
-npm run production >> $LOG 2>&1
+npm run build >> $LOG 2>&1
 
 finished 'Refresh the Node dependencies'
 
