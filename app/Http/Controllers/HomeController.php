@@ -42,11 +42,7 @@ class HomeController extends Controller
      */
     public function theme() : mixed
     {
-        return Inertia::render('theme/index', [
-            'tableRows' => User::factory()
-                ->count(25)
-                ->make(),
-        ]);
+        return Inertia::render('theme');
     }
 
 }
