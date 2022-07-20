@@ -73,22 +73,34 @@
                 </v-panel>
             </div>
         </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Type: Text Colors
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <v-panel v-for="(textColor, textColorLabel) in textColors" :key="textColorLabel">
+                    <template v-slot:header>
+                        {{ textColorLabel }} Text
+                    </template>
+
+                    <p class="mb-4">
+                        {{ lorem(2) }}
+                    </p>
+
+                    <p :class="textColor">
+                        {{ lorem(2) }}
+                    </p>
+                </v-panel>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
     export default {
         computed: {
-            colors() {
-                return {
-                    'Default': 'default',
-                    'Primary': 'primary',
-                    'Info': 'info',
-                    'Success': 'success',
-                    'Warning': 'warning',
-                    'Error': 'error',
-                };
-            },
             dropdownMenus() {
                 let dropdownMenus = {
                     theme: [],
@@ -209,6 +221,16 @@
                     'Medium': 'font-medium',
                     'Bold': 'font-bold',
                     'Black': 'font-black',
+                };
+            },
+            textColors() {
+                return {
+                    'Default': 'text-default',
+                    'Primary': 'text-primary',
+                    'Info': 'text-info',
+                    'Success': 'text-success',
+                    'Warning': 'text-warning',
+                    'Error': 'text-error',
                 };
             },
         },
