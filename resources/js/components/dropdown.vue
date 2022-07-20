@@ -15,7 +15,7 @@
 </template>
 
 <script>
-    import DropdownGroup from './dropdown-group';
+    import DropdownGroup from './dropdown-group.vue';
 
     export default {
         components: {

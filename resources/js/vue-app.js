@@ -4,31 +4,24 @@
 |-------------------------------------------------------------------------------
 */
 
-import {
-    createApp as vueCreateApp,
-    h as vueRender,
-} from 'vue';
+import { createApp, h } from 'vue';
+import { createInertiaApp, Link as InertiaLink, useForm } from '@inertiajs/inertia-vue3';
+import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
+import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
-import {
-    App as InertiaApp,
-    plugin as InertiaPlugin,
-    Link as InertiaLink,
-    useForm,
-} from '@inertiajs/inertia-vue3';
+import lorem from '@/mixins/lorem.js';
 
-import lorem from '@/mixins/lorem';
-
-import Alert from '@/components/alert';
-import Button from '@/components/button';
-import Checkbox from '@/components/checkbox';
-import Dropdown from '@/components/dropdown';
-import FormGroup from '@/components/form-group';
-import Input from '@/components/input';
-import Link from '@/components/link';
-import Modal from '@/components/modal';
-import Panel from '@/components/panel';
-import Radio from '@/components/radio';
-import Select from '@/components/select';
+import Alert from '@/components/alert.vue';
+import Button from '@/components/button.vue';
+import Checkbox from '@/components/checkbox.vue';
+import Dropdown from '@/components/dropdown.vue';
+import FormGroup from '@/components/form-group.vue';
+import Input from '@/components/input.vue';
+import Link from '@/components/link.vue';
+import Modal from '@/components/modal.vue';
+import Panel from '@/components/panel.vue';
+import Radio from '@/components/radio.vue';
+import Select from '@/components/select.vue';
 
 /*
 |-------------------------------------------------------------------------------
@@ -36,42 +29,42 @@ import Select from '@/components/select';
 |-------------------------------------------------------------------------------
 */
 
-const app = document.getElementById('app');
-
-vueCreateApp({
-    render: () => vueRender(
-        InertiaApp,
-        {
-            initialPage: JSON.parse(app.dataset.page),
-            resolveComponent: (name) => require(`./pages/${name}`).default,
-        }
+createInertiaApp({
+    resolve: (name) => resolvePageComponent(
+        `./pages/${name}.vue`,
+        import.meta.glob('./pages/**/*.vue')
     ),
-})
-.use(InertiaPlugin)
-.mixin({
-    components: {
-        InertiaLink,
+    setup({ el, app, props, plugin }) {
+        return createApp({
+            render: () => h(app, props),
+        })
+        .use(plugin)
+        .use(ZiggyVue, Ziggy)
+        .mixin({
+            components: {
+                InertiaLink,
+            },
+            props: {
+                env: String,
+                myself: Object,
+                status: String,
+            },
+            methods: {
+                lorem,
+                useForm,
+            },
+        })
+        .component('v-alert', Alert)
+        .component('v-button', Button)
+        .component('v-checkbox', Checkbox)
+        .component('v-dropdown', Dropdown)
+        .component('v-form-group', FormGroup)
+        .component('v-input', Input)
+        .component('v-link', Link)
+        .component('v-modal', Modal)
+        .component('v-panel', Panel)
+        .component('v-radio', Radio)
+        .component('v-select', Select)
+        .mount(el);
     },
-    props: {
-        env: String,
-        myself: Object,
-        status: String,
-    },
-    methods: {
-        lorem,
-        route,
-        useForm,
-    },
-})
-.component('v-alert', Alert)
-.component('v-button', Button)
-.component('v-checkbox', Checkbox)
-.component('v-dropdown', Dropdown)
-.component('v-form-group', FormGroup)
-.component('v-input', Input)
-.component('v-link', Link)
-.component('v-modal', Modal)
-.component('v-panel', Panel)
-.component('v-radio', Radio)
-.component('v-select', Select)
-.mount(app);
+});

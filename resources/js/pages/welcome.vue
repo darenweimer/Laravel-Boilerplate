@@ -8,7 +8,7 @@
             </div>
 
             <div class="mb-4">
-                Matches Laravel Framework v9.1.10
+                Matches Laravel v9.3.0
             </div>
 
             <div class="mb-12">

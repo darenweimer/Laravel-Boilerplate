@@ -16,9 +16,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
 
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet"/>
+    @routes
 
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    @vite('resources/js/app.js')
+
+    @inertiaHead
 
     <script>
         if (!('theme' in localStorage)) {
@@ -34,7 +36,6 @@
 
 
 <body class="bg-canvas font-default font-normal text-base text-default tracking-wide antialiased">
-    @routes
     @inertia
 </body>
 

@@ -16,9 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@250;375;550;700;900&display=swap" rel="stylesheet"/>
 
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet"/>
-
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    @vite('resources/js/app.js')
 
     <script>
         if (!('theme' in localStorage)) {
