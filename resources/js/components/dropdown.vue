@@ -6,7 +6,7 @@
         </button>
 
         <transition enter-active-class="transition ease-out duration-150" enter-from-class="scale-0" enter-to-class="scale-100" leave-active-class="transition ease-in duration-150" leave-from-class="scale-100" leave-to-class="scale-0" :class="originClass">
-            <div v-show="show" class="absolute inline z-[100] py-2 overflow-hidden rounded shadow-[0_10px_20px_rgb(0,0,0)] bg-dropdown font-default font-normal text-base text-dropdown tracking-wide whitespace-nowrap" :class="positionClass">
+            <div v-show="show" class="absolute inline z-[100] py-2 overflow-hidden rounded bg-dropdown font-default font-normal text-base text-dropdown tracking-wide whitespace-nowrap" :class="positionClass">
                 <dropdown-group :options="options">
                 </dropdown-group>
             </div>

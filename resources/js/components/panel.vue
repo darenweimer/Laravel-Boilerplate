@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full px-5 py-4 overflow-hidden rounded-lg shadow-[0_7px_15px_rgb(0,0,0,0.25)] bg-default font-default font-normal text-base text-default tracking-wide">
+    <div class="w-full px-5 py-4 overflow-hidden rounded-lg bg-default font-default font-normal text-base text-default tracking-wide">
         <div v-if="$slots.header" class="mb-4 pb-4 border-b border-default font-bold text-2xl text-title">
             <slot name="header">
             </slot>
