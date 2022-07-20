@@ -24,6 +24,56 @@
             </div>
         </div>
     </div>
+
+    <div class="container flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Type: Font Sizes
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <v-panel v-for="(font, fontLabel) in fonts" :key="fontLabel">
+                    <template v-slot:header>
+                        Font: {{ fontLabel }}
+                    </template>
+
+                    <div :class="font">
+                        <p v-for="(fontSize, fontSizeLabel) in fontSizes" :key="fontSizeLabel" class="mb-4" :class="fontSize">
+                            <span class="text-info">
+                                {{ fontSizeLabel }}:
+                            </span>
+
+                            {{ lorem(2) }}
+                        </p>
+                    </div>
+                </v-panel>
+            </div>
+        </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Type: Font Weights
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <v-panel v-for="(font, fontLabel) in fonts" :key="fontLabel">
+                    <template v-slot:header>
+                        Font: {{ fontLabel }}
+                    </template>
+
+                    <div :class="font">
+                        <p v-for="(fontWeight, fontWeightLabel) in fontWeights" :key="fontWeightLabel" class="mb-4" :class="fontWeight">
+                            <span class="text-info">
+                                {{ fontWeightLabel }}:
+                            </span>
+
+                            {{ lorem(2) }}
+                        </p>
+                    </div>
+                </v-panel>
+            </div>
+        </section>
+    </div>
 </template>
 
 <script>
@@ -136,6 +186,30 @@
                 ];
 
                 return dropdownMenus;
+            },
+            fonts() {
+                return {
+                    'Normal': 'font-default',
+                    'Monospace': 'font-mono',
+                };
+            },
+            fontSizes() {
+                return {
+                    'Extra Small': 'text-xs',
+                    'Small': 'text-sm',
+                    'Base': 'text-base',
+                    'Large': 'text-lg',
+                    'Extra Large': 'text-xl',
+                };
+            },
+            fontWeights() {
+                return {
+                    'Thin': 'font-thin',
+                    'Normal': 'font-normal',
+                    'Medium': 'font-medium',
+                    'Bold': 'font-bold',
+                    'Black': 'font-black',
+                };
             },
         },
         data() {
