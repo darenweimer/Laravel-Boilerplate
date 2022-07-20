@@ -92,6 +92,8 @@ class TestDataUsers extends Command
     {
         $users = [];
 
+        $faker = fake();
+
         $password = Hash::make(
             $this->argument('password')
         );
@@ -101,9 +103,9 @@ class TestDataUsers extends Command
         while (count($users) < $count) {
             try {
                 $user = [
-                    'first_name' => fake()->firstName(),
-                    'last_name'  => fake()->lastName(),
-                    'email'      => fake()->unique()->safeEmail(),
+                    'first_name' => $faker->firstName(),
+                    'last_name'  => $faker->lastName(),
+                    'email'      => $faker->unique()->safeEmail(),
                     'password'   => $password,
                     'su'         => $su,
                 ];
