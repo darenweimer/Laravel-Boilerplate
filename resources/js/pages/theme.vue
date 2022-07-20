@@ -29,6 +29,16 @@
 <script>
     export default {
         computed: {
+            colors() {
+                return [
+                    'default',
+                    'primary',
+                    'info',
+                    'success',
+                    'warning',
+                    'error',
+                ];
+            },
             dropdownMenus() {
                 let dropdownMenus = {
                     theme: [],
