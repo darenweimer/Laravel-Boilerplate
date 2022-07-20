@@ -34,7 +34,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <v-panel v-for="(font, fontLabel) in fonts" :key="fontLabel">
                     <template v-slot:header>
-                        Font: {{ fontLabel }}
+                        {{ fontLabel }} Font
                     </template>
 
                     <div :class="font">
@@ -58,7 +58,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <v-panel v-for="(font, fontLabel) in fonts" :key="fontLabel">
                     <template v-slot:header>
-                        Font: {{ fontLabel }}
+                        {{ fontLabel }} Font
                     </template>
 
                     <div :class="font">
