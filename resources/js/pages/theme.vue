@@ -155,6 +155,58 @@
                 </div>
             </div>
         </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Tools: Modal Dialogs
+            </div>
+
+            <v-panel class="max-w-md mx-auto">
+                <template v-slot:header>
+                    Modal Dialogs
+                </template>
+
+                <div class="grid grid-cols-[1fr_auto] items-center gap-4">
+                    <div v-for="(modalIcon, modalIconLabel) in modalIcons" :key="modalIconLabel" class="contents">
+                        <div>
+                            Modal with Icon:
+
+                            <span class="font-bold">
+                                {{ modalIconLabel }}
+                            </span>
+                        </div>
+
+                        <v-button @click="showModal(modalIcon)">
+                            Show
+                        </v-button>
+                    </div>
+                </div>
+            </v-panel>
+
+            <v-modal :show="modalDialog.show" size="md" :icon="modalDialog.icon" @close="modalDialog.show = false">
+                <template v-slot:header>
+                    Modal Dialog
+                </template>
+
+                {{ lorem(5) }}
+
+                <template v-slot:footer>
+                    <div class="flex flex-row flex-wrap place-content-center gap-4">
+                        <v-button color="success">
+                            Yes
+                        </v-button>
+
+                        <v-button color="error">
+                            No
+                        </v-button>
+
+                        <v-button>
+                            Cancel
+                        </v-button>
+                    </div>
+                </template>
+            </v-modal>
+        </section>
     </div>
 </template>
 
@@ -328,6 +380,18 @@
                     'Black': 'font-black',
                 };
             },
+            modalIcons() {
+                return {
+                    'None': null,
+                    'Info': 'info',
+                    'Question': 'question',
+                    'Loading': 'loading',
+                    'Success': 'success',
+                    'Warning': 'warning',
+                    'Error': 'error',
+                    'Custom': 'fa-solid fa-bug text-primary',
+                };
+            },
             textColors() {
                 return {
                     'Default': 'text-default',
@@ -345,7 +409,17 @@
                     basic: 'English',
                     complex: 'USD',
                 },
+                modalDialog: {
+                    icon: null,
+                    show: false,
+                },
             };
+        },
+        methods: {
+            showModal(icon) {
+                this.modalDialog.icon = icon;
+                this.modalDialog.show = true;
+            },
         },
     };
 </script>
