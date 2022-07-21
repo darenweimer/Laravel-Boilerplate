@@ -128,7 +128,7 @@
 
         <section>
             <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
-                Components: Buttons
+                Tools: Buttons
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
