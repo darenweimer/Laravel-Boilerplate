@@ -281,8 +281,8 @@
                     (language) => dropdownMenus.basic.push({
                         type: 'action',
                         label: language,
-                        checked: this.dropdownSelected.basic === language,
-                        click: () => this.dropdownSelected.basic = language,
+                        checked: this.selected.dropdownBasic === language,
+                        click: () => this.selected.dropdownBasic = language,
                     })
                 );
 
@@ -290,8 +290,8 @@
                     {
                         type: 'action',
                         label: 'My Locale',
-                        checked: this.dropdownSelected.complex === 'locale',
-                        click: () => this.dropdownSelected.complex = 'locale',
+                        checked: this.selected.dropdownComplex === 'locale',
+                        click: () => this.selected.dropdownComplex = 'locale',
                     },
                     {
                         type: 'group',
@@ -301,15 +301,15 @@
                                 type: 'action',
                                 icon: 'fa-solid fa-dollar-sign',
                                 label: 'USD',
-                                checked: this.dropdownSelected.complex === 'USD',
-                                click: () => this.dropdownSelected.complex = 'USD',
+                                checked: this.selected.dropdownComplex === 'USD',
+                                click: () => this.selected.dropdownComplex = 'USD',
                             },
                             {
                                 type: 'action',
                                 icon: 'fa-solid fa-peso-sign',
                                 label: 'Peso',
-                                checked: this.dropdownSelected.complex === 'PESO',
-                                click: () => this.dropdownSelected.complex = 'PESO',
+                                checked: this.selected.dropdownComplex === 'PESO',
+                                click: () => this.selected.dropdownComplex = 'PESO',
                             },
                         ],
                     },
@@ -321,8 +321,8 @@
                                 type: 'action',
                                 icon: 'fa-solid fa-euro-sign',
                                 label: 'Euro',
-                                checked: this.dropdownSelected.complex === 'EURO',
-                                click: () => this.dropdownSelected.complex = 'EURO',
+                                checked: this.selected.dropdownComplex === 'EURO',
+                                click: () => this.selected.dropdownComplex = 'EURO',
                             },
                         ],
                     },
@@ -334,8 +334,8 @@
                                 type: 'action',
                                 icon: 'fa-solid fa-yen-sign',
                                 label: 'Yen',
-                                checked: this.dropdownSelected.complex === 'YEN',
-                                click: () => this.dropdownSelected.complex = 'YEN',
+                                checked: this.selected.dropdownComplex === 'YEN',
+                                click: () => this.selected.dropdownComplex = 'YEN',
                             },
                         ],
                     },
@@ -347,8 +347,8 @@
                                 type: 'action',
                                 icon: 'fa-solid fa-bitcoin-sign',
                                 label: 'Bitcoin',
-                                checked: this.dropdownSelected.complex === 'bitcoin',
-                                click: () => this.dropdownSelected.complex = 'bitcoin',
+                                checked: this.selected.dropdownComplex === 'bitcoin',
+                                click: () => this.selected.dropdownComplex = 'bitcoin',
                             },
                         ],
                     },
@@ -405,13 +405,13 @@
         },
         data() {
             return {
-                dropdownSelected: {
-                    basic: 'English',
-                    complex: 'USD',
-                },
                 modalDialog: {
                     icon: null,
                     show: false,
+                },
+                selected: {
+                    dropdownBasic: 'English',
+                    dropdownComplex: 'USD',
                 },
             };
         },
