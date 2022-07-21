@@ -95,12 +95,62 @@
                 </v-panel>
             </div>
         </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Panels: Colors
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
+                <div v-for="color in colors" :key="color" class="contents">
+                    <v-panel :class="`border-4 ${borderColors[color]}`">
+                        <template v-slot:header>
+                            {{ color }} / Default
+                        </template>
+
+                        <p>
+                            {{ lorem(2) }}
+                        </p>
+                    </v-panel>
+
+                    <v-panel :class="`border-4 ${borderColors[color]}`">
+                        <template v-slot:header>
+                            {{ color }} / {{ color }}
+                        </template>
+
+                        <p :class="textColors[color]">
+                            {{ lorem(2) }}
+                        </p>
+                    </v-panel>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
 <script>
     export default {
         computed: {
+            borderColors() {
+                return {
+                    'Default': 'border-default',
+                    'Primary': 'border-primary',
+                    'Info': 'border-info',
+                    'Success': 'border-success',
+                    'Warning': 'border-warning',
+                    'Error': 'border-error',
+                };
+            },
+            colors() {
+                return [
+                    'Default',
+                    'Primary',
+                    'Info',
+                    'Success',
+                    'Warning',
+                    'Error',
+                ];
+            },
             dropdownMenus() {
                 let dropdownMenus = {
                     theme: [],
