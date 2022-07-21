@@ -125,6 +125,36 @@
                 </div>
             </div>
         </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Components: Buttons
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+                <div v-for="buttonType in buttonTypes" :key="buttonType" class="contents">
+                    <v-panel>
+                        <template v-slot:header>
+                            {{ buttonType }}
+                        </template>
+
+                        <div class="grid grid-cols-[auto_auto_auto] justify-items-center items-center gap-x-2 gap-y-4">
+                            <div v-for="(buttonSize, buttonSizeLabel) in buttonSizes" :key="buttonSizeLabel">
+                                {{ buttonSizeLabel }}
+                            </div>
+
+                            <div v-for="(buttonColor, buttonColorLabel) in buttonColors" :key="buttonColorLabel" class="contents">
+                                <div v-for="(buttonSize, buttonSizeLabel) in buttonSizes" :key="buttonSizeLabel" class="contents">
+                                    <v-button :color="buttonColor" :size="buttonSize" :round="buttonType.includes('Rounded')" :outline="buttonType.includes('Outlined')" class="capitalize">
+                                        {{ buttonColor }}
+                                    </v-button>
+                                </div>
+                            </div>
+                        </div>
+                    </v-panel>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
@@ -140,6 +170,31 @@
                     'Warning': 'border-warning',
                     'Error': 'border-error',
                 };
+            },
+            buttonColors() {
+                return {
+                    'Default': 'default',
+                    'Primary': 'primary',
+                    'Info': 'info',
+                    'Success': 'success',
+                    'Warning': 'warning',
+                    'Error': 'error',
+                };
+            },
+            buttonSizes() {
+                return {
+                    'Small': 'small',
+                    'Regular': 'regular',
+                    'Large': 'large',
+                };
+            },
+            buttonTypes() {
+                return [
+                    'Standard',
+                    'Rounded',
+                    'Standard Outlined',
+                    'Rounded Outlined',
+                ];
             },
             colors() {
                 return [
