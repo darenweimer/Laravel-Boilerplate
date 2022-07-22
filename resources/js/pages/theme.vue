@@ -280,7 +280,7 @@
 
                         <v-form-group :inline="formType === 'Inline'">
                             <template v-slot:label>
-                                Disabled Selectable
+                                Disabled Select
                             </template>
 
                             <v-select :options="selectOptions" icon="fa-solid fa-list" v-model="form.select" placeholder="Disabled select..." disabled/>
