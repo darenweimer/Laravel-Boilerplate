@@ -1,6 +1,6 @@
 <template>
     <div class="font-default font-normal text-base text-default tracking-wide" :class="{ 'contents': inline }">
-        <div v-if="$slots.label" class="mb-1" :class="{ 'mt-1.5': inline }">
+        <div v-if="$slots.label" :class="{ 'h-full pt-1 border-t border-transparent': inline, 'pb-1': !inline }">
             <slot name="label">
             </slot>
         </div>
