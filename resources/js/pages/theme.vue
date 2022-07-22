@@ -316,6 +316,24 @@
 
         <section>
             <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Tools: Alerts
+            </div>
+
+            <v-panel class="max-w-md mx-auto">
+                <template v-slot:header>
+                    Application Alerts
+                </template>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <v-alert v-for="(alertColor, alertColorLabel) in alertColors" :key="alertColorLabel" :color="alertColor">
+                        {{ alertColorLabel }} Alert
+                    </v-alert>
+                </div>
+            </v-panel>
+        </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
                 Tools: Modal Dialogs
             </div>
 
@@ -371,6 +389,16 @@
 <script>
     export default {
         computed: {
+            alertColors() {
+                return {
+                    'Default': 'default',
+                    'Primary': 'primary',
+                    'Info': 'info',
+                    'Success': 'success',
+                    'Warning': 'warning',
+                    'Error': 'error',
+                };
+            },
             borderColors() {
                 return {
                     'Default': 'border-default',
