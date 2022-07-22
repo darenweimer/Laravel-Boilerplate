@@ -451,17 +451,18 @@
                     complex: [],
                 };
 
-                ['System', 'Light', 'Dark'].forEach(
-                    (theme) => dropdownMenus.theme.push({
+                for (const [label, option] of Object.entries(this.themes)) {
+                    dropdownMenus.theme.push({
                         type: 'action',
-                        label: theme,
-                        checked: localStorage.theme === theme.toLowerCase(),
+                        icon: option.icon,
+                        label: label,
+                        checked: localStorage.theme === option.theme,
                         click: () => {
-                            localStorage.theme = theme.toLowerCase();
+                            localStorage.theme = option.theme;
                             window.location.reload();
                         },
-                    })
-                );
+                    });
+                }
 
                 ['English', 'Spanish', 'Italian', 'French', 'German', 'Japanese'].forEach(
                     (language) => dropdownMenus.basic.push({
@@ -632,6 +633,22 @@
                     'Success': 'text-success',
                     'Warning': 'text-warning',
                     'Error': 'text-error',
+                };
+            },
+            themes() {
+                return {
+                    'System': {
+                        icon: 'fa-solid fa-desktop',
+                        theme: 'system',
+                    },
+                    'Light': {
+                        icon: 'fa-solid fa-sun',
+                        theme: 'light',
+                    },
+                    'Dark': {
+                        icon: 'fa-solid fa-cloud-moon',
+                        theme: 'dark',
+                    },
                 };
             },
         },
