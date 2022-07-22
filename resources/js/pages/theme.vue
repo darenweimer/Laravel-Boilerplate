@@ -158,6 +158,164 @@
 
         <section>
             <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
+                Tools: Forms
+            </div>
+
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+                <v-panel v-for="formType in formTypes" :key="formType">
+                    <template v-slot:header>
+                        {{ formType }} Form
+                    </template>
+
+                    <div class="grid gap-4" :class="{ 'grid-cols-1': formType === 'Stacked', 'grid-cols-[auto_1fr]': formType === 'Inline' }">
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Text Field
+                            </template>
+
+                            <v-input type="text" icon="fa-solid fa-comment-dots" v-model="form.text" placeholder="Enter some text..."/>
+
+                            <template v-slot:help>
+                                This is a help block for a form field
+                            </template>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Number Field
+                            </template>
+
+                            <v-input type="number" icon="fa-solid fa-arrow-down-1-9" v-model.number="form.number" placeholder="Select a number..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Email Field
+                            </template>
+
+                            <v-input type="email" icon="fa-solid fa-at" v-model="form.email" placeholder="Enter an email address..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Password Field
+                            </template>
+
+                            <v-input type="password" icon="fa-solid fa-lock" v-model="form.password" placeholder="Enter your password..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Date Field
+                            </template>
+
+                            <v-input type="date" icon="fa-solid fa-calendar-days" v-model="form.date" placeholder="Select a date..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Time Field
+                            </template>
+
+                            <v-input type="time" icon="fa-solid fa-clock" v-model="form.time" placeholder="Select a time..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Select Field
+                            </template>
+
+                            <v-select :options="selectOptions.single" icon="fa-solid fa-list" v-model="form.select" placeholder="Select an option..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Multi-Select Field
+                            </template>
+
+                            <v-select :options="selectOptions.multiple" :multiple="true" icon="fa-solid fa-list" v-model="form.multiselect" placeholder="Select some options..."/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                            </template>
+
+                            <v-checkbox v-model="form.checkbox" class="mr-8">
+                                Checkbox
+                            </v-checkbox>
+
+                            <v-checkbox v-model="form.checkbox" disabled>
+                                Disabled Checkbox
+                            </v-checkbox>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                            </template>
+
+                            <v-radio v-model="form.radio" value="one" class="mr-8">
+                                Radio 1
+                            </v-radio>
+
+                            <v-radio v-model="form.radio" value="two" class="mr-8">
+                                Radio 2
+                            </v-radio>
+
+                            <v-radio v-model="form.radio" value="three" class="mr-8">
+                                Radio 3
+                            </v-radio>
+
+                            <v-radio v-model="form.radio" :value="null" disabled>
+                                Disabled Radio
+                            </v-radio>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Disabled Field
+                            </template>
+
+                            <v-input type="text" icon="fa-solid fa-comment-dots" v-model="form.text" placeholder="Disabled field..." disabled/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Disabled Selectable
+                            </template>
+
+                            <v-select :options="selectOptions" icon="fa-solid fa-list" v-model="form.select" placeholder="Disabled select..." disabled/>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Validation
+                            </template>
+
+                            <v-input type="text" icon="fa-solid fa-list-check" v-model="form.success" :validation="true"/>
+
+                            <template v-slot:success>
+                                This is a success block for a form field
+                            </template>
+                        </v-form-group>
+
+                        <v-form-group :inline="formType === 'Inline'">
+                            <template v-slot:label>
+                                Validation
+                            </template>
+
+                            <v-input type="text" icon="fa-solid fa-list-check" v-model="form.error" :validation="false"/>
+
+                            <template v-slot:error>
+                                This is an error block for a form field
+                            </template>
+                        </v-form-group>
+                    </div>
+                </v-panel>
+            </div>
+        </section>
+
+        <section>
+            <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
                 Tools: Modal Dialogs
             </div>
 
@@ -380,6 +538,12 @@
                     'Black': 'font-black',
                 };
             },
+            formTypes() {
+                return [
+                    'Stacked',
+                    'Inline',
+                ];
+            },
             modalIcons() {
                 return {
                     'None': null,
@@ -390,6 +554,46 @@
                     'Warning': 'warning',
                     'Error': 'error',
                     'Custom': 'fa-solid fa-bug text-primary',
+                };
+            },
+            selectOptions() {
+                return {
+                    single: [
+                        {
+                            label: null,
+                            value: null,
+                        },
+                        {
+                            label: 'Red',
+                            value: 'R',
+                        },
+                        {
+                            label: 'Green',
+                            value: 'G',
+                        },
+                        {
+                            label: 'Blue',
+                            value: 'B',
+                        },
+                    ],
+                    multiple: [
+                        {
+                            label: 'Cyan',
+                            value: 'C',
+                        },
+                        {
+                            label: 'Magenta',
+                            value: 'M',
+                        },
+                        {
+                            label: 'Yellow',
+                            value: 'Y',
+                        },
+                        {
+                            label: 'Black',
+                            value: 'K',
+                        },
+                    ],
                 };
             },
             textColors() {
@@ -405,6 +609,20 @@
         },
         data() {
             return {
+                form: this.useForm({
+                    text: null,
+                    number: null,
+                    email: null,
+                    password: null,
+                    date: null,
+                    time: null,
+                    select: null,
+                    multiselect: [],
+                    checkbox: false,
+                    radio: null,
+                    success: 'Valid form field value',
+                    error: 'Invalid form field value',
+                }),
                 modalDialog: {
                     icon: null,
                     show: false,
