@@ -475,12 +475,6 @@
 
                 dropdownMenus.complex = [
                     {
-                        type: 'action',
-                        label: 'My Locale',
-                        checked: this.dropdownSelected.complex === 'locale',
-                        click: () => this.dropdownSelected.complex = 'locale',
-                    },
-                    {
                         type: 'group',
                         label: 'North America',
                         options: [
