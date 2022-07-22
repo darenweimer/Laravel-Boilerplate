@@ -1,6 +1,6 @@
 <template>
     <div class="sticky top-0 z-[100] bg-canvas border-b border-default text-title">
-        <div class="container flex flex-row items-center gap-4 sm:gap-6 p-4 sm:p-6">
+        <div class="container flex flex-row items-center gap-6 p-6">
             <div class="grow font-black text-3xl sm:text-4xl">
                 Theme Demo
             </div>
@@ -25,13 +25,13 @@
         </div>
     </div>
 
-    <div class="container flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+    <div class="container flex flex-col gap-6 p-6">
         <section>
             <div class="mt-4 mb-8 font-black text-primary text-3xl text-center">
                 Type: Font Sizes
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <v-panel v-for="(font, fontLabel) in fonts" :key="fontLabel">
                     <template v-slot:header>
                         {{ fontLabel }} Font
@@ -55,7 +55,7 @@
                 Type: Font Weights
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <v-panel v-for="(font, fontLabel) in fonts" :key="fontLabel">
                     <template v-slot:header>
                         {{ fontLabel }} Font
@@ -79,7 +79,7 @@
                 Type: Text Colors
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 <v-panel v-for="(textColor, textColorLabel) in textColors" :key="textColorLabel">
                     <template v-slot:header>
                         {{ textColorLabel }} Text
@@ -101,7 +101,7 @@
                 Panels: Colors
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
                 <div v-for="color in colors" :key="color" class="contents">
                     <v-panel :class="`border-4 ${borderColors[color]}`">
                         <template v-slot:header>
@@ -131,7 +131,7 @@
                 Tools: Buttons
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div v-for="buttonType in buttonTypes" :key="buttonType" class="contents">
                     <v-panel>
                         <template v-slot:header>
@@ -161,7 +161,7 @@
                 Tools: Forms
             </div>
 
-            <div class="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+            <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <v-panel v-for="formType in formTypes" :key="formType">
                     <template v-slot:header>
                         {{ formType }} Form
