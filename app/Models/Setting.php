@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Setting extends Model
 {
-    use DateDisplay, HasRevisions, SoftDeletes;
+    use DateDisplay;
+    use HasRevisions;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -33,5 +35,4 @@ class Setting extends Model
         'data_type'  => DataType::class,
         'expires_at' => 'timestamp',
     ];
-
 }

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Artisan;
 
 class CacheFlush extends Command
 {
-
     /**
      * The name and signature of the console command
      *
@@ -27,7 +26,7 @@ class CacheFlush extends Command
      *
      * @return int
      */
-    public function handle() : int
+    public function handle(): int
     {
         Artisan::call('cache:clear');
         Artisan::call('config:clear');
@@ -38,5 +37,4 @@ class CacheFlush extends Command
 
         return 0;
     }
-
 }

@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 trait HasRevisions
 {
-
     /**
      * The primary key value for the model being deleted
      *
@@ -21,7 +20,7 @@ trait HasRevisions
      *
      * @return void
      */
-    protected function hasRevisionsAfterCreated() : void
+    protected function hasRevisionsAfterCreated(): void
     {
         if ($id = $this->attributes[$this->primaryKey] ?? null) {
             $exclusions = array_merge(
@@ -34,7 +33,8 @@ trait HasRevisions
             );
 
             $attributes = array_diff_key(
-                $this->attributes, array_flip($exclusions)
+                $this->attributes,
+                array_flip($exclusions)
             );
 
             foreach ($attributes as $attribute => $value) {
@@ -54,7 +54,7 @@ trait HasRevisions
      *
      * @return void
      */
-    protected function hasRevisionsAfterUpdated() : void
+    protected function hasRevisionsAfterUpdated(): void
     {
         $exclusions = array_merge(
             $this->hidden ?? [],
@@ -63,7 +63,8 @@ trait HasRevisions
         );
 
         $attributes = array_diff_key(
-            $this->changes, array_flip($exclusions)
+            $this->changes,
+            array_flip($exclusions)
         );
 
         foreach ($attributes as $attribute => $value) {
@@ -82,7 +83,7 @@ trait HasRevisions
      *
      * @return void
      */
-    protected function hasRevisionsAfterDeleting() : void
+    protected function hasRevisionsAfterDeleting(): void
     {
         $this->revisionsDeleting = $this->attributes[$this->primaryKey] ?? null;
 
@@ -90,7 +91,7 @@ trait HasRevisions
             return;
         }
 
-        if (!($this instanceOf Pivot)) {
+        if (!($this instanceof Pivot)) {
             return;
         }
 
@@ -109,7 +110,7 @@ trait HasRevisions
      *
      * @return void
      */
-    protected function hasRevisionsAfterDeleted() : void
+    protected function hasRevisionsAfterDeleted(): void
     {
         if (isset($this->revisionsDeleting)) {
             $this->revisions()
@@ -129,7 +130,7 @@ trait HasRevisions
      *
      * @return void
      */
-    public static function bootHasRevisions() : void
+    public static function bootHasRevisions(): void
     {
         if (config('revisions.enabled')) {
             static::created(function ($model) {
@@ -157,9 +158,8 @@ trait HasRevisions
      *
      * @return mixed
      */
-    public function revisions() : mixed
+    public function revisions(): mixed
     {
         return $this->morphMany(Revision::class, 'revisionable');
     }
-
 }

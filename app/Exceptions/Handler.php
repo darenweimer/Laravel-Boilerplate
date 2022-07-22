@@ -11,7 +11,6 @@ use Throwable;
 
 class Handler extends ExceptionHandler
 {
-
     /**
      * A list of exception types with their corresponding custom log levels
      *
@@ -48,7 +47,7 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    protected function notify(Throwable $e) : void
+    protected function notify(Throwable $e): void
     {
         $users = User::orderBy('id')
             ->where('notify_exceptions', '<>', 'none')
@@ -73,11 +72,10 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register() : void
+    public function register(): void
     {
         $this->reportable(function (Throwable $e) {
             $this->notify($e);
         });
     }
-
 }

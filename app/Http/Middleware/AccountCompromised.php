@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class AccountCompromised
 {
-
     /**
      * Handles an incoming request
      *
@@ -16,7 +15,7 @@ class AccountCompromised
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) : mixed
+    public function handle(Request $request, Closure $next): mixed
     {
         if ($request->user()?->compromised) {
             return abort(403);
@@ -24,5 +23,4 @@ class AccountCompromised
 
         return $next($request);
     }
-
 }

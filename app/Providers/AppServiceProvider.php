@@ -7,15 +7,14 @@ use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-
     /**
      * Registers grammar macros for database migrations
      *
      * @return void
      */
-    protected function registerDatabaseGrammars() : void
+    protected function registerDatabaseGrammars(): void
     {
-        Grammar::macro('typeNumeric', fn() => 'numeric');
+        Grammar::macro('typeNumeric', fn () => 'numeric');
     }
 
     /**
@@ -23,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register() : void
+    public function register(): void
     {
         $this->registerDatabaseGrammars();
     }
@@ -33,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot() : void
+    public function boot(): void
     {
         $filename = app_path(
             '~' . ($this->app->runningInConsole() ? 'console' : 'web') . '.php'
@@ -43,5 +42,4 @@ class AppServiceProvider extends ServiceProvider
             include $filename;
         }
     }
-
 }

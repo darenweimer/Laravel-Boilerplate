@@ -6,7 +6,6 @@ use InvalidArgumentException;
 
 class Decimal
 {
-
     /**
      * The decimal value
      *
@@ -39,7 +38,7 @@ class Decimal
      *
      * @return string
      */
-    protected function resolveValue(string $value) : string
+    protected function resolveValue(string $value): string
     {
         if (($strpos = stripos($value, 'e')) !== false) {
             $exponent  = substr($value, $strpos + 2);
@@ -48,7 +47,9 @@ class Decimal
             $decimal = strpos($value, '.');
 
             $value = str_replace(
-                '.', '', substr($value, 0, $strpos)
+                '.',
+                '',
+                substr($value, 0, $strpos)
             );
 
             if ($decimal === false) {
@@ -82,7 +83,7 @@ class Decimal
      *
      * @return string
      */
-    protected function format(string $value) : string
+    protected function format(string $value): string
     {
         $parts = explode('.', $value);
 
@@ -137,7 +138,7 @@ class Decimal
      *
      * @return string
      */
-    public function __toString() : string
+    public function __toString(): string
     {
         return $this->value();
     }
@@ -149,7 +150,7 @@ class Decimal
      *
      * @return string
      */
-    public function value(int $precision = null) : string
+    public function value(int $precision = null): string
     {
         if (!$this->formatted) {
             $this->value = $this->format($this->value);
@@ -169,7 +170,7 @@ class Decimal
      *
      * @return int
      */
-    public function getPrecision() : int
+    public function getPrecision(): int
     {
         return $this->precision;
     }
@@ -181,7 +182,7 @@ class Decimal
      *
      * @return static
      */
-    public function setPrecision(int $precision) : static
+    public function setPrecision(int $precision): static
     {
         return new static($this->value, $precision);
     }
@@ -193,7 +194,7 @@ class Decimal
      *
      * @return static
      */
-    public function add(string $value) : static
+    public function add(string $value): static
     {
         return new static(
             bcadd($this->value, $value, $this->precision), $this->precision
@@ -207,7 +208,7 @@ class Decimal
      *
      * @return static
      */
-    public function subtract(string $value) : static
+    public function subtract(string $value): static
     {
         return new static(
             bcsub($this->value, $value, $this->precision), $this->precision
@@ -221,7 +222,7 @@ class Decimal
      *
      * @return static
      */
-    public function multiply(string $value) : static
+    public function multiply(string $value): static
     {
         return new static(
             bcmul($this->value, $value, $this->precision), $this->precision
@@ -235,7 +236,7 @@ class Decimal
      *
      * @return static
      */
-    public function divide(string $value) : static
+    public function divide(string $value): static
     {
         return new static(
             bcdiv($this->value, $value, $this->precision), $this->precision
@@ -249,13 +250,15 @@ class Decimal
      *
      * @return static
      */
-    public function round(int $precision = 0) : static
+    public function round(int $precision = 0): static
     {
         return new static(
             bcdiv(
                 bcadd(
                     bcmul(
-                        $this->value, $power = bcpow(10, $precision + 1), 0
+                        $this->value,
+                        $power = bcpow(10, $precision + 1),
+                        0
                     ),
                     (strpos($this->value, '-') === 0) ? -5 : 5
                 ),
@@ -272,7 +275,7 @@ class Decimal
      *
      * @return static
      */
-    public function floor(string $divisor = '1') : static
+    public function floor(string $divisor = '1'): static
     {
         return new static(
             bcsub(
@@ -291,7 +294,7 @@ class Decimal
      *
      * @return int
      */
-    public function compare(string $value) : int
+    public function compare(string $value): int
     {
         return bccomp($this->value, $value, $this->precision);
     }
@@ -303,7 +306,7 @@ class Decimal
      *
      * @return bool
      */
-    public function gt(string $value) : bool
+    public function gt(string $value): bool
     {
         return bccomp($this->value, $value, $this->precision) > 0;
     }
@@ -315,7 +318,7 @@ class Decimal
      *
      * @return bool
      */
-    public function gte(string $value) : bool
+    public function gte(string $value): bool
     {
         return bccomp($this->value, $value, $this->precision) >= 0;
     }
@@ -327,7 +330,7 @@ class Decimal
      *
      * @return bool
      */
-    public function lt(string $value) : bool
+    public function lt(string $value): bool
     {
         return bccomp($this->value, $value, $this->precision) < 0;
     }
@@ -339,9 +342,8 @@ class Decimal
      *
      * @return bool
      */
-    public function lte(string $value) : bool
+    public function lte(string $value): bool
     {
         return bccomp($this->value, $value, $this->precision) <= 0;
     }
-
 }

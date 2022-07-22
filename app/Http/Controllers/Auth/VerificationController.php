@@ -10,7 +10,6 @@ use Inertia\Inertia;
 
 class VerificationController extends Controller
 {
-
     /**
      * Creates a new controller instance
      *
@@ -34,7 +33,7 @@ class VerificationController extends Controller
      *
      * @return mixed
      */
-    public function notice(Request $request) : mixed
+    public function notice(Request $request): mixed
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()
@@ -53,7 +52,7 @@ class VerificationController extends Controller
      *
      * @return mixed
      */
-    public function verify(EmailVerificationRequest $request) : mixed
+    public function verify(EmailVerificationRequest $request): mixed
     {
         $request->fulfill();
 
@@ -70,7 +69,7 @@ class VerificationController extends Controller
      *
      * @return mixed
      */
-    public function send(Request $request) : mixed
+    public function send(Request $request): mixed
     {
         if ($request->user()->hasVerifiedEmail()) {
             return redirect()
@@ -86,5 +85,4 @@ class VerificationController extends Controller
                 'A new verification link has been sent to your email address.'
             );
     }
-
 }

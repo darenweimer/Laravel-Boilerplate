@@ -6,7 +6,6 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-
     /**
      * Creates a new controller instance
      *
@@ -27,7 +26,7 @@ class HomeController extends Controller
      *
      * @return mixed
      */
-    public function welcome() : mixed
+    public function welcome(): mixed
     {
         return Inertia::render('welcome');
     }
@@ -39,9 +38,8 @@ class HomeController extends Controller
      *
      * @return mixed
      */
-    public function theme() : mixed
+    public function theme(): mixed
     {
         return Inertia::render('theme');
     }
-
 }

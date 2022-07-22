@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class UserRolesCheck
 {
-
     /**
      * Handles an incoming request
      *
@@ -17,7 +16,7 @@ class UserRolesCheck
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, string $roles) : mixed
+    public function handle(Request $request, Closure $next, string $roles): mixed
     {
         if ($request->user()?->hasRoles($roles)) {
             return $next($request);
@@ -25,5 +24,4 @@ class UserRolesCheck
 
         return abort(403);
     }
-
 }

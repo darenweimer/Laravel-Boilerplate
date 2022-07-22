@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class TwoFactorAuthentication
 {
-
     /**
      * Handles an incoming request
      *
@@ -16,7 +15,7 @@ class TwoFactorAuthentication
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next) : mixed
+    public function handle(Request $request, Closure $next): mixed
     {
         if ($request->user()?->two_factor_enabled) {
             if (!$request->session()->get('two_factor_verified')) {
@@ -27,5 +26,4 @@ class TwoFactorAuthentication
 
         return $next($request);
     }
-
 }

@@ -14,7 +14,6 @@ use Inertia\Inertia;
 
 class ForgotPasswordController extends Controller
 {
-
     /**
      * Creates a new controller instance
      *
@@ -23,7 +22,7 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         ResetPassword::createUrlUsing(
-            fn($notifiable, $token) => url(
+            fn ($notifiable, $token) => url(
                 route('reset-password-form', [
                     'token' => $token,
                     'email' => $notifiable->getEmailForPasswordReset(),
@@ -39,7 +38,7 @@ class ForgotPasswordController extends Controller
      *
      * @return mixed
      */
-    public function requestForm() : mixed
+    public function requestForm(): mixed
     {
         return Inertia::render('auth/forgot-password');
     }
@@ -53,7 +52,7 @@ class ForgotPasswordController extends Controller
      *
      * @return mixed
      */
-    public function request(ForgotPasswordRequest $request) : mixed
+    public function request(ForgotPasswordRequest $request): mixed
     {
         $status = Password::sendResetLink(
             $request->only('email')
@@ -83,7 +82,7 @@ class ForgotPasswordController extends Controller
      *
      * @return mixed
      */
-    public function resetForm(string $token, string $email) : mixed
+    public function resetForm(string $token, string $email): mixed
     {
         return Inertia::render('auth/reset-password', [
             'token' => $token,
@@ -100,7 +99,7 @@ class ForgotPasswordController extends Controller
      *
      * @return mixed
      */
-    public function reset(ResetPasswordRequest $request) : mixed
+    public function reset(ResetPasswordRequest $request): mixed
     {
         $status = Password::reset(
             $request->only([
@@ -134,5 +133,4 @@ class ForgotPasswordController extends Controller
                 'email' => __($status),
             ]);
     }
-
 }

@@ -13,7 +13,6 @@ use Inertia\Inertia;
 
 class RegistrationController extends Controller
 {
-
     /**
      * Handles a web route
      *
@@ -21,7 +20,7 @@ class RegistrationController extends Controller
      *
      * @return mixed
      */
-    public function registerForm() : mixed
+    public function registerForm(): mixed
     {
         return Inertia::render('auth/register');
     }
@@ -35,7 +34,7 @@ class RegistrationController extends Controller
      *
      * @return mixed
      */
-    public function register(RegistrationRequest $request) : mixed
+    public function register(RegistrationRequest $request): mixed
     {
         $user = User::create([
             'first_name' => $request->first_name,
@@ -50,5 +49,4 @@ class RegistrationController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
 }

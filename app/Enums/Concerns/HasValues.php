@@ -4,16 +4,16 @@ namespace App\Enums\Concerns;
 
 trait HasValues
 {
-
     /**
      * Retrieves all enum names as an array
      *
      * @return array
      */
-    public static function names() : array
+    public static function names(): array
     {
         return array_column(
-            static::cases(), 'name'
+            static::cases(),
+            'name'
         );
     }
 
@@ -22,10 +22,10 @@ trait HasValues
      *
      * @return array
      */
-    public static function labels() : array
+    public static function labels(): array
     {
         return array_map(
-            fn($name) => ltrim(
+            fn ($name) => ltrim(
                 preg_replace(
                     '/[\s_]+/',
                     ' ',
@@ -33,7 +33,8 @@ trait HasValues
                 )
             ),
             array_column(
-                static::cases(), 'name'
+                static::cases(),
+                'name'
             )
         );
     }
@@ -43,10 +44,11 @@ trait HasValues
      *
      * @return array
      */
-    public static function values() : array
+    public static function values(): array
     {
         return array_column(
-            static::cases(), 'value'
+            static::cases(),
+            'value'
         );
     }
 
@@ -55,7 +57,7 @@ trait HasValues
      *
      * @return array
      */
-    public static function namesValues() : array
+    public static function namesValues(): array
     {
         $pairs = [];
 
@@ -71,7 +73,7 @@ trait HasValues
      *
      * @return array
      */
-    public static function labelsValues() : array
+    public static function labelsValues(): array
     {
         $pairs = [];
 
@@ -89,5 +91,4 @@ trait HasValues
 
         return $pairs;
     }
-
 }

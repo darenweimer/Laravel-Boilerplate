@@ -6,13 +6,12 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ResetPasswordRequest extends FormRequest
 {
-
     /**
      * Determines if the user is authorized to make this request
      *
      * @return bool
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -22,7 +21,7 @@ class ResetPasswordRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'token'    => ['required', 'string'],
@@ -30,5 +29,4 @@ class ResetPasswordRequest extends FormRequest
             'password' => ['required', 'confirmed', RegistrationRequest::passwordRules()],
         ];
     }
-
 }

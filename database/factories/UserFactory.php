@@ -6,13 +6,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
 {
-
     /**
      * Defines the model's default state
      *
      * @return array
      */
-    public function definition() : array
+    public function definition(): array
     {
         return [
             'first_name'        => $this->faker->firstName(),
@@ -30,7 +29,7 @@ class UserFactory extends Factory
      *
      * @return Factory
      */
-    public function unverified() : Factory
+    public function unverified(): Factory
     {
         return $this->state(function (array $attributes) {
             return [
@@ -38,5 +37,4 @@ class UserFactory extends Factory
             ];
         });
     }
-
 }

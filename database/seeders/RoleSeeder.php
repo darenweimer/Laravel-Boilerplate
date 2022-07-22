@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
 {
-
     /**
      * The data to seed
      *
@@ -25,11 +24,10 @@ class RoleSeeder extends Seeder
      *
      * @return void
      */
-    public function run() : void
+    public function run(): void
     {
         foreach ($this->seeds as $seed) {
             Role::create($seed);
         }
     }
-
 }

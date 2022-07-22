@@ -11,7 +11,6 @@ use Inertia\Inertia;
 
 class ConfirmPasswordController extends Controller
 {
-
     /**
      * Handles a web route
      *
@@ -19,7 +18,7 @@ class ConfirmPasswordController extends Controller
      *
      * @return mixed
      */
-    public function confirmForm() : mixed
+    public function confirmForm(): mixed
     {
         return Inertia::render('auth/confirm-password');
     }
@@ -33,7 +32,7 @@ class ConfirmPasswordController extends Controller
      *
      * @return mixed
      */
-    public function confirm(Request $request) : mixed
+    public function confirm(Request $request): mixed
     {
         $validated = Auth::guard('web')
             ->validate([
@@ -53,5 +52,4 @@ class ConfirmPasswordController extends Controller
         return redirect()
             ->intended(RouteServiceProvider::HOME);
     }
-
 }

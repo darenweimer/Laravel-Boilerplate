@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 
 class PermissionSeeder extends Seeder
 {
-
     /**
      * The data to seed
      *
@@ -46,11 +45,10 @@ class PermissionSeeder extends Seeder
      *
      * @return void
      */
-    public function run() : void
+    public function run(): void
     {
         foreach ($this->seeds as $seed) {
             Permission::create($seed);
         }
     }
-
 }

@@ -9,7 +9,8 @@ use Throwable;
 
 class ExceptionNotification extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * The exception details
@@ -41,7 +42,7 @@ class ExceptionNotification extends Mailable
      *
      * @return static
      */
-    public function build() : static
+    public function build(): static
     {
         $subject = 'Application Exception';
 
@@ -56,5 +57,4 @@ class ExceptionNotification extends Mailable
                 'exception' => $this->exception,
             ]);
     }
-
 }

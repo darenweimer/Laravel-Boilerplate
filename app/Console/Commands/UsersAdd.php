@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersAdd extends Command
 {
-
     /**
      * The name and signature of the console command
      *
@@ -37,7 +36,7 @@ class UsersAdd extends Command
      *
      * @return array
      */
-    protected function getAttachableRoles() : array
+    protected function getAttachableRoles(): array
     {
         if ($roles = $this->option('role')) {
             return Role::select('id')
@@ -54,7 +53,7 @@ class UsersAdd extends Command
      *
      * @return array
      */
-    protected function getAttachablePermissions() : array
+    protected function getAttachablePermissions(): array
     {
         if ($permissions = $this->option('permission')) {
             return Permission::select('id')
@@ -71,7 +70,7 @@ class UsersAdd extends Command
      *
      * @return int
      */
-    public function handle() : int
+    public function handle(): int
     {
         $user = User::create([
             'first_name' => $this->argument('first'),
@@ -97,5 +96,4 @@ class UsersAdd extends Command
 
         return 0;
     }
-
 }

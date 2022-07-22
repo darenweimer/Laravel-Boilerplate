@@ -7,7 +7,6 @@ use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
 {
-
     /**
      * The root template that is loaded on the first page visit
      *
@@ -26,7 +25,7 @@ class HandleInertiaRequests extends Middleware
      *
      * @return string|null
      */
-    public function version(Request $request) : ?string
+    public function version(Request $request): ?string
     {
         return parent::version($request);
     }
@@ -40,15 +39,15 @@ class HandleInertiaRequests extends Middleware
      *
      * @return array
      */
-    public function share(Request $request) : array
+    public function share(Request $request): array
     {
         return array_merge(
-            parent::share($request), [
-                'env'    => fn() => config('app.env'),
-                'myself' => fn() => $request->user()?->withPermissions(),
-                'status' => fn() => session('status'),
+            parent::share($request),
+            [
+                'env'    => fn () => config('app.env'),
+                'myself' => fn () => $request->user()?->withPermissions(),
+                'status' => fn () => session('status'),
             ]
         );
     }
-
 }

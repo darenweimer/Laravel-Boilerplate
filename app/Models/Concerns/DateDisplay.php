@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Auth;
 
 trait DateDisplay
 {
-
     /**
      * Returns a timestamp as a DateTime object
      *
@@ -16,7 +15,7 @@ trait DateDisplay
      *
      * @return Carbon
      */
-    protected function asDateTime(mixed $value) : Carbon
+    protected function asDateTime(mixed $value): Carbon
     {
         $date = parent::asDateTime($value);
 
@@ -34,9 +33,8 @@ trait DateDisplay
      *
      * @return string
      */
-    protected function serializeDate(DateTimeInterface $date) : string
+    protected function serializeDate(DateTimeInterface $date): string
     {
         return $date->format('c');
     }
-
 }

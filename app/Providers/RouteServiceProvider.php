@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
 {
-
     /**
      * The path to the "home" route for your application
      *
@@ -25,7 +24,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function configureRateLimiting() : void
+    protected function configureRateLimiting(): void
     {
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)
@@ -40,7 +39,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot() : void
+    public function boot(): void
     {
         $this->configureRateLimiting();
 
@@ -57,5 +56,4 @@ class RouteServiceProvider extends ServiceProvider
                 );
         });
     }
-
 }

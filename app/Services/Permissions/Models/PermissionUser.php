@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class PermissionUser extends Pivot
 {
-    use DateDisplay, HasRevisions;
+    use DateDisplay;
+    use HasRevisions;
 
     /**
      * Indicates if the model's primary key is auto-incrementing
@@ -45,7 +46,7 @@ class PermissionUser extends Pivot
      *
      * @return mixed
      */
-    public function user() : mixed
+    public function user(): mixed
     {
         return $this->belongsTo(User::class);
     }
@@ -57,9 +58,8 @@ class PermissionUser extends Pivot
      *
      * @return mixed
      */
-    public function permission() : mixed
+    public function permission(): mixed
     {
         return $this->belongsTo(Permission::class);
     }
-
 }

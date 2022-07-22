@@ -11,7 +11,6 @@ use Inertia\Inertia;
 
 class AuthenticationController extends Controller
 {
-
     /**
      * Handles a web route
      *
@@ -19,7 +18,7 @@ class AuthenticationController extends Controller
      *
      * @return mixed
      */
-    public function loginForm() : mixed
+    public function loginForm(): mixed
     {
         return Inertia::render('auth/login');
     }
@@ -33,7 +32,7 @@ class AuthenticationController extends Controller
      *
      * @return mixed
      */
-    public function login(AuthenticationRequest $request) : mixed
+    public function login(AuthenticationRequest $request): mixed
     {
         $request->authenticate();
 
@@ -53,7 +52,7 @@ class AuthenticationController extends Controller
      *
      * @return mixed
      */
-    public function logout(Request $request) : mixed
+    public function logout(Request $request): mixed
     {
         Auth::guard('web')
             ->logout();
@@ -66,5 +65,4 @@ class AuthenticationController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
-
 }

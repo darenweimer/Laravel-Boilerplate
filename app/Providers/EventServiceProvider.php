@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
-
     /**
      * The event to listener mappings for the application
      *
@@ -26,7 +25,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot() : void
+    public function boot(): void
     {
         //
     }
@@ -36,9 +35,8 @@ class EventServiceProvider extends ServiceProvider
      *
      * @return bool
      */
-    public function shouldDiscoverEvents() : bool
+    public function shouldDiscoverEvents(): bool
     {
         return false;
     }
-
 }

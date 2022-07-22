@@ -7,13 +7,12 @@ use Illuminate\Validation\Rules\Password;
 
 class RegistrationRequest extends FormRequest
 {
-
     /**
      * Determines if the user is authorized to make this request
      *
      * @return bool
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +22,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return Password
      */
-    public static function passwordRules() : Password
+    public static function passwordRules(): Password
     {
         return Password::min(8)
             ->letters()
@@ -38,7 +37,7 @@ class RegistrationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'first_name' => ['required', 'string'],
@@ -47,5 +46,4 @@ class RegistrationRequest extends FormRequest
             'password'   => ['required', 'confirmed', static::passwordRules()],
         ];
     }
-
 }

@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Prunable;
 
 class Revision extends Model
 {
-    use DateDisplay, Prunable;
+    use DateDisplay;
+    use Prunable;
 
     /**
      * The attributes that are mass assignable
@@ -42,7 +43,7 @@ class Revision extends Model
      *
      * @return mixed
      */
-    public function revisionable() : mixed
+    public function revisionable(): mixed
     {
         return $this->morphTo();
     }
@@ -54,7 +55,7 @@ class Revision extends Model
      *
      * @return mixed
      */
-    public function user() : mixed
+    public function user(): mixed
     {
         return $this->belongsTo(User::class);
     }
@@ -64,7 +65,7 @@ class Revision extends Model
      *
      * @return string|null
      */
-    public function getConnectionName() : ?string
+    public function getConnectionName(): ?string
     {
         return config('revisions.connection');
     }
@@ -74,15 +75,16 @@ class Revision extends Model
      *
      * @return mixed
      */
-    public function prunable() : mixed
+    public function prunable(): mixed
     {
         if (($retention = config('revisions.retention')) && ($retention > 0)) {
             return static::where(
-                'created_at', '<', now()->subDay($retention)->startOfDay()
+                'created_at',
+                '<',
+                now()->subDay($retention)->startOfDay()
             );
         }
 
         return static::whereRaw('0');
     }
-
 }

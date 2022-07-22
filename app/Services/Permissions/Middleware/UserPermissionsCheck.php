@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class UserPermissionsCheck
 {
-
     /**
      * Handles an incoming request
      *
@@ -17,7 +16,7 @@ class UserPermissionsCheck
      *
      * @return mixed
      */
-    public function handle(Request $request, Closure $next, string $permissions) : mixed
+    public function handle(Request $request, Closure $next, string $permissions): mixed
     {
         if ($request->user()?->hasPermissions($permissions)) {
             return $next($request);
@@ -25,5 +24,4 @@ class UserPermissionsCheck
 
         return abort(403);
     }
-
 }

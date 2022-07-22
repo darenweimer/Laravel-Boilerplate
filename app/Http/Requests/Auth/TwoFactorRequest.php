@@ -7,13 +7,12 @@ use Illuminate\Validation\Validator;
 
 class TwoFactorRequest extends FormRequest
 {
-
     /**
      * Determines if the user is authorized to make this request
      *
      * @return bool
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -23,7 +22,7 @@ class TwoFactorRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'two_factor_code' => ['required', 'string'],
@@ -37,13 +36,14 @@ class TwoFactorRequest extends FormRequest
      *
      * @return void
      */
-    public function withValidator(Validator $validator) : void
+    public function withValidator(Validator $validator): void
     {
         $validator->after(function ($validator) {
             if ($this->two_factor_code) {
                 $verified = app('pragmarx.google2fa')
                     ->verifyGoogle2FA(
-                        $this->user()?->two_factor_secret, $this->two_factor_code
+                        $this->user()?->two_factor_secret,
+                        $this->two_factor_code
                     );
 
                 if (!$verified) {
@@ -56,5 +56,4 @@ class TwoFactorRequest extends FormRequest
             }
         });
     }
-
 }

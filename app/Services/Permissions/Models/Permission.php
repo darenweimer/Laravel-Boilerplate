@@ -10,7 +10,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permission extends Model
 {
-    use DateDisplay, HasRevisions, SoftDeletes;
+    use DateDisplay;
+    use HasRevisions;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -30,7 +32,7 @@ class Permission extends Model
      *
      * @return mixed
      */
-    public function roles() : mixed
+    public function roles(): mixed
     {
         return $this->belongsToMany(Role::class)
             ->using(PermissionRole::class)
@@ -45,12 +47,11 @@ class Permission extends Model
      *
      * @return mixed
      */
-    public function users() : mixed
+    public function users(): mixed
     {
         return $this->belongsToMany(User::class)
             ->using(PermissionUser::class)
             ->withPivot('id')
             ->withTimestamps();
     }
-
 }

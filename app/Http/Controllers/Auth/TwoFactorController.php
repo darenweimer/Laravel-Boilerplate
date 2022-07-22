@@ -10,7 +10,6 @@ use Inertia\Inertia;
 
 class TwoFactorController extends Controller
 {
-
     /**
      * Handles a web route
      *
@@ -20,7 +19,7 @@ class TwoFactorController extends Controller
      *
      * @return mixed
      */
-    public function verifyForm(Request $request) : mixed
+    public function verifyForm(Request $request): mixed
     {
         if ($request->session()->get('two_factor_verified')) {
             return redirect()
@@ -39,7 +38,7 @@ class TwoFactorController extends Controller
      *
      * @return mixed
      */
-    public function verify(TwoFactorRequest $request) : mixed
+    public function verify(TwoFactorRequest $request): mixed
     {
         $request->session()
             ->put('two_factor_verified', true);
@@ -47,5 +46,4 @@ class TwoFactorController extends Controller
         return redirect()
             ->intended(RouteServiceProvider::HOME);
     }
-
 }

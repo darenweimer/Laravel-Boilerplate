@@ -16,8 +16,13 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable // implements MustVerifyEmail
 {
-    use DateDisplay, HasApiTokens, HasFactory, HasPermissions, HasRevisions,
-        Notifiable, SoftDeletes;
+    use DateDisplay;
+    use HasApiTokens;
+    use HasFactory;
+    use HasPermissions;
+    use HasRevisions;
+    use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable
@@ -74,10 +79,10 @@ class User extends Authenticatable // implements MustVerifyEmail
      *
      * @return Attribute
      */
-    protected function twoFactorEnabled() : Attribute
+    protected function twoFactorEnabled(): Attribute
     {
         return Attribute::make(
-            get: fn() => (bool) $this->two_factor_secret,
+            get: fn () => (bool) $this->two_factor_secret,
         );
     }
 
@@ -86,7 +91,7 @@ class User extends Authenticatable // implements MustVerifyEmail
      *
      * @return static
      */
-    public function enableTwoFactor() : static
+    public function enableTwoFactor(): static
     {
         $this->two_factor_secret = app('pragmarx.google2fa')
             ->generateSecretKey();
@@ -99,7 +104,7 @@ class User extends Authenticatable // implements MustVerifyEmail
      *
      * @return static
      */
-    public function disableTwoFactor() : static
+    public function disableTwoFactor(): static
     {
         $this->two_factor_secret = null;
 
@@ -111,7 +116,7 @@ class User extends Authenticatable // implements MustVerifyEmail
      *
      * @return string|null
      */
-    public function getTwoFactorQrCode() : ?string
+    public function getTwoFactorQrCode(): ?string
     {
         if (!$this->two_factor_secret) {
             return null;
@@ -119,8 +124,9 @@ class User extends Authenticatable // implements MustVerifyEmail
 
         return app('pragmarx.google2fa')
             ->getQRCodeInline(
-                config('app.name'), $this->email, $this->two_factor_secret
+                config('app.name'),
+                $this->email,
+                $this->two_factor_secret
             );
     }
-
 }

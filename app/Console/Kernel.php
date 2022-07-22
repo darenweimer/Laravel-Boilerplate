@@ -7,7 +7,6 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
-
     /**
      * Defines the application's command schedule
      *
@@ -15,7 +14,7 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function schedule(Schedule $schedule) : void
+    protected function schedule(Schedule $schedule): void
     {
         $schedule->command('model:prune')
             ->runInBackground()
@@ -27,11 +26,10 @@ class Kernel extends ConsoleKernel
      *
      * @return void
      */
-    protected function commands() : void
+    protected function commands(): void
     {
         $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
-
 }

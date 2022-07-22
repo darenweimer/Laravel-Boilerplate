@@ -4,9 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+return new class () extends Migration
 {
-
     /**
      * Creates the table
      *
@@ -14,7 +13,7 @@ return new class extends Migration
      *
      * @return void
      */
-    protected function tableCreate(Blueprint $table) : void
+    protected function tableCreate(Blueprint $table): void
     {
         $table->id();
         $table->morphs('revisionable');
@@ -30,18 +29,18 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up() : void
+    public function up(): void
     {
         if ($connection = config('revisions.connection')) {
             Schema::connection($connection)
                 ->create(
                     'revisions',
-                    fn($table) => $this->tableCreate($table)
+                    fn ($table) => $this->tableCreate($table)
                 );
         } else {
             Schema::create(
                 'revisions',
-                fn($table) => $this->tableCreate($table)
+                fn ($table) => $this->tableCreate($table)
             );
         }
     }
@@ -51,9 +50,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down() : void
+    public function down(): void
     {
         Schema::dropIfExists('revisions');
     }
-
 };

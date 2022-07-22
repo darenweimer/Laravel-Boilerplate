@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 
 class TestDataUsers extends Command
 {
-
     /**
      * The name and signature of the console command
      *
@@ -37,7 +36,7 @@ class TestDataUsers extends Command
      *
      * @return array
      */
-    protected function getExistingUsers() : array
+    protected function getExistingUsers(): array
     {
         return DB::table('users')
             ->select('email')
@@ -51,7 +50,7 @@ class TestDataUsers extends Command
      *
      * @return array
      */
-    protected function getAttachableRoles() : array
+    protected function getAttachableRoles(): array
     {
         if ($roles = $this->option('role')) {
             return Role::select('id')
@@ -68,7 +67,7 @@ class TestDataUsers extends Command
      *
      * @return array
      */
-    protected function getAttachablePermissions() : array
+    protected function getAttachablePermissions(): array
     {
         if ($permissions = $this->option('permission')) {
             return Permission::select('id')
@@ -88,7 +87,7 @@ class TestDataUsers extends Command
      *
      * @return array
      */
-    protected function generateUsers(int $count, array $existing) : array
+    protected function generateUsers(int $count, array $existing): array
     {
         $users = [];
 
@@ -128,7 +127,7 @@ class TestDataUsers extends Command
      *
      * @return void
      */
-    protected function insertUsers(array $users) : void
+    protected function insertUsers(array $users): void
     {
         $roles = $this->getAttachableRoles();
 
@@ -158,10 +157,11 @@ class TestDataUsers extends Command
      *
      * @return int
      */
-    public function handle() : int
+    public function handle(): int
     {
         $users = $this->generateUsers(
-            $total = $this->argument('total'), $this->getExistingUsers()
+            $total = $this->argument('total'),
+            $this->getExistingUsers()
         );
 
         if (($unique = count($users)) < $total) {
@@ -176,5 +176,4 @@ class TestDataUsers extends Command
 
         return 0;
     }
-
 }

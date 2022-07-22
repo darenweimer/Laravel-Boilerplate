@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\DB;
 
 class UsersExpire extends Command
 {
-
     /**
      * The name and signature of the console command
      *
@@ -28,7 +27,7 @@ class UsersExpire extends Command
      *
      * @return int
      */
-    public function handle() : int
+    public function handle(): int
     {
         $query = DB::table('sessions');
 
@@ -42,5 +41,4 @@ class UsersExpire extends Command
 
         return 0;
     }
-
 }

@@ -8,7 +8,6 @@ use Illuminate\Database\Seeder;
 
 class PermissionRoleSeeder extends Seeder
 {
-
     /**
      * The data to seed
      *
@@ -42,7 +41,7 @@ class PermissionRoleSeeder extends Seeder
      *
      * @return void
      */
-    public function run() : void
+    public function run(): void
     {
         foreach ($this->seeds as $seed) {
             Role::where('role', $seed['role'])
@@ -54,5 +53,4 @@ class PermissionRoleSeeder extends Seeder
                 );
         }
     }
-
 }

@@ -10,13 +10,12 @@ use Illuminate\Validation\ValidationException;
 
 class AuthenticationRequest extends FormRequest
 {
-
     /**
      * Gets the rate limiting throttle key for the request
      *
      * @return string
      */
-    protected function throttleKey() : string
+    protected function throttleKey(): string
     {
         return strtolower($this->email) . '|' . $this->ip();
     }
@@ -28,10 +27,11 @@ class AuthenticationRequest extends FormRequest
      *
      * @throws ValidationException
      */
-    protected function validateRateLimiting() : void
+    protected function validateRateLimiting(): void
     {
         $tooManyAttempts = RateLimiter::tooManyAttempts(
-            $this->throttleKey(), 5
+            $this->throttleKey(),
+            5
         );
 
         if (!$tooManyAttempts) {
@@ -60,7 +60,7 @@ class AuthenticationRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() : bool
+    public function authorize(): bool
     {
         return true;
     }
@@ -70,7 +70,7 @@ class AuthenticationRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() : array
+    public function rules(): array
     {
         return [
             'email'    => ['required', 'email'],
@@ -85,7 +85,7 @@ class AuthenticationRequest extends FormRequest
      *
      * @throws ValidationException
      */
-    public function authenticate() : void
+    public function authenticate(): void
     {
         $this->validateRateLimiting();
 
@@ -108,5 +108,4 @@ class AuthenticationRequest extends FormRequest
             $this->throttleKey()
         );
     }
-
 }

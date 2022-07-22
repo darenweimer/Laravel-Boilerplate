@@ -6,19 +6,16 @@ use Illuminate\Support\ServiceProvider;
 
 class Service extends ServiceProvider
 {
-
     /**
      * Registers any application services
      *
      * @return void
      */
-    public function register() : void
+    public function register(): void
     {
         $this->loadMigrationsFrom(__DIR__ . '/Migrations');
 
-        $this->mergeConfigFrom(
-            __DIR__ . '/Config/revisions.php', 'revisions'
-        );
+        $this->mergeConfigFrom(__DIR__ . '/Config/revisions.php', 'revisions');
     }
 
     /**
@@ -26,9 +23,8 @@ class Service extends ServiceProvider
      *
      * @return void
      */
-    public function boot() : void
+    public function boot(): void
     {
         //
     }
-
 }

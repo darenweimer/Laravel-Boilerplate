@@ -14,7 +14,6 @@ use App\Support\Decimal;
 */
 
 if (!function_exists('array_matches')) {
-
     /**
      * Returns true if an array matches an items expression
      *
@@ -26,13 +25,16 @@ if (!function_exists('array_matches')) {
      *
      * @return bool
      */
-    function array_matches(array $array, string $expression) : bool
+    function array_matches(array $array, string $expression): bool
     {
         $conditions = array_filter(
             array_map(
                 'trim',
                 preg_split(
-                    '/([!\(\)\&\|]+)/', $expression, -1, PREG_SPLIT_DELIM_CAPTURE
+                    '/([!\(\)\&\|]+)/',
+                    $expression,
+                    -1,
+                    PREG_SPLIT_DELIM_CAPTURE
                 )
             )
         );
@@ -49,11 +51,9 @@ if (!function_exists('array_matches')) {
 
         return eval("return {$evaluation};");
     }
-
 }
 
 if (!function_exists('setting')) {
-
     /**
      * Retrieves an application setting
      *
@@ -62,7 +62,7 @@ if (!function_exists('setting')) {
      *
      * @return mixed
      */
-    function setting(string $setting, mixed $default = null) : mixed
+    function setting(string $setting, mixed $default = null): mixed
     {
         $data = Setting::where('setting', $setting)
             ->first();
@@ -81,11 +81,9 @@ if (!function_exists('setting')) {
 
         return $default;
     }
-
 }
 
 if (!function_exists('stopwatch')) {
-
     /**
      * Tracks how long a callback takes to execute a certain number of times
      *
@@ -98,9 +96,10 @@ if (!function_exists('stopwatch')) {
      *
      * @return float
      */
-    function stopwatch(int $iterations, callable $callback) : float
+    function stopwatch(int $iterations, callable $callback): float
     {
-        $emptyFunc = function () { };
+        $emptyFunc = function () {
+        };
 
         $startTime = microtime(true);
 
@@ -122,5 +121,4 @@ if (!function_exists('stopwatch')) {
 
         return max($endTime - $startTime - $delta, 0);
     }
-
 }

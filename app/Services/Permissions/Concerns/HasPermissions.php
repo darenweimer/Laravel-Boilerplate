@@ -10,16 +10,15 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasPermissions
 {
-
     /**
      * Interacts with the 'roles_list' attribute
      *
      * @return Attribute
      */
-    protected function rolesList() : Attribute
+    protected function rolesList(): Attribute
     {
         return Attribute::make(
-            get: fn() => $this->roles
+            get: fn () => $this->roles
                 ->pluck('role')
                 ->toArray(),
         );
@@ -30,10 +29,10 @@ trait HasPermissions
      *
      * @return Attribute
      */
-    protected function permissionsList() : Attribute
+    protected function permissionsList(): Attribute
     {
         return Attribute::make(
-            get: fn() => array_unique(
+            get: fn () => array_unique(
                 array_merge(
                     $this->roles
                         ->pluck('permissions.*.permission')
@@ -54,7 +53,7 @@ trait HasPermissions
      *
      * @return mixed
      */
-    public function scopeGetWithPermissions(mixed $query) : mixed
+    public function scopeGetWithPermissions(mixed $query): mixed
     {
         return $query
             ->with([
@@ -77,7 +76,7 @@ trait HasPermissions
      *
      * @return static
      */
-    public function withPermissions() : static
+    public function withPermissions(): static
     {
         return $this
             ->loadMissing([
@@ -101,7 +100,7 @@ trait HasPermissions
      *
      * @return mixed
      */
-    public function roles() : mixed
+    public function roles(): mixed
     {
         return $this->belongsToMany(Role::class)
             ->using(RoleUser::class)
@@ -116,7 +115,7 @@ trait HasPermissions
      *
      * @return mixed
      */
-    public function permissions() : mixed
+    public function permissions(): mixed
     {
         return $this->belongsToMany(Permission::class)
             ->using(PermissionUser::class)
@@ -131,10 +130,11 @@ trait HasPermissions
      *
      * @return static
      */
-    public function grantRoles(string|array $roles) : static
+    public function grantRoles(string|array $roles): static
     {
         $grantable = Role::whereIn(
-            'role', is_array($roles) ? $roles : [$roles]
+            'role',
+            is_array($roles) ? $roles : [$roles]
         )
         ->get();
 
@@ -153,10 +153,11 @@ trait HasPermissions
      *
      * @return static
      */
-    public function revokeRoles(string|array $roles) : static
+    public function revokeRoles(string|array $roles): static
     {
         $revokable = Role::whereIn(
-            'role', is_array($roles) ? $roles : [$roles]
+            'role',
+            is_array($roles) ? $roles : [$roles]
         )
         ->get();
 
@@ -175,7 +176,7 @@ trait HasPermissions
      *
      * @return bool
      */
-    public function hasRole(string $role) : bool
+    public function hasRole(string $role): bool
     {
         return in_array($role, $this->roles_list);
     }
@@ -187,7 +188,7 @@ trait HasPermissions
      *
      * @return bool
      */
-    public function hasRoles(string $roles) : bool
+    public function hasRoles(string $roles): bool
     {
         return array_matches($this->roles_list, $roles);
     }
@@ -199,10 +200,11 @@ trait HasPermissions
      *
      * @return static
      */
-    public function grantPermissions(string|array $permissions) : static
+    public function grantPermissions(string|array $permissions): static
     {
         $grantable = Permission::whereIn(
-            'permission', is_array($permissions) ? $permissions : [$permissions]
+            'permission',
+            is_array($permissions) ? $permissions : [$permissions]
         )
         ->get();
 
@@ -221,10 +223,11 @@ trait HasPermissions
      *
      * @return static
      */
-    public function revokePermissions(string|array $permissions) : static
+    public function revokePermissions(string|array $permissions): static
     {
         $revokable = Permission::whereIn(
-            'permission', is_array($permissions) ? $permissions : [$permissions]
+            'permission',
+            is_array($permissions) ? $permissions : [$permissions]
         )
         ->get();
 
@@ -243,7 +246,7 @@ trait HasPermissions
      *
      * @return bool
      */
-    public function hasPermission(string $permission) : bool
+    public function hasPermission(string $permission): bool
     {
         return $this->su || in_array($permission, $this->permissions_list);
     }
@@ -255,11 +258,11 @@ trait HasPermissions
      *
      * @return bool
      */
-    public function hasPermissions(string $permissions) : bool
+    public function hasPermissions(string $permissions): bool
     {
         return $this->su || array_matches(
-            $this->permissions_list, $permissions
+            $this->permissions_list,
+            $permissions
         );
     }
-
 }
