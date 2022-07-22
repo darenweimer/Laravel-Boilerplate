@@ -1,8 +1,8 @@
 <template>
-    <div class="inline relative">
+    <div class="relative">
         <i v-if="icon" class="fa-fw absolute left-3 top-1/2 -translate-y-1/2" :class="iconClass"></i>
 
-        <input v-bind="$attrs" :type="type" :value="modelValue" :class="inputClass" @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled"/>
+        <input v-bind="$attrs" :type="type" :value="modelValue" class="ml-0 mr-0 mt-0 mb-0" :class="inputClass" @input="$emit('update:modelValue', $event.target.value)" :disabled="disabled"/>
 
         <i v-if="(validation === false) && (!disabled)" class="fa-solid fa-xmark fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-error"></i>
         <i v-else-if="(validation === true) && (!disabled)" class="fa-solid fa-check fa-fw absolute right-3 top-1/2 -translate-y-1/2 text-xs text-input-success"></i>

@@ -1,12 +1,12 @@
 <template>
-    <div class="inline relative">
+    <div class="relative">
         <i v-if="icon" class="fa-fw absolute left-3 top-1/2 -translate-y-1/2" :class="iconClass"></i>
 
         <div v-if="placeholder && (!multiple) && (!modelValue)" class="absolute top-1/2 -translate-y-1/2 overflow-hidden text-ellipsis whitespace-nowrap pointer-events-none" :class="placeholderClass">
             {{ placeholder }}
         </div>
 
-        <select v-bind="$attrs" ref="select" v-model="modelValue" :multiple="multiple" :class="selectClass" @input="update($event.target.value)" :disabled="disabled">
+        <select v-bind="$attrs" ref="select" v-model="modelValue" :multiple="multiple" class="ml-0 mr-0 mt-0 mb-0" :class="selectClass" @input="update($event.target.value)" :disabled="disabled">
             <option v-for="(option, index) in options" :key="index" :value="option.value">
                 {{ option.label }}
             </option>
