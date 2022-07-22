@@ -20,7 +20,7 @@
                     </td>
 
                     <td class="w-0 px-0 py-0.5">
-                        <i v-if="option.icon" class="fa-fw mr-1.5" :class="option.icon"></i>
+                        <i v-if="option.icon" class="fa-fw mr-2" :class="option.icon"></i>
                     </td>
 
                     <td class="pl-0 pr-4 py-0.5">
