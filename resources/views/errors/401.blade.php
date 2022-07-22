@@ -11,8 +11,8 @@
 
     <p class="mt-4 text-center">
         <a href="/" class="text-link">
-            <i class="fa-solid fa-home"></i>
             Click here to return home
+            <i class="fa-solid fa-home fa-fw"></i>
         </a>
     </p>
 @endsection
