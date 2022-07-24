@@ -17,8 +17,8 @@ if (!function_exists('array_matches')) {
     /**
      * Returns true if an array matches an items expression
      *
-     * The items expression can be a single item or a combination of items linked
-     * by parentheses and the logical operators && and ||.
+     * The items expression can be a single item or a combination of items
+     * linked by parentheses and the logical operators && and ||.
      *
      * @param array $array
      * @param string $expression
@@ -87,9 +87,9 @@ if (!function_exists('stopwatch')) {
     /**
      * Tracks how long a callback takes to execute a certain number of times
      *
-     * This function also takes into account the time it takes to run a callback for
-     * the same number of iterations and subtracts that time from the final time,
-     * yielding a more accurate runtime for the callback itself.
+     * This function also takes into account the time it takes to run a callback
+     * for the same number of iterations and subtracts that time from the final
+     * time, yielding a more accurate runtime for the callback itself.
      *
      * @param int $iterations
      * @param callable $callback
